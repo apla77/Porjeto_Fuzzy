@@ -23,7 +23,6 @@ namespace TanqueTeste01
         {
            
             InitializeComponent();
-            //timerReq.Enabled = true;
             btEnviar.Enabled = false;
             btnBomba.Enabled = false;
             btnSalvar.Enabled = false;

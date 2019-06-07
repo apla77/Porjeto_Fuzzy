@@ -1,0 +1,10 @@
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\bin\Debug\TanqueTeste01.exe.config
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\bin\Debug\TanqueTeste01.exe
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\bin\Debug\TanqueTeste01.pdb
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.csprojAssemblyReference.cache
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.Form1.resources
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.Properties.Resources.resources
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.csproj.GenerateResource.cache
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.csproj.CoreCompileInputs.cache
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.exe
+C:\Users\IFRN\source\repos\TanqueTeste01\TanqueTeste01\obj\Debug\TanqueTeste01.pdb

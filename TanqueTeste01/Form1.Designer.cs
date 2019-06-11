@@ -38,7 +38,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btEnviar = new System.Windows.Forms.Button();
             this.textBoxReceber = new System.Windows.Forms.TextBox();
-            this.timerReq = new System.Windows.Forms.Timer(this.components);
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.hScrollBarBomba = new System.Windows.Forms.HScrollBar();
             this.btnBomba = new System.Windows.Forms.Button();
@@ -57,6 +56,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
+            this.btnOpenArquivo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -101,13 +102,8 @@
             this.textBoxReceber.Multiline = true;
             this.textBoxReceber.Name = "textBoxReceber";
             this.textBoxReceber.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxReceber.Size = new System.Drawing.Size(208, 324);
+            this.textBoxReceber.Size = new System.Drawing.Size(198, 324);
             this.textBoxReceber.TabIndex = 4;
-            // 
-            // timerReq
-            // 
-            this.timerReq.Interval = 1000;
-            this.timerReq.Tick += new System.EventHandler(this.timerReq_Tick);
             // 
             // serialPort1
             // 
@@ -117,11 +113,9 @@
             // 
             this.hScrollBarBomba.Location = new System.Drawing.Point(175, 197);
             this.hScrollBarBomba.Maximum = 109;
-            this.hScrollBarBomba.Minimum = 1;
             this.hScrollBarBomba.Name = "hScrollBarBomba";
             this.hScrollBarBomba.Size = new System.Drawing.Size(185, 23);
             this.hScrollBarBomba.TabIndex = 5;
-            this.hScrollBarBomba.Value = 1;
             this.hScrollBarBomba.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarBomba_Scroll);
             // 
             // btnBomba
@@ -241,7 +235,7 @@
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(447, 289);
+            this.btnSalvar.Location = new System.Drawing.Point(135, 279);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 15;
@@ -256,7 +250,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(477, 532);
+            this.button1.Location = new System.Drawing.Point(407, 662);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 17;
@@ -268,7 +262,7 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(381, 353);
+            this.pictureBox1.Location = new System.Drawing.Point(336, 505);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(50, 200);
             this.pictureBox1.TabIndex = 18;
@@ -277,17 +271,34 @@
             // pictureBox2
             // 
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(390, 353);
+            this.pictureBox2.Location = new System.Drawing.Point(316, 505);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(53, 200);
             this.pictureBox2.TabIndex = 19;
             this.pictureBox2.TabStop = false;
+            // 
+            // openFile
+            // 
+            this.openFile.FileName = "openFileDialog1";
+            this.openFile.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // btnOpenArquivo
+            // 
+            this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenArquivo.Location = new System.Drawing.Point(272, 279);
+            this.btnOpenArquivo.Name = "btnOpenArquivo";
+            this.btnOpenArquivo.Size = new System.Drawing.Size(114, 23);
+            this.btnOpenArquivo.TabIndex = 20;
+            this.btnOpenArquivo.Text = "Abrir Arquivo";
+            this.btnOpenArquivo.UseVisualStyleBackColor = true;
+            this.btnOpenArquivo.Click += new System.EventHandler(this.btnOpenArquivo_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 717);
+            this.Controls.Add(this.btnOpenArquivo);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label3);
@@ -326,15 +337,12 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btEnviar;
         private System.Windows.Forms.TextBox textBoxReceber;
-        private System.Windows.Forms.Timer timerReq;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.HScrollBar hScrollBarBomba;
         private System.Windows.Forms.Button btnBomba;
         private System.Windows.Forms.Label labelSen;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartNivel;
 
-
-        bool requested = false;
         private System.Windows.Forms.Label labelBom;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartBomba;
         private System.Windows.Forms.Label lblTeste;
@@ -348,6 +356,13 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+
+        string leituraBombaSersor;
+        string iniciarParar = "300";
+        bool requested = false;
+        int sample = 0;
+        private System.Windows.Forms.OpenFileDialog openFile;
+        private System.Windows.Forms.Button btnOpenArquivo;
     }
 }
 

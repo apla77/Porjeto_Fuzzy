@@ -29,8 +29,8 @@ void loop() {
       Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]");
     }
     
-    if(potenciaMotor > 0 && potenciaMotor <= 100){ 
-      potencia = 85 + float(potenciaMotor * 1.7); //******* Relação nível sensor ******
+    if(potenciaMotor >= 0 && potenciaMotor <= 100){ 
+      potencia = 80 + float(potenciaMotor * 1.75); //******* Relação nível sensor ******
     }
    }
    if(ligaDesliga){

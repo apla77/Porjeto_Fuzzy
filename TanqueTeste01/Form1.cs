@@ -136,7 +136,7 @@ namespace TanqueTeste01 {
             if (firstClose > firstOpen) {
                 string[] dados = aux.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
-                Double relacaoNivel = Double.Parse(dados[0]) * 0.1283 - 2.9587;         // 0.1205 - 3.2624;
+                Double relacaoNivel = Double.Parse(dados[0]) * valorA - valorB;         // 0.1205 - 3.2624;
 
                 labelSen.Text = dados[0];
 
@@ -197,11 +197,21 @@ namespace TanqueTeste01 {
         }
 
         private void button1_Click_1(object sender, EventArgs e){
+
             if (pictureBox2.Height > 0){
                 pictureBox2.Height = pictureBox2.Height - 5;
             }
+            else if (pictureBox3.Height >= 4 && pictureBox2.Height == 0){
+                pictureBox3.Height = pictureBox3.Height - 5;
+            }
+            else if (pictureBox4.Height >= 7 && pictureBox3.Height < 4)
+            {
+                pictureBox4.Height = pictureBox4.Height - 5;
+            }
             else{
-                pictureBox2.Height = 200;
+                pictureBox2.Height = 81;
+                pictureBox3.Height = 84;
+                pictureBox4.Height = 100;
             }
         }
 
@@ -222,6 +232,12 @@ namespace TanqueTeste01 {
                 System.Diagnostics.Process.Start(openFileDialog1.FileName);
             }
 
+        }
+
+        private void btnEnviarAB_Click(object sender, EventArgs e)
+        {
+            valorA = Double.Parse(textBoxA.Text);
+            valorB = Double.Parse(textBoxB.Text);
         }
     }
 }

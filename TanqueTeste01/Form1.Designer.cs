@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btConectar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -48,14 +48,14 @@
             this.labelBom = new System.Windows.Forms.Label();
             this.chartBomba = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblTeste = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblSelecionaPorta = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.picSecaoInferior = new System.Windows.Forms.PictureBox();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenArquivo = new System.Windows.Forms.Button();
             this.textBoxA = new System.Windows.Forms.TextBox();
@@ -63,15 +63,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxB = new System.Windows.Forms.TextBox();
             this.btnEnviarAB = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.picSecaoIntermediaria = new System.Windows.Forms.PictureBox();
+            this.picSecaoSuperior = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSecaoInferior)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSecaoIntermediaria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSecaoSuperior)).BeginInit();
             this.SuspendLayout();
             // 
             // btConectar
@@ -150,16 +150,16 @@
             // 
             // chartNivel
             // 
-            chartArea12.AxisX.Minimum = 0D;
-            chartArea12.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea12);
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea3);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
             this.chartNivel.Location = new System.Drawing.Point(593, 12);
             this.chartNivel.Name = "chartNivel";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series12.Name = "Nível";
-            this.chartNivel.Series.Add(series12);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "Nível";
+            this.chartNivel.Series.Add(series3);
             this.chartNivel.Size = new System.Drawing.Size(613, 339);
             this.chartNivel.TabIndex = 8;
             this.chartNivel.Text = "chart1";
@@ -189,14 +189,14 @@
             // 
             // chartBomba
             // 
-            chartArea11.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea11);
+            chartArea1.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea1);
             this.chartBomba.Location = new System.Drawing.Point(593, 369);
             this.chartBomba.Name = "chartBomba";
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.Name = "Nível";
-            this.chartBomba.Series.Add(series11);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Nível";
+            this.chartBomba.Series.Add(series1);
             this.chartBomba.Size = new System.Drawing.Size(613, 336);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
@@ -211,15 +211,15 @@
             this.lblTeste.TabIndex = 11;
             this.lblTeste.Text = "0%";
             // 
-            // label1
+            // lblSelecionaPorta
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(66, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 16);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Selecione uma porta abaixo";
+            this.lblSelecionaPorta.AutoSize = true;
+            this.lblSelecionaPorta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelecionaPorta.Location = new System.Drawing.Point(66, 27);
+            this.lblSelecionaPorta.Name = "lblSelecionaPorta";
+            this.lblSelecionaPorta.Size = new System.Drawing.Size(202, 16);
+            this.lblSelecionaPorta.TabIndex = 12;
+            this.lblSelecionaPorta.Text = "Selecione uma porta abaixo";
             // 
             // label2
             // 
@@ -278,19 +278,18 @@
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox2
+            // picSecaoInferior
             // 
-            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(515, 543);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 83);
-            this.pictureBox2.TabIndex = 19;
-            this.pictureBox2.TabStop = false;
+            this.picSecaoInferior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoInferior.InitialImage")));
+            this.picSecaoInferior.Location = new System.Drawing.Point(515, 543);
+            this.picSecaoInferior.Name = "picSecaoInferior";
+            this.picSecaoInferior.Size = new System.Drawing.Size(40, 83);
+            this.picSecaoInferior.TabIndex = 19;
+            this.picSecaoInferior.TabStop = false;
             // 
             // openFile
             // 
             this.openFile.FileName = "openFileDialog1";
-            this.openFile.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // btnOpenArquivo
             // 
@@ -348,23 +347,23 @@
             this.btnEnviarAB.UseVisualStyleBackColor = true;
             this.btnEnviarAB.Click += new System.EventHandler(this.btnEnviarAB_Click);
             // 
-            // pictureBox3
+            // picSecaoIntermediaria
             // 
-            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(511, 459);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(48, 84);
-            this.pictureBox3.TabIndex = 26;
-            this.pictureBox3.TabStop = false;
+            this.picSecaoIntermediaria.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoIntermediaria.InitialImage")));
+            this.picSecaoIntermediaria.Location = new System.Drawing.Point(511, 459);
+            this.picSecaoIntermediaria.Name = "picSecaoIntermediaria";
+            this.picSecaoIntermediaria.Size = new System.Drawing.Size(48, 84);
+            this.picSecaoIntermediaria.TabIndex = 26;
+            this.picSecaoIntermediaria.TabStop = false;
             // 
-            // pictureBox4
+            // picSecaoSuperior
             // 
-            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(507, 359);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(56, 100);
-            this.pictureBox4.TabIndex = 27;
-            this.pictureBox4.TabStop = false;
+            this.picSecaoSuperior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoSuperior.InitialImage")));
+            this.picSecaoSuperior.Location = new System.Drawing.Point(507, 359);
+            this.picSecaoSuperior.Name = "picSecaoSuperior";
+            this.picSecaoSuperior.Size = new System.Drawing.Size(56, 100);
+            this.picSecaoSuperior.TabIndex = 27;
+            this.picSecaoSuperior.TabStop = false;
             // 
             // Form1
             // 
@@ -372,8 +371,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1232, 734);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.picSecaoSuperior);
+            this.Controls.Add(this.picSecaoIntermediaria);
             this.Controls.Add(this.btnEnviarAB);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxB);
@@ -384,7 +383,7 @@
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSelecionaPorta);
             this.Controls.Add(this.lblTeste);
             this.Controls.Add(this.chartBomba);
             this.Controls.Add(this.labelBom);
@@ -396,7 +395,7 @@
             this.Controls.Add(this.btEnviar);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btConectar);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.picSecaoInferior);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -406,9 +405,9 @@
             this.chartNivelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSecaoInferior)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSecaoIntermediaria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSecaoSuperior)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -429,7 +428,7 @@
         private System.Windows.Forms.Label labelBom;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartBomba;
         private System.Windows.Forms.Label lblTeste;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSelecionaPorta;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSalvar;
@@ -438,7 +437,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox picSecaoInferior;
 
         string leituraBombaSersor;
         string iniciarParar = "300";
@@ -446,6 +445,7 @@
         double valorA = 0.1283;
         double valorB = 2.9587;
         int sample = 0;
+
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.Button btnOpenArquivo;
         private System.Windows.Forms.TextBox textBoxA;
@@ -453,8 +453,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxB;
         private System.Windows.Forms.Button btnEnviarAB;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox picSecaoIntermediaria;
+        private System.Windows.Forms.PictureBox picSecaoSuperior;
     }
 }
 

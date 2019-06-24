@@ -38,4 +38,5 @@ void loop() {
     Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]"); // Envia os dados para o VS 
    }
    delay(200);
+   
 }

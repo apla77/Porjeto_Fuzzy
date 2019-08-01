@@ -30,7 +30,7 @@ void loop() {
     }
     
     if(potenciaMotor >= 0 && potenciaMotor <= 100){ 
-      potencia = 80 + float(potenciaMotor * 1.75); //******* Relação nível sensor ******
+      potencia = (80 + float(potenciaMotor * 1.75)); //******* Relação nível sensor ******
     }
    }
    if(ligaDesliga){

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btConectar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -107,7 +107,7 @@
             // 
             // textBoxReceber
             // 
-            this.textBoxReceber.Location = new System.Drawing.Point(12, 468);
+            this.textBoxReceber.Location = new System.Drawing.Point(27, 374);
             this.textBoxReceber.Multiline = true;
             this.textBoxReceber.Name = "textBoxReceber";
             this.textBoxReceber.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -150,17 +150,17 @@
             // 
             // chartNivel
             // 
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea1);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
-            this.chartNivel.Location = new System.Drawing.Point(593, 12);
+            this.chartNivel.Location = new System.Drawing.Point(693, 12);
             this.chartNivel.Name = "chartNivel";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Name = "Nível";
-            this.chartNivel.Series.Add(series3);
-            this.chartNivel.Size = new System.Drawing.Size(613, 339);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Nível";
+            this.chartNivel.Series.Add(series1);
+            this.chartNivel.Size = new System.Drawing.Size(513, 252);
             this.chartNivel.TabIndex = 8;
             this.chartNivel.Text = "chart1";
             // 
@@ -189,15 +189,15 @@
             // 
             // chartBomba
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea1);
-            this.chartBomba.Location = new System.Drawing.Point(593, 369);
+            chartArea2.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea2);
+            this.chartBomba.Location = new System.Drawing.Point(693, 270);
             this.chartBomba.Name = "chartBomba";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Nível";
-            this.chartBomba.Series.Add(series1);
-            this.chartBomba.Size = new System.Drawing.Size(613, 336);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Name = "Nível";
+            this.chartBomba.Series.Add(series2);
+            this.chartBomba.Size = new System.Drawing.Size(513, 252);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
             // 
@@ -259,7 +259,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(346, 606);
+            this.button1.Location = new System.Drawing.Point(361, 512);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 17;
@@ -272,7 +272,7 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(489, 358);
+            this.pictureBox1.Location = new System.Drawing.Point(549, 147);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(79, 271);
             this.pictureBox1.TabIndex = 18;
@@ -281,7 +281,7 @@
             // picSecaoInferior
             // 
             this.picSecaoInferior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoInferior.InitialImage")));
-            this.picSecaoInferior.Location = new System.Drawing.Point(515, 543);
+            this.picSecaoInferior.Location = new System.Drawing.Point(575, 332);
             this.picSecaoInferior.Name = "picSecaoInferior";
             this.picSecaoInferior.Size = new System.Drawing.Size(40, 83);
             this.picSecaoInferior.TabIndex = 19;
@@ -350,7 +350,7 @@
             // picSecaoIntermediaria
             // 
             this.picSecaoIntermediaria.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoIntermediaria.InitialImage")));
-            this.picSecaoIntermediaria.Location = new System.Drawing.Point(511, 459);
+            this.picSecaoIntermediaria.Location = new System.Drawing.Point(571, 248);
             this.picSecaoIntermediaria.Name = "picSecaoIntermediaria";
             this.picSecaoIntermediaria.Size = new System.Drawing.Size(48, 84);
             this.picSecaoIntermediaria.TabIndex = 26;
@@ -359,7 +359,7 @@
             // picSecaoSuperior
             // 
             this.picSecaoSuperior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoSuperior.InitialImage")));
-            this.picSecaoSuperior.Location = new System.Drawing.Point(507, 359);
+            this.picSecaoSuperior.Location = new System.Drawing.Point(567, 148);
             this.picSecaoSuperior.Name = "picSecaoSuperior";
             this.picSecaoSuperior.Size = new System.Drawing.Size(56, 100);
             this.picSecaoSuperior.TabIndex = 27;
@@ -370,7 +370,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1232, 734);
+            this.ClientSize = new System.Drawing.Size(1232, 621);
             this.Controls.Add(this.picSecaoSuperior);
             this.Controls.Add(this.picSecaoIntermediaria);
             this.Controls.Add(this.btnEnviarAB);

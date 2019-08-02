@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btConectar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -52,8 +52,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.picSecaoInferior = new System.Windows.Forms.PictureBox();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenArquivo = new System.Windows.Forms.Button();
             this.textBoxA = new System.Windows.Forms.TextBox();
@@ -61,31 +59,27 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxB = new System.Windows.Forms.TextBox();
             this.btnEnviarAB = new System.Windows.Forms.Button();
-            this.picSecaoIntermediaria = new System.Windows.Forms.PictureBox();
-            this.picSecaoSuperior = new System.Windows.Forms.PictureBox();
             this.lblBomba = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSecaoInferior)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSecaoIntermediaria)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSecaoSuperior)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // btConectar
             // 
             this.btConectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btConectar.Location = new System.Drawing.Point(293, 55);
+            this.btConectar.Location = new System.Drawing.Point(27, 101);
             this.btConectar.Name = "btConectar";
             this.btConectar.Size = new System.Drawing.Size(114, 23);
             this.btConectar.TabIndex = 0;
@@ -96,7 +90,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(69, 55);
+            this.comboBox1.Location = new System.Drawing.Point(27, 55);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(203, 21);
             this.comboBox1.TabIndex = 1;
@@ -105,7 +99,7 @@
             // btEnviar
             // 
             this.btEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEnviar.Location = new System.Drawing.Point(69, 113);
+            this.btEnviar.Location = new System.Drawing.Point(155, 101);
             this.btEnviar.Name = "btEnviar";
             this.btEnviar.Size = new System.Drawing.Size(75, 23);
             this.btEnviar.TabIndex = 2;
@@ -119,7 +113,7 @@
             // 
             // hScrollBarBomba
             // 
-            this.hScrollBarBomba.Location = new System.Drawing.Point(175, 165);
+            this.hScrollBarBomba.Location = new System.Drawing.Point(27, 147);
             this.hScrollBarBomba.Maximum = 109;
             this.hScrollBarBomba.Name = "hScrollBarBomba";
             this.hScrollBarBomba.Size = new System.Drawing.Size(185, 23);
@@ -129,7 +123,7 @@
             // btnBomba
             // 
             this.btnBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBomba.Location = new System.Drawing.Point(69, 165);
+            this.btnBomba.Location = new System.Drawing.Point(108, 186);
             this.btnBomba.Name = "btnBomba";
             this.btnBomba.Size = new System.Drawing.Size(75, 23);
             this.btnBomba.TabIndex = 6;
@@ -141,7 +135,7 @@
             // 
             this.labelSen.AutoSize = true;
             this.labelSen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSen.Location = new System.Drawing.Point(232, 116);
+            this.labelSen.Location = new System.Drawing.Point(87, 323);
             this.labelSen.Name = "labelSen";
             this.labelSen.Size = new System.Drawing.Size(40, 16);
             this.labelSen.TabIndex = 7;
@@ -149,28 +143,28 @@
             // 
             // chartNivel
             // 
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.AxisX.Title = "amostras";
-            chartArea4.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea4.AxisY.Title = "nível (cm)";
-            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea4.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea4);
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.Title = "amostras";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Title = "nível (cm)";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea1);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
-            this.chartNivel.Location = new System.Drawing.Point(693, 12);
+            this.chartNivel.Location = new System.Drawing.Point(287, 10);
             this.chartNivel.Name = "chartNivel";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Name = "Nível";
-            this.chartNivel.Series.Add(series4);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Nível";
+            this.chartNivel.Series.Add(series1);
             this.chartNivel.Size = new System.Drawing.Size(513, 252);
             this.chartNivel.TabIndex = 8;
             this.chartNivel.Text = "Nível do Tanque";
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.Name = "Title1";
-            title4.Text = "Nível do Tanque";
-            this.chartNivel.Titles.Add(title4);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Nível do Tanque";
+            this.chartNivel.Titles.Add(title1);
             // 
             // chartNivelMenu
             // 
@@ -187,36 +181,36 @@
             // 
             // chartBomba
             // 
-            chartArea3.AxisX.Title = "amostras";
-            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.AxisY.Title = "acionamento (%)";
-            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea3);
-            this.chartBomba.Location = new System.Drawing.Point(693, 270);
+            chartArea2.AxisX.Title = "amostras";
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisY.Title = "acionamento (%)";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea2);
+            this.chartBomba.Location = new System.Drawing.Point(287, 268);
             this.chartBomba.Name = "chartBomba";
-            series3.BorderColor = System.Drawing.Color.White;
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Green;
-            series3.LabelBorderWidth = 2;
-            series3.MarkerColor = System.Drawing.Color.Transparent;
-            series3.Name = "Nível";
-            this.chartBomba.Series.Add(series3);
+            series2.BorderColor = System.Drawing.Color.White;
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Green;
+            series2.LabelBorderWidth = 2;
+            series2.MarkerColor = System.Drawing.Color.Transparent;
+            series2.Name = "Nível";
+            this.chartBomba.Series.Add(series2);
             this.chartBomba.Size = new System.Drawing.Size(513, 252);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Title1";
-            title3.Text = "Acionamento da Bomba";
-            this.chartBomba.Titles.Add(title3);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Text = "Acionamento da Bomba";
+            this.chartBomba.Titles.Add(title2);
             // 
             // lblTeste
             // 
             this.lblTeste.AutoSize = true;
             this.lblTeste.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeste.Location = new System.Drawing.Point(378, 168);
+            this.lblTeste.Location = new System.Drawing.Point(228, 154);
             this.lblTeste.Name = "lblTeste";
             this.lblTeste.Size = new System.Drawing.Size(29, 16);
             this.lblTeste.TabIndex = 11;
@@ -226,7 +220,7 @@
             // 
             this.lblSelecionaPorta.AutoSize = true;
             this.lblSelecionaPorta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelecionaPorta.Location = new System.Drawing.Point(66, 27);
+            this.lblSelecionaPorta.Location = new System.Drawing.Point(24, 27);
             this.lblSelecionaPorta.Name = "lblSelecionaPorta";
             this.lblSelecionaPorta.Size = new System.Drawing.Size(88, 16);
             this.lblSelecionaPorta.TabIndex = 12;
@@ -236,7 +230,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(172, 116);
+            this.label2.Location = new System.Drawing.Point(27, 323);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 13;
@@ -245,7 +239,7 @@
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(821, 539);
+            this.btnSalvar.Location = new System.Drawing.Point(405, 537);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(112, 23);
             this.btnSalvar.TabIndex = 15;
@@ -258,26 +252,6 @@
             this.saveFile.DefaultExt = "\".txt\"";
             this.saveFile.Filter = "Dados Experimentais (.txt)|*.txt";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(43, 285);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(79, 271);
-            this.pictureBox1.TabIndex = 18;
-            this.pictureBox1.TabStop = false;
-            // 
-            // picSecaoInferior
-            // 
-            this.picSecaoInferior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoInferior.InitialImage")));
-            this.picSecaoInferior.Location = new System.Drawing.Point(69, 470);
-            this.picSecaoInferior.Name = "picSecaoInferior";
-            this.picSecaoInferior.Size = new System.Drawing.Size(40, 83);
-            this.picSecaoInferior.TabIndex = 19;
-            this.picSecaoInferior.TabStop = false;
-            // 
             // openFile
             // 
             this.openFile.FileName = "openFileDialog1";
@@ -285,7 +259,7 @@
             // btnOpenArquivo
             // 
             this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenArquivo.Location = new System.Drawing.Point(966, 539);
+            this.btnOpenArquivo.Location = new System.Drawing.Point(550, 537);
             this.btnOpenArquivo.Name = "btnOpenArquivo";
             this.btnOpenArquivo.Size = new System.Drawing.Size(112, 23);
             this.btnOpenArquivo.TabIndex = 20;
@@ -295,7 +269,7 @@
             // 
             // textBoxA
             // 
-            this.textBoxA.Location = new System.Drawing.Point(153, 231);
+            this.textBoxA.Location = new System.Drawing.Point(93, 228);
             this.textBoxA.Name = "textBoxA";
             this.textBoxA.Size = new System.Drawing.Size(41, 20);
             this.textBoxA.TabIndex = 21;
@@ -304,25 +278,25 @@
             // 
             this.lblA.AutoSize = true;
             this.lblA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblA.Location = new System.Drawing.Point(66, 232);
+            this.lblA.Location = new System.Drawing.Point(28, 229);
             this.lblA.Name = "lblA";
-            this.lblA.Size = new System.Drawing.Size(81, 16);
+            this.lblA.Size = new System.Drawing.Size(59, 16);
             this.lblA.TabIndex = 22;
-            this.lblA.Text = "Valor de A";
+            this.lblA.Text = "Valor A";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(220, 233);
+            this.label4.Location = new System.Drawing.Point(151, 230);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.Size = new System.Drawing.Size(59, 16);
             this.label4.TabIndex = 24;
-            this.label4.Text = "Valor de B";
+            this.label4.Text = "Valor B";
             // 
             // textBoxB
             // 
-            this.textBoxB.Location = new System.Drawing.Point(307, 232);
+            this.textBoxB.Location = new System.Drawing.Point(216, 229);
             this.textBoxB.Name = "textBoxB";
             this.textBoxB.Size = new System.Drawing.Size(41, 20);
             this.textBoxB.TabIndex = 23;
@@ -330,37 +304,19 @@
             // btnEnviarAB
             // 
             this.btnEnviarAB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnviarAB.Location = new System.Drawing.Point(367, 233);
+            this.btnEnviarAB.Location = new System.Drawing.Point(108, 268);
             this.btnEnviarAB.Name = "btnEnviarAB";
-            this.btnEnviarAB.Size = new System.Drawing.Size(75, 23);
+            this.btnEnviarAB.Size = new System.Drawing.Size(75, 24);
             this.btnEnviarAB.TabIndex = 25;
             this.btnEnviarAB.Text = "Enviar";
             this.btnEnviarAB.UseVisualStyleBackColor = true;
             this.btnEnviarAB.Click += new System.EventHandler(this.btnEnviarAB_Click);
             // 
-            // picSecaoIntermediaria
-            // 
-            this.picSecaoIntermediaria.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoIntermediaria.InitialImage")));
-            this.picSecaoIntermediaria.Location = new System.Drawing.Point(65, 386);
-            this.picSecaoIntermediaria.Name = "picSecaoIntermediaria";
-            this.picSecaoIntermediaria.Size = new System.Drawing.Size(48, 84);
-            this.picSecaoIntermediaria.TabIndex = 26;
-            this.picSecaoIntermediaria.TabStop = false;
-            // 
-            // picSecaoSuperior
-            // 
-            this.picSecaoSuperior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoSuperior.InitialImage")));
-            this.picSecaoSuperior.Location = new System.Drawing.Point(61, 286);
-            this.picSecaoSuperior.Name = "picSecaoSuperior";
-            this.picSecaoSuperior.Size = new System.Drawing.Size(56, 100);
-            this.picSecaoSuperior.TabIndex = 27;
-            this.picSecaoSuperior.TabStop = false;
-            // 
             // lblBomba
             // 
             this.lblBomba.AutoSize = true;
             this.lblBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBomba.Location = new System.Drawing.Point(374, 116);
+            this.lblBomba.Location = new System.Drawing.Point(229, 323);
             this.lblBomba.Name = "lblBomba";
             this.lblBomba.Size = new System.Drawing.Size(33, 16);
             this.lblBomba.TabIndex = 28;
@@ -370,11 +326,48 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(314, 116);
+            this.label1.Location = new System.Drawing.Point(169, 323);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 29;
             this.label1.Text = "Bomba:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::TanqueTeste01.Properties.Resources.Capturar11;
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(-4, 358);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(266, 202);
+            this.pictureBox1.TabIndex = 34;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
+            this.pictureBox5.Location = new System.Drawing.Point(867, 376);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(83, 166);
+            this.pictureBox5.TabIndex = 33;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
+            this.pictureBox4.Location = new System.Drawing.Point(860, 209);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(98, 167);
+            this.pictureBox4.TabIndex = 32;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
+            this.pictureBox3.Location = new System.Drawing.Point(851, 10);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(116, 199);
+            this.pictureBox3.TabIndex = 31;
+            this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -382,53 +375,25 @@
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.Image = global::TanqueTeste01.Properties.Resources.tanque05;
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(515, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(817, 8);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(154, 541);
             this.pictureBox2.TabIndex = 30;
             this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(549, 14);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(116, 199);
-            this.pictureBox3.TabIndex = 31;
-            this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(558, 213);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(98, 167);
-            this.pictureBox4.TabIndex = 32;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
-            this.pictureBox5.Location = new System.Drawing.Point(565, 380);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(83, 166);
-            this.pictureBox5.TabIndex = 33;
-            this.pictureBox5.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1211, 574);
+            this.ClientSize = new System.Drawing.Size(985, 574);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblBomba);
-            this.Controls.Add(this.picSecaoSuperior);
-            this.Controls.Add(this.picSecaoIntermediaria);
             this.Controls.Add(this.btnEnviarAB);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxB);
@@ -447,8 +412,6 @@
             this.Controls.Add(this.btEnviar);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btConectar);
-            this.Controls.Add(this.picSecaoInferior);
-            this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -457,13 +420,10 @@
             this.chartNivelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSecaoInferior)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSecaoIntermediaria)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picSecaoSuperior)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,8 +447,6 @@
         private System.Windows.Forms.SaveFileDialog saveFile;
         private System.Windows.Forms.ContextMenuStrip chartNivelMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox picSecaoInferior;
 
         string leituraBombaSersor;
         string iniciarParar = "300";
@@ -504,14 +462,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxB;
         private System.Windows.Forms.Button btnEnviarAB;
-        private System.Windows.Forms.PictureBox picSecaoIntermediaria;
-        private System.Windows.Forms.PictureBox picSecaoSuperior;
         private System.Windows.Forms.Label lblBomba;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

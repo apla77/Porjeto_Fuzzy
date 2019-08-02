@@ -152,64 +152,13 @@ namespace TanqueTeste01 {
                 chartBomba.Series[0].Points.AddXY(sample++, testebomba);
 
                 Tanque(); // função que mostra a imagem do tanque
-                Tanque2();
             }
         }
+
+       
+
 
         private void Tanque()
-        {
-            if (mostrarTanque > 0 && mostrarTanque <= 35)
-            {
-                if (mostrarTanque > 10)
-                {
-                    picSecaoInferior.Height = 0;
-                }
-                else
-                {
-                    Double perc = 1 - mostrarTanque / 10;
-                    picSecaoInferior.Height = Convert.ToInt32(83 * perc);
-                }
-            }
-            else
-            {
-                picSecaoInferior.Height = 83;
-            }
-
-            if (mostrarTanque > 10 && mostrarTanque <= 35)
-            {
-                if (mostrarTanque > 20)
-                {
-                    picSecaoIntermediaria.Height = 0;
-                }
-                else
-                {
-                    Double perc = 1 - (mostrarTanque - 10) / 10;
-                    picSecaoIntermediaria.Height = Convert.ToInt32(84 * perc);
-                }
-            }
-            else
-            {
-                picSecaoIntermediaria.Height = 84;
-            }
-
-            if (mostrarTanque > 20 && mostrarTanque <= 35)
-            {
-                Double perc = 1 - (mostrarTanque - 20) / 10;
-                picSecaoSuperior.Height = Convert.ToInt32(100 * perc);
-            }
-            else
-            {
-                picSecaoSuperior.Height = 100;
-            } 
-
-            Console.WriteLine("valor p2 = " + picSecaoInferior.Height);
-            Console.WriteLine("valor p3 = " + picSecaoIntermediaria.Height);
-            Console.WriteLine("valor p4 = " + picSecaoSuperior.Height);
-            Console.WriteLine("mostrar  = " + mostrarTanque);
-        }
-
-
-        private void Tanque2()
         {
             if (mostrarTanque > 0 && mostrarTanque <= 100)
             {
@@ -255,8 +204,6 @@ namespace TanqueTeste01 {
                 pictureBox3.Height = 199;
             }
         }
-
-
 
         private void Form1_Load(object sender, EventArgs e){
             atualizaListaCOMs();

@@ -5,7 +5,7 @@ AF_DCMotor motor(1); //Seleciona o motor 1
 const int analogInPin = A7;
 int sensorValue = 0;
 int potenciaMotor = 0;
-float potencia = 0;
+float potencia = 255;
 boolean ligaDesliga = false;
 
 void setup() { 
@@ -25,8 +25,9 @@ void loop() {
     }
     if(potenciaMotor == 200){ // Se o valor recebido do VS for igual a 200 o sistema é desligado
       ligaDesliga = false;
-      potencia = 0;
+     // potencia = 1;
       Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]");
+      potencia = 255;
     }
     
     if(potenciaMotor >= 0 && potenciaMotor <= 100){ 
@@ -34,9 +35,10 @@ void loop() {
     }
    }
    if(ligaDesliga){
-    sensorValue = analogRead(analogInPin); 
+    sensorValue = analogRead(analogInPin);
     Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]"); // Envia os dados para o VS 
    }
+   
    delay(200);
    
 }

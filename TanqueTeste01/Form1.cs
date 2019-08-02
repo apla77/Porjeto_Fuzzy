@@ -128,7 +128,7 @@ namespace TanqueTeste01 {
         Double mostrarTanque = 0; // Recebe o valor sensor 
         string aux = "";
         private void TrataDadoRecebido(object sender, EventArgs e){
-            textBoxReceber.AppendText(leituraBombaSersor);
+           
             aux += leituraBombaSersor;
             
             int firstOpen = aux.IndexOf("[");
@@ -139,16 +139,20 @@ namespace TanqueTeste01 {
 
                 Double relacaoNivel = Double.Parse(dados[0]) * valorA - valorB;         // 0.1205 - 3.2624;
 
-                labelSen.Text = relacaoNivel.ToString("F2");
-                //labelSen.Text = dados[0];
-                mostrarTanque = relacaoNivel; //dados[0]
-                labelBom.Text = dados[1];
-                aux = aux.Remove(firstOpen, firstClose + 1);
+                Double testebomba = Double.Parse(dados[1].Replace(".", ","));
+                testebomba = (testebomba - 80) / 1.75;
 
+                lblBomba.Text = testebomba.ToString() + " %";
+                labelSen.Text = relacaoNivel.ToString("F2") + " cm";
+                mostrarTanque = relacaoNivel; //dados[0]
+                aux = aux.Remove(firstOpen, firstClose + 1);
+                
                 chartNivel.Series[0].Points.AddXY(sample, relacaoNivel);
-                chartBomba.Series[0].Points.AddXY(sample++, Double.Parse(dados[1].Replace(".",",")));
+                //chartBomba.Series[0].Points.AddXY(sample++, Double.Parse(dados[1].Replace(".",","))); ********** ************* ******
+                chartBomba.Series[0].Points.AddXY(sample++, testebomba);
 
                 Tanque(); // função que mostra a imagem do tanque
+                Tanque2();
             }
         }
 
@@ -204,6 +208,56 @@ namespace TanqueTeste01 {
             Console.WriteLine("mostrar  = " + mostrarTanque);
         }
 
+
+        private void Tanque2()
+        {
+            if (mostrarTanque > 0 && mostrarTanque <= 100)
+            {
+                if (mostrarTanque > 10)
+                {
+                    pictureBox5.Height = 0;
+                }
+                else
+                {
+                    Double perc = 1 - mostrarTanque / 10;
+                    pictureBox5.Height = Convert.ToInt32(166 * perc);
+                }
+            }
+            else
+            {
+                pictureBox5.Height = 166;
+            }
+
+            if (mostrarTanque > 10 && mostrarTanque <= 70)
+            {
+                if (mostrarTanque > 20)
+                {
+                    pictureBox4.Height = 0;
+                }
+                else
+                {
+                    Double perc = 1 - (mostrarTanque - 10) / 10;
+                    pictureBox4.Height = Convert.ToInt32(167 * perc);
+                }
+            }
+            else
+            {
+                pictureBox4.Height = 167;
+            }
+
+            if (mostrarTanque > 20 && mostrarTanque <= 70)
+            {
+                Double perc = 1 - (mostrarTanque - 20) / 10;
+                pictureBox3.Height = Convert.ToInt32(199 * perc);
+            }
+            else
+            {
+                pictureBox3.Height = 199;
+            }
+        }
+
+
+
         private void Form1_Load(object sender, EventArgs e){
             atualizaListaCOMs();
         }
@@ -226,7 +280,7 @@ namespace TanqueTeste01 {
             if (saveFile.ShowDialog() == DialogResult.OK){
                 int npNivel = chartNivel.Series[0].Points.Count;
 
-                textBoxReceber.Text = saveFile.FileName.ToUpper() + "\n";
+                //textBoxReceber.Text = saveFile.FileName.ToUpper() + "\n";
 
                 FileStream fs = new FileStream(saveFile.FileName, FileMode.Create); //Cria um stream usando o nome do arquivo
                 StreamWriter writer = new StreamWriter(fs); //Cria um escrito que irá escrever no stream
@@ -237,33 +291,13 @@ namespace TanqueTeste01 {
                     double[] y = chartNivel.Series[0].Points[i].YValues;
                     double[] z = chartBomba.Series[0].Points[i].YValues; 
 
-                    textBoxReceber.AppendText(x.ToString() + "\t" + y[0].ToString() + "\t" + z[0].ToString() + "\n"); // enviar para arquivo
+                    //textBoxReceber.AppendText(x.ToString() + "\t" + y[0].ToString() + "\t" + z[0].ToString() + "\n"); // enviar para arquivo
 
                     //escreve o conteúdo da caixa de texto no stream
                     writer.Write(y[0].ToString() + '-' + z[0].ToString() + "\n");
                 }
                 writer.Close(); //fecha o escrito e o stream 
             }
-        }
-
-        private void button1_Click_1(object sender, EventArgs e){
-            
-            if (picSecaoInferior.Height > 0){
-                picSecaoInferior.Height = picSecaoInferior.Height - 5;
-            }
-            else if (picSecaoIntermediaria.Height >= 4 && picSecaoInferior.Height == 0){
-                picSecaoIntermediaria.Height = picSecaoIntermediaria.Height - 5;
-            }
-            else if (picSecaoSuperior.Height >= 7 && picSecaoIntermediaria.Height < 4)
-            {
-                picSecaoSuperior.Height = picSecaoSuperior.Height - 5;
-            }
-            else{
-                picSecaoInferior.Height = 81;
-                picSecaoIntermediaria.Height = 84;
-                picSecaoSuperior.Height = 100;
-            }
-            
         }
 
         private void btnOpenArquivo_Click(object sender, EventArgs e)
@@ -294,5 +328,6 @@ namespace TanqueTeste01 {
             valorA = Double.Parse(textBoxA.Text);
             valorB = Double.Parse(textBoxB.Text);
         }
+
     }
 }

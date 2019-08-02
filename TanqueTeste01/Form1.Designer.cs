@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btConectar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btEnviar = new System.Windows.Forms.Button();
-            this.textBoxReceber = new System.Windows.Forms.TextBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.hScrollBarBomba = new System.Windows.Forms.HScrollBar();
             this.btnBomba = new System.Windows.Forms.Button();
@@ -45,15 +46,12 @@
             this.chartNivel = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartNivelMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelBom = new System.Windows.Forms.Label();
             this.chartBomba = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblTeste = new System.Windows.Forms.Label();
             this.lblSelecionaPorta = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picSecaoInferior = new System.Windows.Forms.PictureBox();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
@@ -65,6 +63,12 @@
             this.btnEnviarAB = new System.Windows.Forms.Button();
             this.picSecaoIntermediaria = new System.Windows.Forms.PictureBox();
             this.picSecaoSuperior = new System.Windows.Forms.PictureBox();
+            this.lblBomba = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -72,6 +76,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSecaoInferior)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSecaoIntermediaria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSecaoSuperior)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // btConectar
@@ -105,15 +113,6 @@
             this.btEnviar.UseVisualStyleBackColor = true;
             this.btEnviar.Click += new System.EventHandler(this.btEnviar_Click);
             // 
-            // textBoxReceber
-            // 
-            this.textBoxReceber.Location = new System.Drawing.Point(27, 374);
-            this.textBoxReceber.Multiline = true;
-            this.textBoxReceber.Name = "textBoxReceber";
-            this.textBoxReceber.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxReceber.Size = new System.Drawing.Size(103, 237);
-            this.textBoxReceber.TabIndex = 4;
-            // 
             // serialPort1
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
@@ -142,27 +141,36 @@
             // 
             this.labelSen.AutoSize = true;
             this.labelSen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSen.Location = new System.Drawing.Point(243, 116);
+            this.labelSen.Location = new System.Drawing.Point(232, 116);
             this.labelSen.Name = "labelSen";
-            this.labelSen.Size = new System.Drawing.Size(29, 16);
+            this.labelSen.Size = new System.Drawing.Size(40, 16);
             this.labelSen.TabIndex = 7;
-            this.labelSen.Text = "0%";
+            this.labelSen.Text = "0 cm";
             // 
             // chartNivel
             // 
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea1);
+            chartArea4.AxisX.Minimum = 0D;
+            chartArea4.AxisX.Title = "amostras";
+            chartArea4.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.AxisY.Title = "nível (cm)";
+            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea4);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
             this.chartNivel.Location = new System.Drawing.Point(693, 12);
             this.chartNivel.Name = "chartNivel";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Nível";
-            this.chartNivel.Series.Add(series1);
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Name = "Nível";
+            this.chartNivel.Series.Add(series4);
             this.chartNivel.Size = new System.Drawing.Size(513, 252);
             this.chartNivel.TabIndex = 8;
-            this.chartNivel.Text = "chart1";
+            this.chartNivel.Text = "Nível do Tanque";
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Text = "Nível do Tanque";
+            this.chartNivel.Titles.Add(title4);
             // 
             // chartNivelMenu
             // 
@@ -177,29 +185,32 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 22);
             this.toolStripMenuItem1.Text = "Salvar";
             // 
-            // labelBom
-            // 
-            this.labelBom.AutoSize = true;
-            this.labelBom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBom.Location = new System.Drawing.Point(378, 116);
-            this.labelBom.Name = "labelBom";
-            this.labelBom.Size = new System.Drawing.Size(29, 16);
-            this.labelBom.TabIndex = 9;
-            this.labelBom.Text = "0%";
-            // 
             // chartBomba
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea2);
+            chartArea3.AxisX.Title = "amostras";
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.AxisY.Title = "acionamento (%)";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea3);
             this.chartBomba.Location = new System.Drawing.Point(693, 270);
             this.chartBomba.Name = "chartBomba";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Nível";
-            this.chartBomba.Series.Add(series2);
+            series3.BorderColor = System.Drawing.Color.White;
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Green;
+            series3.LabelBorderWidth = 2;
+            series3.MarkerColor = System.Drawing.Color.Transparent;
+            series3.Name = "Nível";
+            this.chartBomba.Series.Add(series3);
             this.chartBomba.Size = new System.Drawing.Size(513, 252);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Acionamento da Bomba";
+            this.chartBomba.Titles.Add(title3);
             // 
             // lblTeste
             // 
@@ -217,9 +228,9 @@
             this.lblSelecionaPorta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelecionaPorta.Location = new System.Drawing.Point(66, 27);
             this.lblSelecionaPorta.Name = "lblSelecionaPorta";
-            this.lblSelecionaPorta.Size = new System.Drawing.Size(202, 16);
+            this.lblSelecionaPorta.Size = new System.Drawing.Size(88, 16);
             this.lblSelecionaPorta.TabIndex = 12;
-            this.lblSelecionaPorta.Text = "Selecione uma porta abaixo";
+            this.lblSelecionaPorta.Text = "Porta serial";
             // 
             // label2
             // 
@@ -231,24 +242,14 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "Sensor:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(299, 116);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 16);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Bomba:";
-            // 
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(69, 308);
+            this.btnSalvar.Location = new System.Drawing.Point(821, 539);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.Size = new System.Drawing.Size(112, 23);
             this.btnSalvar.TabIndex = 15;
-            this.btnSalvar.Text = "Salvar";
+            this.btnSalvar.Text = "Salvar Dados";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -257,22 +258,12 @@
             this.saveFile.DefaultExt = "\".txt\"";
             this.saveFile.Filter = "Dados Experimentais (.txt)|*.txt";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(361, 512);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(549, 147);
+            this.pictureBox1.Location = new System.Drawing.Point(43, 285);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(79, 271);
             this.pictureBox1.TabIndex = 18;
@@ -281,7 +272,7 @@
             // picSecaoInferior
             // 
             this.picSecaoInferior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoInferior.InitialImage")));
-            this.picSecaoInferior.Location = new System.Drawing.Point(575, 332);
+            this.picSecaoInferior.Location = new System.Drawing.Point(69, 470);
             this.picSecaoInferior.Name = "picSecaoInferior";
             this.picSecaoInferior.Size = new System.Drawing.Size(40, 83);
             this.picSecaoInferior.TabIndex = 19;
@@ -294,11 +285,11 @@
             // btnOpenArquivo
             // 
             this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenArquivo.Location = new System.Drawing.Point(187, 308);
+            this.btnOpenArquivo.Location = new System.Drawing.Point(966, 539);
             this.btnOpenArquivo.Name = "btnOpenArquivo";
-            this.btnOpenArquivo.Size = new System.Drawing.Size(114, 23);
+            this.btnOpenArquivo.Size = new System.Drawing.Size(112, 23);
             this.btnOpenArquivo.TabIndex = 20;
-            this.btnOpenArquivo.Text = "Abrir Arquivo";
+            this.btnOpenArquivo.Text = "Abrir Dados";
             this.btnOpenArquivo.UseVisualStyleBackColor = true;
             this.btnOpenArquivo.Click += new System.EventHandler(this.btnOpenArquivo_Click);
             // 
@@ -350,7 +341,7 @@
             // picSecaoIntermediaria
             // 
             this.picSecaoIntermediaria.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoIntermediaria.InitialImage")));
-            this.picSecaoIntermediaria.Location = new System.Drawing.Point(571, 248);
+            this.picSecaoIntermediaria.Location = new System.Drawing.Point(65, 386);
             this.picSecaoIntermediaria.Name = "picSecaoIntermediaria";
             this.picSecaoIntermediaria.Size = new System.Drawing.Size(48, 84);
             this.picSecaoIntermediaria.TabIndex = 26;
@@ -359,18 +350,83 @@
             // picSecaoSuperior
             // 
             this.picSecaoSuperior.InitialImage = ((System.Drawing.Image)(resources.GetObject("picSecaoSuperior.InitialImage")));
-            this.picSecaoSuperior.Location = new System.Drawing.Point(567, 148);
+            this.picSecaoSuperior.Location = new System.Drawing.Point(61, 286);
             this.picSecaoSuperior.Name = "picSecaoSuperior";
             this.picSecaoSuperior.Size = new System.Drawing.Size(56, 100);
             this.picSecaoSuperior.TabIndex = 27;
             this.picSecaoSuperior.TabStop = false;
+            // 
+            // lblBomba
+            // 
+            this.lblBomba.AutoSize = true;
+            this.lblBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBomba.Location = new System.Drawing.Point(374, 116);
+            this.lblBomba.Name = "lblBomba";
+            this.lblBomba.Size = new System.Drawing.Size(33, 16);
+            this.lblBomba.TabIndex = 28;
+            this.lblBomba.Text = "0 %";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(314, 116);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 16);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Bomba:";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.Image = global::TanqueTeste01.Properties.Resources.tanque05;
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(515, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(154, 541);
+            this.pictureBox2.TabIndex = 30;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
+            this.pictureBox3.Location = new System.Drawing.Point(549, 14);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(116, 199);
+            this.pictureBox3.TabIndex = 31;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
+            this.pictureBox4.Location = new System.Drawing.Point(558, 213);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(98, 167);
+            this.pictureBox4.TabIndex = 32;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
+            this.pictureBox5.Location = new System.Drawing.Point(565, 380);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(83, 166);
+            this.pictureBox5.TabIndex = 33;
+            this.pictureBox5.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1232, 621);
+            this.ClientSize = new System.Drawing.Size(1211, 574);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBomba);
             this.Controls.Add(this.picSecaoSuperior);
             this.Controls.Add(this.picSecaoIntermediaria);
             this.Controls.Add(this.btnEnviarAB);
@@ -379,19 +435,15 @@
             this.Controls.Add(this.lblA);
             this.Controls.Add(this.textBoxA);
             this.Controls.Add(this.btnOpenArquivo);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblSelecionaPorta);
             this.Controls.Add(this.lblTeste);
             this.Controls.Add(this.chartBomba);
-            this.Controls.Add(this.labelBom);
             this.Controls.Add(this.chartNivel);
             this.Controls.Add(this.labelSen);
             this.Controls.Add(this.btnBomba);
             this.Controls.Add(this.hScrollBarBomba);
-            this.Controls.Add(this.textBoxReceber);
             this.Controls.Add(this.btEnviar);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btConectar);
@@ -408,6 +460,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picSecaoInferior)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSecaoIntermediaria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picSecaoSuperior)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,24 +474,19 @@
         private System.Windows.Forms.Button btConectar;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btEnviar;
-        private System.Windows.Forms.TextBox textBoxReceber;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.HScrollBar hScrollBarBomba;
         private System.Windows.Forms.Button btnBomba;
         private System.Windows.Forms.Label labelSen;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartNivel;
-
-        private System.Windows.Forms.Label labelBom;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartBomba;
         private System.Windows.Forms.Label lblTeste;
         private System.Windows.Forms.Label lblSelecionaPorta;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.SaveFileDialog saveFile;
         private System.Windows.Forms.ContextMenuStrip chartNivelMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox picSecaoInferior;
 
@@ -455,6 +506,12 @@
         private System.Windows.Forms.Button btnEnviarAB;
         private System.Windows.Forms.PictureBox picSecaoIntermediaria;
         private System.Windows.Forms.PictureBox picSecaoSuperior;
+        private System.Windows.Forms.Label lblBomba;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
 

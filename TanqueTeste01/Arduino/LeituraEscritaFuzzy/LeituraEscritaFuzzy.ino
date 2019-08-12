@@ -25,7 +25,6 @@ void loop() {
     }
     if(potenciaMotor == 200){ // Se o valor recebido do VS for igual a 200 o sistema é desligado
       ligaDesliga = false;
-     // potencia = 1;
       Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]");
       potencia = 255;
     }
@@ -35,8 +34,8 @@ void loop() {
     }
    }
    if(ligaDesliga){
-    sensorValue = analogRead(analogInPin);
-    Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]"); // Envia os dados para o VS 
+      sensorValue = analogRead(analogInPin);
+      Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]"); // Envia os dados para o VS 
    }
    
    delay(200);

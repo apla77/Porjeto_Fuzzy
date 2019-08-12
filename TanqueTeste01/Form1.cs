@@ -11,11 +11,11 @@ using System.IO.Ports; // necessário para ter acesso as portas 
 using System.IO;
 
 namespace TanqueTeste01 { 
-    public partial class Form1 : Form
+    public partial class frmPrincipal : Form
     {
-        int motor;
+        //int motor;
 
-        public Form1(){     
+        public frmPrincipal(){     
             InitializeComponent();
             btEnviar.Enabled = false;
             btnBomba.Enabled = false;
@@ -125,8 +125,6 @@ namespace TanqueTeste01 {
             }
         }
 
-        Double mostrarTanque = 0; // Recebe o valor sensor 
-        string aux = "";
         private void TrataDadoRecebido(object sender, EventArgs e){
            
             aux += leituraBombaSersor;
@@ -137,26 +135,38 @@ namespace TanqueTeste01 {
             if (firstClose > firstOpen) {
                 string[] dados = aux.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
-                Double relacaoNivel = Double.Parse(dados[0]) * valorA - valorB;         // 0.1205 - 3.2624;
+                relacaoNivel = Double.Parse(dados[0]) * valorA - valorB;         // 0.1205 - 3.2624;
 
-                Double testebomba = Double.Parse(dados[1].Replace(".", ","));
-                testebomba = (testebomba - 80) / 1.75;
+                valorBomba = Double.Parse(dados[1].Replace(".", ",")); 
 
-                lblBomba.Text = testebomba.ToString() + " %";
+                valorBomba = (valorBomba - 80) / 1.75; // Converter o valor da bomba de 0 a 255 para o valor de 0 a 100; 
+
+                // ************************ lógica nível máximo aqui **************************
+                if (relacaoNivel > valorMaximoNivel) // Valor Máximo Nível definido em 29cm 
+                {
+                   // valorBomba -= 10;
+                    serialPort1.Write(valorBomba.ToString());
+                    Console.WriteLine("Valor do nível: " + valorBomba);
+                   relacaoNivel = 30;
+                }
+                else if (relacaoNivel < 0)
+                {
+                    relacaoNivel = 0;
+                }
+
+                lblBomba.Text = valorBomba.ToString() + " %";
                 labelSen.Text = relacaoNivel.ToString("F2") + " cm";
                 mostrarTanque = relacaoNivel; //dados[0]
                 aux = aux.Remove(firstOpen, firstClose + 1);
                 
                 chartNivel.Series[0].Points.AddXY(sample, relacaoNivel);
-                //chartBomba.Series[0].Points.AddXY(sample++, Double.Parse(dados[1].Replace(".",","))); ********** ************* ******
-                chartBomba.Series[0].Points.AddXY(sample++, testebomba);
+                chartBomba.Series[0].Points.AddXY(1+sample++, valorBomba);
+
+                Console.WriteLine(Double.Parse(dados[0]));
 
                 Tanque(); // função que mostra a imagem do tanque
             }
         }
-
-       
-
 
         private void Tanque()
         {
@@ -276,5 +286,11 @@ namespace TanqueTeste01 {
             valorB = Double.Parse(textBoxB.Text);
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmConversao conversao = new frmConversao();
+            conversao.Show();
+
+        }
     }
 }

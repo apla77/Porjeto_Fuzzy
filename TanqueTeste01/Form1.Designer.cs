@@ -1,6 +1,6 @@
 ﻿namespace TanqueTeste01
 {
-    partial class Form1
+    partial class frmPrincipal
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.btConectar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btEnviar = new System.Windows.Forms.Button();
@@ -66,6 +66,8 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -74,14 +76,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btConectar
             // 
             this.btConectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btConectar.Location = new System.Drawing.Point(27, 101);
+            this.btConectar.Location = new System.Drawing.Point(130, 38);
             this.btConectar.Name = "btConectar";
-            this.btConectar.Size = new System.Drawing.Size(114, 23);
+            this.btConectar.Size = new System.Drawing.Size(82, 23);
             this.btConectar.TabIndex = 0;
             this.btConectar.Text = "Conectar";
             this.btConectar.UseVisualStyleBackColor = true;
@@ -90,18 +93,18 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(27, 55);
+            this.comboBox1.Location = new System.Drawing.Point(14, 40);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(203, 21);
+            this.comboBox1.Size = new System.Drawing.Size(107, 21);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
             // 
             // btEnviar
             // 
             this.btEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEnviar.Location = new System.Drawing.Point(155, 101);
+            this.btEnviar.Location = new System.Drawing.Point(218, 37);
             this.btEnviar.Name = "btEnviar";
-            this.btEnviar.Size = new System.Drawing.Size(75, 23);
+            this.btEnviar.Size = new System.Drawing.Size(80, 25);
             this.btEnviar.TabIndex = 2;
             this.btEnviar.Text = "Iniciar";
             this.btEnviar.UseVisualStyleBackColor = true;
@@ -113,17 +116,17 @@
             // 
             // hScrollBarBomba
             // 
-            this.hScrollBarBomba.Location = new System.Drawing.Point(27, 147);
+            this.hScrollBarBomba.Location = new System.Drawing.Point(14, 78);
             this.hScrollBarBomba.Maximum = 109;
             this.hScrollBarBomba.Name = "hScrollBarBomba";
-            this.hScrollBarBomba.Size = new System.Drawing.Size(185, 23);
+            this.hScrollBarBomba.Size = new System.Drawing.Size(203, 23);
             this.hScrollBarBomba.TabIndex = 5;
             this.hScrollBarBomba.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarBomba_Scroll);
             // 
             // btnBomba
             // 
             this.btnBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBomba.Location = new System.Drawing.Point(108, 186);
+            this.btnBomba.Location = new System.Drawing.Point(223, 74);
             this.btnBomba.Name = "btnBomba";
             this.btnBomba.Size = new System.Drawing.Size(75, 23);
             this.btnBomba.TabIndex = 6;
@@ -135,7 +138,7 @@
             // 
             this.labelSen.AutoSize = true;
             this.labelSen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSen.Location = new System.Drawing.Point(87, 323);
+            this.labelSen.Location = new System.Drawing.Point(65, 155);
             this.labelSen.Name = "labelSen";
             this.labelSen.Size = new System.Drawing.Size(40, 16);
             this.labelSen.TabIndex = 7;
@@ -143,28 +146,28 @@
             // 
             // chartNivel
             // 
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisX.Title = "amostras";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisY.Title = "nível (cm)";
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea1);
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisX.Title = "amostras";
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.AxisY.Title = "nível (cm)";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea3);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
-            this.chartNivel.Location = new System.Drawing.Point(287, 10);
+            this.chartNivel.Location = new System.Drawing.Point(327, 12);
             this.chartNivel.Name = "chartNivel";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Nível";
-            this.chartNivel.Series.Add(series1);
-            this.chartNivel.Size = new System.Drawing.Size(513, 252);
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Name = "Nível";
+            this.chartNivel.Series.Add(series3);
+            this.chartNivel.Size = new System.Drawing.Size(513, 265);
             this.chartNivel.TabIndex = 8;
             this.chartNivel.Text = "Nível do Tanque";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Nível do Tanque";
-            this.chartNivel.Titles.Add(title1);
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Nível do Tanque";
+            this.chartNivel.Titles.Add(title3);
             // 
             // chartNivelMenu
             // 
@@ -181,36 +184,36 @@
             // 
             // chartBomba
             // 
-            chartArea2.AxisX.Title = "amostras";
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisY.Title = "acionamento (%)";
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea2);
-            this.chartBomba.Location = new System.Drawing.Point(287, 268);
+            chartArea1.AxisX.Title = "amostras";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Title = "acionamento (%)";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea1);
+            this.chartBomba.Location = new System.Drawing.Point(327, 288);
             this.chartBomba.Name = "chartBomba";
-            series2.BorderColor = System.Drawing.Color.White;
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Green;
-            series2.LabelBorderWidth = 2;
-            series2.MarkerColor = System.Drawing.Color.Transparent;
-            series2.Name = "Nível";
-            this.chartBomba.Series.Add(series2);
-            this.chartBomba.Size = new System.Drawing.Size(513, 252);
+            series1.BorderColor = System.Drawing.Color.White;
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Green;
+            series1.LabelBorderWidth = 2;
+            series1.MarkerColor = System.Drawing.Color.Transparent;
+            series1.Name = "Nível";
+            this.chartBomba.Series.Add(series1);
+            this.chartBomba.Size = new System.Drawing.Size(513, 263);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Title1";
-            title2.Text = "Acionamento da Bomba";
-            this.chartBomba.Titles.Add(title2);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Acionamento da Bomba";
+            this.chartBomba.Titles.Add(title1);
             // 
             // lblTeste
             // 
             this.lblTeste.AutoSize = true;
             this.lblTeste.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeste.Location = new System.Drawing.Point(228, 154);
+            this.lblTeste.Location = new System.Drawing.Point(117, 78);
             this.lblTeste.Name = "lblTeste";
             this.lblTeste.Size = new System.Drawing.Size(29, 16);
             this.lblTeste.TabIndex = 11;
@@ -220,7 +223,7 @@
             // 
             this.lblSelecionaPorta.AutoSize = true;
             this.lblSelecionaPorta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelecionaPorta.Location = new System.Drawing.Point(24, 27);
+            this.lblSelecionaPorta.Location = new System.Drawing.Point(11, 20);
             this.lblSelecionaPorta.Name = "lblSelecionaPorta";
             this.lblSelecionaPorta.Size = new System.Drawing.Size(88, 16);
             this.lblSelecionaPorta.TabIndex = 12;
@@ -230,16 +233,16 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 323);
+            this.label2.Location = new System.Drawing.Point(17, 155);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 16);
+            this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Sensor:";
+            this.label2.Text = "Nível:";
             // 
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(405, 537);
+            this.btnSalvar.Location = new System.Drawing.Point(32, 528);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(112, 23);
             this.btnSalvar.TabIndex = 15;
@@ -259,7 +262,7 @@
             // btnOpenArquivo
             // 
             this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenArquivo.Location = new System.Drawing.Point(550, 537);
+            this.btnOpenArquivo.Location = new System.Drawing.Point(185, 528);
             this.btnOpenArquivo.Name = "btnOpenArquivo";
             this.btnOpenArquivo.Size = new System.Drawing.Size(112, 23);
             this.btnOpenArquivo.TabIndex = 20;
@@ -269,7 +272,7 @@
             // 
             // textBoxA
             // 
-            this.textBoxA.Location = new System.Drawing.Point(93, 228);
+            this.textBoxA.Location = new System.Drawing.Point(75, 115);
             this.textBoxA.Name = "textBoxA";
             this.textBoxA.Size = new System.Drawing.Size(41, 20);
             this.textBoxA.TabIndex = 21;
@@ -278,7 +281,7 @@
             // 
             this.lblA.AutoSize = true;
             this.lblA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblA.Location = new System.Drawing.Point(28, 229);
+            this.lblA.Location = new System.Drawing.Point(10, 117);
             this.lblA.Name = "lblA";
             this.lblA.Size = new System.Drawing.Size(59, 16);
             this.lblA.TabIndex = 22;
@@ -288,7 +291,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(151, 230);
+            this.label4.Location = new System.Drawing.Point(134, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 16);
             this.label4.TabIndex = 24;
@@ -296,7 +299,7 @@
             // 
             // textBoxB
             // 
-            this.textBoxB.Location = new System.Drawing.Point(216, 229);
+            this.textBoxB.Location = new System.Drawing.Point(199, 115);
             this.textBoxB.Name = "textBoxB";
             this.textBoxB.Size = new System.Drawing.Size(41, 20);
             this.textBoxB.TabIndex = 23;
@@ -304,11 +307,11 @@
             // btnEnviarAB
             // 
             this.btnEnviarAB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnviarAB.Location = new System.Drawing.Point(108, 268);
+            this.btnEnviarAB.Location = new System.Drawing.Point(256, 113);
             this.btnEnviarAB.Name = "btnEnviarAB";
-            this.btnEnviarAB.Size = new System.Drawing.Size(75, 24);
+            this.btnEnviarAB.Size = new System.Drawing.Size(42, 24);
             this.btnEnviarAB.TabIndex = 25;
-            this.btnEnviarAB.Text = "Enviar";
+            this.btnEnviarAB.Text = "OK";
             this.btnEnviarAB.UseVisualStyleBackColor = true;
             this.btnEnviarAB.Click += new System.EventHandler(this.btnEnviarAB_Click);
             // 
@@ -316,7 +319,7 @@
             // 
             this.lblBomba.AutoSize = true;
             this.lblBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBomba.Location = new System.Drawing.Point(229, 323);
+            this.lblBomba.Location = new System.Drawing.Point(243, 155);
             this.lblBomba.Name = "lblBomba";
             this.lblBomba.Size = new System.Drawing.Size(33, 16);
             this.lblBomba.TabIndex = 28;
@@ -326,7 +329,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(169, 323);
+            this.label1.Location = new System.Drawing.Point(185, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 29;
@@ -336,7 +339,7 @@
             // 
             this.pictureBox1.Image = global::TanqueTeste01.Properties.Resources.Capturar11;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(-4, 358);
+            this.pictureBox1.Location = new System.Drawing.Point(31, 258);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(266, 202);
             this.pictureBox1.TabIndex = 34;
@@ -345,7 +348,7 @@
             // pictureBox5
             // 
             this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
-            this.pictureBox5.Location = new System.Drawing.Point(867, 376);
+            this.pictureBox5.Location = new System.Drawing.Point(907, 378);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(83, 166);
             this.pictureBox5.TabIndex = 33;
@@ -354,7 +357,7 @@
             // pictureBox4
             // 
             this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(860, 209);
+            this.pictureBox4.Location = new System.Drawing.Point(900, 211);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(98, 167);
             this.pictureBox4.TabIndex = 32;
@@ -363,7 +366,7 @@
             // pictureBox3
             // 
             this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(851, 10);
+            this.pictureBox3.Location = new System.Drawing.Point(891, 12);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(116, 199);
             this.pictureBox3.TabIndex = 31;
@@ -375,45 +378,65 @@
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.Image = global::TanqueTeste01.Properties.Resources.tanque05;
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(817, 8);
+            this.pictureBox2.Location = new System.Drawing.Point(857, 10);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(154, 541);
             this.pictureBox2.TabIndex = 30;
             this.pictureBox2.TabStop = false;
             // 
-            // Form1
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblTeste);
+            this.groupBox1.Controls.Add(this.btEnviar);
+            this.groupBox1.Controls.Add(this.btConectar);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.lblSelecionaPorta);
+            this.groupBox1.Controls.Add(this.btnBomba);
+            this.groupBox1.Controls.Add(this.hScrollBarBomba);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnEnviarAB);
+            this.groupBox1.Controls.Add(this.lblBomba);
+            this.groupBox1.Controls.Add(this.labelSen);
+            this.groupBox1.Controls.Add(this.textBoxA);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblA);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.textBoxB);
+            this.groupBox1.Location = new System.Drawing.Point(12, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(304, 181);
+            this.groupBox1.TabIndex = 35;
+            this.groupBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(132, 211);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(985, 574);
+            this.ClientSize = new System.Drawing.Size(1022, 574);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblBomba);
-            this.Controls.Add(this.btnEnviarAB);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxB);
-            this.Controls.Add(this.lblA);
-            this.Controls.Add(this.textBoxA);
             this.Controls.Add(this.btnOpenArquivo);
             this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblSelecionaPorta);
-            this.Controls.Add(this.lblTeste);
             this.Controls.Add(this.chartBomba);
             this.Controls.Add(this.chartNivel);
-            this.Controls.Add(this.labelSen);
-            this.Controls.Add(this.btnBomba);
-            this.Controls.Add(this.hScrollBarBomba);
-            this.Controls.Add(this.btEnviar);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.btConectar);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmPrincipal";
+            this.Text = "Sistema Supervisório - Sistema de Nível";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).EndInit();
@@ -424,8 +447,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -450,10 +474,15 @@
 
         string leituraBombaSersor;
         string iniciarParar = "300";
+        string aux = "";
         bool requested = false;
         double valorA = 0.1283;
         double valorB = 2.9587;
         int sample = 0;
+        int valorMaximoNivel = 29;
+        double mostrarTanque = 0; // Recebe o valor sensor 
+        double relacaoNivel = 0;
+        double valorBomba = 0;
 
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.Button btnOpenArquivo;
@@ -469,6 +498,8 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

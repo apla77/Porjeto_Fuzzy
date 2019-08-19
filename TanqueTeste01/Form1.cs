@@ -10,11 +10,15 @@ using System.Windows.Forms;
 using System.IO.Ports; // necessário para ter acesso as portas 
 using System.IO;
 
-namespace TanqueTeste01 { 
+namespace TanqueTeste01 {
+    public enum TipoParametro
+    {
+        enPA,
+        enPB
+    };
+
     public partial class frmPrincipal : Form
     {
-        //int motor;
-
         public frmPrincipal(){     
             InitializeComponent();
             btEnviar.Enabled = false;
@@ -22,7 +26,31 @@ namespace TanqueTeste01 {
             btnSalvar.Enabled = false; 
         }
 
-        private void atualizaListaCOMs(){
+        public void SetParametro(TipoParametro tp, double valor)
+        {
+            if (tp == TipoParametro.enPA)
+            {
+                this.parametroA = valor;
+            }
+            else
+            {
+                this.parametroB = valor;
+            }
+        }
+
+        public double GetParametro(TipoParametro tp)
+        {
+            if (tp == TipoParametro.enPA)
+            {
+                return this.parametroA;       
+            }
+            else
+            {
+                return this.parametroB;
+            }
+        }
+
+        private void AtualizaListaCOMs(){
             int i;
             bool quantDiferente; //flag para sinalizar que a quantidade de portas mudou
 
@@ -86,8 +114,11 @@ namespace TanqueTeste01 {
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e){
-            if (serialPort1.IsOpen == true)  // se porta aberta
+            if (serialPort1.IsOpen)  // se porta aberta
+            {
+                serialPort1.Write(finalizarComunicacao);
                 serialPort1.Close();         //fecha a porta
+            }
         }
 
         private void btEnviar_Click(object sender, EventArgs e) {
@@ -95,8 +126,7 @@ namespace TanqueTeste01 {
                 if (btEnviar.Text == "Iniciar"){
                     serialPort1.DiscardOutBuffer();
                     serialPort1.DiscardInBuffer();
-                    iniciarParar = "300";
-                    serialPort1.Write(iniciarParar);
+                    serialPort1.Write(iniciarComunicacao);
                     chartNivel.Series[0].Points.Clear();
                     chartBomba.Series[0].Points.Clear();
                     btEnviar.Text = "Parar";
@@ -108,59 +138,86 @@ namespace TanqueTeste01 {
 
                 }else {
                     serialPort1.DiscardOutBuffer();
-                    iniciarParar = "200";
-                    serialPort1.Write(iniciarParar);
+                    serialPort1.Write(finalizarComunicacao);
                     btEnviar.Text = "Iniciar";
                     btConectar.Enabled = true;
                     btnSalvar.Enabled = true;
                     btnBomba.Enabled = false;
-                    requested = true;   
+                    requested = false;   
                 }
             }
         }
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e){
             if (requested){
-                leituraBombaSersor = (string)serialPort1.ReadExisting();              //ler o dado disponível na serial   
+                leituraBombaSersor = (string)serialPort1.ReadExisting();    //ler o dado disponível na serial   
                 this.Invoke(new EventHandler(TrataDadoRecebido));           //chama outra thread para escrever 
             }
         }
 
-        private void TrataDadoRecebido(object sender, EventArgs e){
-           
+        private void ChaveNivelAlto (double nivel, double valorBomba)
+        {
+            if ((nivel >= NIVEL_MAX) && (valorBomba > ACIONAMENTO_SEGURANCA))
+            {
+                if (serialPort1.IsOpen)
+                {
+                    serialPort1.Write(ACIONAMENTO_SEGURANCA.ToString());
+                }
+            }
+        }
+
+        private double ConversaoBomba(double valorBomba)
+        {
+            valorBomba = (valorBomba - 80) / 1.75;
+
+            if (valorBomba < 0)
+            {
+                return 0;
+            }
+            else if (valorBomba > 100)
+            {
+                return 100;
+            }
+
+            return valorBomba;
+        }
+
+        private void TrataDadoRecebido(object sender, EventArgs e)
+        {
             aux += leituraBombaSersor;
-            
+
             int firstOpen = aux.IndexOf("[");
             int firstClose = aux.IndexOf("]");
 
-            if (firstClose > firstOpen) {
+            if (firstClose > firstOpen)
+            {
                 string[] dados = aux.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
-                relacaoNivel = Double.Parse(dados[0]) * valorA - valorB;         // 0.1205 - 3.2624;
+                relacaoNivel = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);          // 0.1205 - 3.2624;                
 
-                valorBomba = Double.Parse(dados[1].Replace(".", ",")); 
+                valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
 
-                valorBomba = (valorBomba - 80) / 1.75; // Converter o valor da bomba de 0 a 255 para o valor de 0 a 100; 
+                this.ChaveNivelAlto(relacaoNivel,valorBomba);
 
                 // ************************ lógica nível máximo aqui **************************
-                if (relacaoNivel > valorMaximoNivel) // Valor Máximo Nível definido em 29cm 
+                /*if (relacaoNivel > valorMaximoNivel) // Valor Máximo Nível definido em 29cm 
                 {
-                   // valorBomba -= 10;
+                    // valorBomba -= 10;
                     serialPort1.Write(valorBomba.ToString());
                     Console.WriteLine("Valor do nível: " + valorBomba);
-                   relacaoNivel = 30;
+                    relacaoNivel = 30;
                 }
                 else if (relacaoNivel < 0)
                 {
                     relacaoNivel = 0;
-                }
+                }*/
 
                 lblBomba.Text = valorBomba.ToString() + " %";
                 labelSen.Text = relacaoNivel.ToString("F2") + " cm";
                 mostrarTanque = relacaoNivel; //dados[0]
                 aux = aux.Remove(firstOpen, firstClose + 1);
-                
+
                 chartNivel.Series[0].Points.AddXY(sample, relacaoNivel);
-                chartBomba.Series[0].Points.AddXY(1+sample++, valorBomba);
+                chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba);
 
                 Console.WriteLine(Double.Parse(dados[0]));
 
@@ -216,11 +273,15 @@ namespace TanqueTeste01 {
         }
 
         private void Form1_Load(object sender, EventArgs e){
-            atualizaListaCOMs();
+            AtualizaListaCOMs();
+
+            chartNivel.Series[0].Points.AddXY(10, 30);
+            chartBomba.Series[0].Points.AddXY(10,100);
+
         }
 
         private void comboBox1_MouseClick(object sender, MouseEventArgs e){
-            atualizaListaCOMs();
+            AtualizaListaCOMs();
         }
 
         private void hScrollBarBomba_Scroll(object sender, ScrollEventArgs e){
@@ -277,20 +338,12 @@ namespace TanqueTeste01 {
                     chartBomba.Series[0].Points.AddY(dados[1]);
                 }
             }
-
         }
 
-        private void btnEnviarAB_Click(object sender, EventArgs e)
+        private void ajustarParâmetrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            valorA = Double.Parse(textBoxA.Text);
-            valorB = Double.Parse(textBoxB.Text);
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            frmConversao conversao = new frmConversao();
+            frmConversao conversao = new frmConversao(this);
             conversao.Show();
-
         }
     }
 }

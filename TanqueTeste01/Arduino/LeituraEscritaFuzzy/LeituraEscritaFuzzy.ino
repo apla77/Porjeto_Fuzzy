@@ -4,40 +4,43 @@ AF_DCMotor motor(1); //Seleciona o motor 1
 
 const int analogInPin = A7;
 int sensorValue = 0;
-int potenciaMotor = 0;
-float potencia = 255;
-boolean ligaDesliga = false;
+int getPortaSerial = 0;
+float potenciaBomba = 0;
+boolean enviarDados = false;
 
 void setup() { 
     Serial.begin(9600);
-    motor.setSpeed(potenciaMotor); //Define a velocidade maxima
-    motor.run(FORWARD); //Gira o motor sentido horario
+    motor.setSpeed(potenciaBomba); //Define a velocidade maxima
+    motor.run(FORWARD); //Gira o motor no sentido horario
 }
 
 void loop() {
-    motor.setSpeed(potencia);   
-    if (Serial.available()){ // verifica se a serial recebeu dados
-    potenciaMotor = Serial.parseFloat();
-    Serial.read();
+    motor.setSpeed(potenciaBomba);
+    if (Serial.available()){ // verifica se a serial recebeu dados      
+      getPortaSerial = Serial.parseFloat();      
+      Serial.read();
 
-    if(potenciaMotor == 300){ // Se o valor recebido do VS for igual a 300 o sistema é iniciado
-      ligaDesliga = true;
-    }
-    if(potenciaMotor == 200){ // Se o valor recebido do VS for igual a 200 o sistema é desligado
-      ligaDesliga = false;
-      Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]");
-      potencia = 255;
-    }
+      if(getPortaSerial == 300){ // Se o valor recebido do VS for igual a 300 o sistema é iniciado
+        enviarDados = true;
+      }
     
-    if(potenciaMotor >= 0 && potenciaMotor <= 100){ 
-      potencia = (80 + float(potenciaMotor * 1.75)); //******* Relação nível sensor ******
-    }
+      else if(getPortaSerial == 200){ // Se o valor recebido do VS for igual a 200 o sistema é desligado
+        Serial.print("[" + String(sensorValue) + "/" + String(potenciaBomba) + "]");
+        enviarDados = false;
+        potenciaBomba = 0;
+      }
+    
+      else if(getPortaSerial > 0 && getPortaSerial <= 100){ 
+        potenciaBomba = (80 + float(getPortaSerial * 1.75)); //******* Calculo da potência da bomba  ******
+      }
+      else {
+        potenciaBomba = 0;
+      }
    }
-   if(ligaDesliga){
+   
+   if(enviarDados){
       sensorValue = analogRead(analogInPin);
-      Serial.print("[" + String(sensorValue) + "/" + String(potencia) + "]"); // Envia os dados para o VS 
-   }
-   
-   delay(200);
-   
+      Serial.print("[" + String(sensorValue) + "/" + String(potenciaBomba) + "]"); // Envia os dados para o VS 
+   }   
+   delay(200); 
 }

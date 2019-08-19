@@ -54,11 +54,6 @@
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.btnOpenArquivo = new System.Windows.Forms.Button();
-            this.textBoxA = new System.Windows.Forms.TextBox();
-            this.lblA = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxB = new System.Windows.Forms.TextBox();
-            this.btnEnviarAB = new System.Windows.Forms.Button();
             this.lblBomba = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -67,7 +62,9 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.menuPrincipal = new System.Windows.Forms.MenuStrip();
+            this.menuPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ajustarParâmetrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -77,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // btConectar
@@ -102,9 +100,9 @@
             // btEnviar
             // 
             this.btEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEnviar.Location = new System.Drawing.Point(218, 37);
+            this.btEnviar.Location = new System.Drawing.Point(223, 37);
             this.btEnviar.Name = "btEnviar";
-            this.btEnviar.Size = new System.Drawing.Size(80, 25);
+            this.btEnviar.Size = new System.Drawing.Size(75, 25);
             this.btEnviar.TabIndex = 2;
             this.btEnviar.Text = "Iniciar";
             this.btEnviar.UseVisualStyleBackColor = true;
@@ -116,7 +114,7 @@
             // 
             // hScrollBarBomba
             // 
-            this.hScrollBarBomba.Location = new System.Drawing.Point(14, 78);
+            this.hScrollBarBomba.Location = new System.Drawing.Point(9, 92);
             this.hScrollBarBomba.Maximum = 109;
             this.hScrollBarBomba.Name = "hScrollBarBomba";
             this.hScrollBarBomba.Size = new System.Drawing.Size(203, 23);
@@ -126,7 +124,7 @@
             // btnBomba
             // 
             this.btnBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBomba.Location = new System.Drawing.Point(223, 74);
+            this.btnBomba.Location = new System.Drawing.Point(223, 92);
             this.btnBomba.Name = "btnBomba";
             this.btnBomba.Size = new System.Drawing.Size(75, 23);
             this.btnBomba.TabIndex = 6;
@@ -138,7 +136,7 @@
             // 
             this.labelSen.AutoSize = true;
             this.labelSen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSen.Location = new System.Drawing.Point(65, 155);
+            this.labelSen.Location = new System.Drawing.Point(59, 146);
             this.labelSen.Name = "labelSen";
             this.labelSen.Size = new System.Drawing.Size(40, 16);
             this.labelSen.TabIndex = 7;
@@ -149,12 +147,14 @@
             chartArea3.AxisX.Minimum = 0D;
             chartArea3.AxisX.Title = "amostras";
             chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.AxisY.Interval = 5D;
+            chartArea3.AxisY.Maximum = 35D;
             chartArea3.AxisY.Title = "nível (cm)";
             chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea3.Name = "ChartArea1";
             this.chartNivel.ChartAreas.Add(chartArea3);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
-            this.chartNivel.Location = new System.Drawing.Point(327, 12);
+            this.chartNivel.Location = new System.Drawing.Point(334, 37);
             this.chartNivel.Name = "chartNivel";
             series3.BorderWidth = 2;
             series3.ChartArea = "ChartArea1";
@@ -184,13 +184,16 @@
             // 
             // chartBomba
             // 
+            chartArea1.AxisX.Minimum = 0D;
             chartArea1.AxisX.Title = "amostras";
             chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Interval = 20D;
+            chartArea1.AxisY.Maximum = 100D;
             chartArea1.AxisY.Title = "acionamento (%)";
             chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             chartArea1.Name = "ChartArea1";
             this.chartBomba.ChartAreas.Add(chartArea1);
-            this.chartBomba.Location = new System.Drawing.Point(327, 288);
+            this.chartBomba.Location = new System.Drawing.Point(334, 313);
             this.chartBomba.Name = "chartBomba";
             series1.BorderColor = System.Drawing.Color.White;
             series1.BorderWidth = 2;
@@ -199,7 +202,7 @@
             series1.Color = System.Drawing.Color.Green;
             series1.LabelBorderWidth = 2;
             series1.MarkerColor = System.Drawing.Color.Transparent;
-            series1.Name = "Nível";
+            series1.Name = "Bomba";
             this.chartBomba.Series.Add(series1);
             this.chartBomba.Size = new System.Drawing.Size(513, 263);
             this.chartBomba.TabIndex = 10;
@@ -213,7 +216,7 @@
             // 
             this.lblTeste.AutoSize = true;
             this.lblTeste.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeste.Location = new System.Drawing.Point(117, 78);
+            this.lblTeste.Location = new System.Drawing.Point(103, 95);
             this.lblTeste.Name = "lblTeste";
             this.lblTeste.Size = new System.Drawing.Size(29, 16);
             this.lblTeste.TabIndex = 11;
@@ -233,7 +236,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 155);
+            this.label2.Location = new System.Drawing.Point(11, 146);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 13;
@@ -270,56 +273,11 @@
             this.btnOpenArquivo.UseVisualStyleBackColor = true;
             this.btnOpenArquivo.Click += new System.EventHandler(this.btnOpenArquivo_Click);
             // 
-            // textBoxA
-            // 
-            this.textBoxA.Location = new System.Drawing.Point(75, 115);
-            this.textBoxA.Name = "textBoxA";
-            this.textBoxA.Size = new System.Drawing.Size(41, 20);
-            this.textBoxA.TabIndex = 21;
-            // 
-            // lblA
-            // 
-            this.lblA.AutoSize = true;
-            this.lblA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblA.Location = new System.Drawing.Point(10, 117);
-            this.lblA.Name = "lblA";
-            this.lblA.Size = new System.Drawing.Size(59, 16);
-            this.lblA.TabIndex = 22;
-            this.lblA.Text = "Valor A";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(134, 117);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 16);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Valor B";
-            // 
-            // textBoxB
-            // 
-            this.textBoxB.Location = new System.Drawing.Point(199, 115);
-            this.textBoxB.Name = "textBoxB";
-            this.textBoxB.Size = new System.Drawing.Size(41, 20);
-            this.textBoxB.TabIndex = 23;
-            // 
-            // btnEnviarAB
-            // 
-            this.btnEnviarAB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnviarAB.Location = new System.Drawing.Point(256, 113);
-            this.btnEnviarAB.Name = "btnEnviarAB";
-            this.btnEnviarAB.Size = new System.Drawing.Size(42, 24);
-            this.btnEnviarAB.TabIndex = 25;
-            this.btnEnviarAB.Text = "OK";
-            this.btnEnviarAB.UseVisualStyleBackColor = true;
-            this.btnEnviarAB.Click += new System.EventHandler(this.btnEnviarAB_Click);
-            // 
             // lblBomba
             // 
             this.lblBomba.AutoSize = true;
             this.lblBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBomba.Location = new System.Drawing.Point(243, 155);
+            this.lblBomba.Location = new System.Drawing.Point(246, 146);
             this.lblBomba.Name = "lblBomba";
             this.lblBomba.Size = new System.Drawing.Size(33, 16);
             this.lblBomba.TabIndex = 28;
@@ -329,7 +287,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(185, 155);
+            this.label1.Location = new System.Drawing.Point(188, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 29;
@@ -339,7 +297,7 @@
             // 
             this.pictureBox1.Image = global::TanqueTeste01.Properties.Resources.Capturar11;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(31, 258);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 255);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(266, 202);
             this.pictureBox1.TabIndex = 34;
@@ -348,7 +306,7 @@
             // pictureBox5
             // 
             this.pictureBox5.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.InitialImage")));
-            this.pictureBox5.Location = new System.Drawing.Point(907, 378);
+            this.pictureBox5.Location = new System.Drawing.Point(914, 403);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(83, 166);
             this.pictureBox5.TabIndex = 33;
@@ -357,7 +315,7 @@
             // pictureBox4
             // 
             this.pictureBox4.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.InitialImage")));
-            this.pictureBox4.Location = new System.Drawing.Point(900, 211);
+            this.pictureBox4.Location = new System.Drawing.Point(907, 236);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(98, 167);
             this.pictureBox4.TabIndex = 32;
@@ -366,7 +324,7 @@
             // pictureBox3
             // 
             this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(891, 12);
+            this.pictureBox3.Location = new System.Drawing.Point(898, 37);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(116, 199);
             this.pictureBox3.TabIndex = 31;
@@ -378,7 +336,7 @@
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.Image = global::TanqueTeste01.Properties.Resources.tanque05;
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(857, 10);
+            this.pictureBox2.Location = new System.Drawing.Point(864, 35);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(154, 541);
             this.pictureBox2.TabIndex = 30;
@@ -394,37 +352,48 @@
             this.groupBox1.Controls.Add(this.btnBomba);
             this.groupBox1.Controls.Add(this.hScrollBarBomba);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnEnviarAB);
             this.groupBox1.Controls.Add(this.lblBomba);
             this.groupBox1.Controls.Add(this.labelSen);
-            this.groupBox1.Controls.Add(this.textBoxA);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.lblA);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBoxB);
-            this.groupBox1.Location = new System.Drawing.Point(12, 5);
+            this.groupBox1.Location = new System.Drawing.Point(12, 35);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(304, 181);
+            this.groupBox1.Size = new System.Drawing.Size(304, 187);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             // 
-            // button1
+            // menuPrincipal
             // 
-            this.button1.Location = new System.Drawing.Point(132, 211);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.menuPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuPrincipalToolStripMenuItem});
+            this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.menuPrincipal.Name = "menuPrincipal";
+            this.menuPrincipal.Size = new System.Drawing.Size(1022, 24);
+            this.menuPrincipal.TabIndex = 37;
+            this.menuPrincipal.Text = "menuStrip1";
+            // 
+            // menuPrincipalToolStripMenuItem
+            // 
+            this.menuPrincipalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ajustarParâmetrosToolStripMenuItem});
+            this.menuPrincipalToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuPrincipalToolStripMenuItem.Name = "menuPrincipalToolStripMenuItem";
+            this.menuPrincipalToolStripMenuItem.Size = new System.Drawing.Size(122, 20);
+            this.menuPrincipalToolStripMenuItem.Text = "Menu Principal";
+            // 
+            // ajustarParâmetrosToolStripMenuItem
+            // 
+            this.ajustarParâmetrosToolStripMenuItem.Name = "ajustarParâmetrosToolStripMenuItem";
+            this.ajustarParâmetrosToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.ajustarParâmetrosToolStripMenuItem.Text = "Ajustar Parâmetros";
+            this.ajustarParâmetrosToolStripMenuItem.Click += new System.EventHandler(this.ajustarParâmetrosToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1022, 574);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1022, 586);
+            this.Controls.Add(this.menuPrincipal);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox5);
@@ -435,6 +404,7 @@
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.chartBomba);
             this.Controls.Add(this.chartNivel);
+            this.MainMenuStrip = this.menuPrincipal;
             this.Name = "frmPrincipal";
             this.Text = "Sistema Supervisório - Sistema de Nível";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -449,7 +419,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuPrincipal.ResumeLayout(false);
+            this.menuPrincipal.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -472,25 +445,28 @@
         private System.Windows.Forms.ContextMenuStrip chartNivelMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
 
-        string leituraBombaSersor;
-        string iniciarParar = "300";
-        string aux = "";
-        bool requested = false;
-        double valorA = 0.1283;
-        double valorB = 2.9587;
-        int sample = 0;
-        int valorMaximoNivel = 29;
-        double mostrarTanque = 0; // Recebe o valor sensor 
-        double relacaoNivel = 0;
-        double valorBomba = 0;
+        private int sample = 0;
+        private int valorMaximoNivel = 29;
+
+        private double mostrarTanque = 0; // Recebe o valor sensor 
+        private double relacaoNivel = 0;
+        private double valorBomba = 0;
+
+        private string leituraBombaSersor;
+        private string iniciarComunicacao = "300";
+        private string finalizarComunicacao = "200";
+        private string aux = "";
+
+        private const double NIVEL_MAX = 15;
+        private const double ACIONAMENTO_SEGURANCA = 30;
+
+        private bool requested = false;
+
+        private double parametroA = 0.1283;
+        private double parametroB = 2.9587;
 
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.Button btnOpenArquivo;
-        private System.Windows.Forms.TextBox textBoxA;
-        private System.Windows.Forms.Label lblA;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxB;
-        private System.Windows.Forms.Button btnEnviarAB;
         private System.Windows.Forms.Label lblBomba;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -499,7 +475,9 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MenuStrip menuPrincipal;
+        private System.Windows.Forms.ToolStripMenuItem menuPrincipalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ajustarParâmetrosToolStripMenuItem;
     }
 }
 

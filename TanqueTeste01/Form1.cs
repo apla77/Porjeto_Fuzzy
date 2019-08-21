@@ -51,11 +51,9 @@ namespace TanqueTeste01 {
         }
 
         private void AtualizaListaCOMs(){
-            int i;
-            bool quantDiferente; //flag para sinalizar que a quantidade de portas mudou
 
-            i = 0;
-            quantDiferente = false;
+            int i = 0;
+            bool quantDiferente = false; //flag para sinalizar que a quantidade de portas mudou
 
             //se a quantidade de portas mudou
             if (comboBox1.Items.Count == SerialPort.GetPortNames().Length) {
@@ -68,12 +66,10 @@ namespace TanqueTeste01 {
             else{
                 quantDiferente = true;
             }
-
             //Se não foi detectado diferença
             if (quantDiferente == false){
                 return;                     //retorna
             }
-
             //limpa comboBox
             comboBox1.Items.Clear();
 
@@ -130,6 +126,7 @@ namespace TanqueTeste01 {
                     chartNivel.Series[0].Points.Clear();
                     chartBomba.Series[0].Points.Clear();
                     btEnviar.Text = "Parar";
+                    ajustarParâmetrosToolStripMenuItem.Enabled = false;
                     btConectar.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnBomba.Enabled = true;
@@ -142,6 +139,7 @@ namespace TanqueTeste01 {
                     btEnviar.Text = "Iniciar";
                     btConectar.Enabled = true;
                     btnSalvar.Enabled = true;
+                    ajustarParâmetrosToolStripMenuItem.Enabled = true;
                     btnBomba.Enabled = false;
                     requested = false;   
                 }
@@ -196,20 +194,7 @@ namespace TanqueTeste01 {
 
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
 
-                this.ChaveNivelAlto(relacaoNivel,valorBomba);
-
-                // ************************ lógica nível máximo aqui **************************
-                /*if (relacaoNivel > valorMaximoNivel) // Valor Máximo Nível definido em 29cm 
-                {
-                    // valorBomba -= 10;
-                    serialPort1.Write(valorBomba.ToString());
-                    Console.WriteLine("Valor do nível: " + valorBomba);
-                    relacaoNivel = 30;
-                }
-                else if (relacaoNivel < 0)
-                {
-                    relacaoNivel = 0;
-                }*/
+                this.ChaveNivelAlto(relacaoNivel, valorBomba);
 
                 lblBomba.Text = valorBomba.ToString() + " %";
                 labelSen.Text = relacaoNivel.ToString("F2") + " cm";
@@ -275,8 +260,8 @@ namespace TanqueTeste01 {
         private void Form1_Load(object sender, EventArgs e){
             AtualizaListaCOMs();
 
-            chartNivel.Series[0].Points.AddXY(10, 30);
-            chartBomba.Series[0].Points.AddXY(10,100);
+            //chartNivel.Series[0].Points.AddXY(10, 30);
+            //chartBomba.Series[0].Points.AddXY(10,100);
 
         }
 
@@ -294,29 +279,33 @@ namespace TanqueTeste01 {
             }
         }
 
-        private void button1_Click(object sender, EventArgs e){
-            if (saveFile.ShowDialog() == DialogResult.OK){
+        private void btnSalvarArquivo(object sender, EventArgs e)
+        {
+            if (saveFile.ShowDialog() == DialogResult.OK)
+            {
                 int npNivel = chartNivel.Series[0].Points.Count;
 
                 //textBoxReceber.Text = saveFile.FileName.ToUpper() + "\n";
 
                 FileStream fs = new FileStream(saveFile.FileName, FileMode.Create); //Cria um stream usando o nome do arquivo
                 StreamWriter writer = new StreamWriter(fs); //Cria um escrito que irá escrever no stream
-              //  writer.Write("X" + "\t" + "Y" + "\t" + "Z" + "\n"); //escreve o conteúdo da caixa de texto no stream
+                                                            //  writer.Write("X" + "\t" + "Y" + "\t" + "Z" + "\n"); //escreve o conteúdo da caixa de texto no stream
 
-                for (int i = 0; i < npNivel; i++){
+                for (int i = 0; i < npNivel; i++)
+                {
                     double x = chartNivel.Series[0].Points[i].XValue;
                     double[] y = chartNivel.Series[0].Points[i].YValues;
-                    double[] z = chartBomba.Series[0].Points[i].YValues; 
+                    double[] z = chartBomba.Series[0].Points[i].YValues;
 
                     //textBoxReceber.AppendText(x.ToString() + "\t" + y[0].ToString() + "\t" + z[0].ToString() + "\n"); // enviar para arquivo
 
                     //escreve o conteúdo da caixa de texto no stream
-                    writer.Write(y[0].ToString() + '-' + z[0].ToString() + "\n");
+                    writer.Write(y[0].ToString().Replace(',','.') + ' ' + z[0].ToString() + "\n");
                 }
                 writer.Close(); //fecha o escrito e o stream 
             }
         }
+
 
         private void btnOpenArquivo_Click(object sender, EventArgs e)
         {
@@ -333,7 +322,7 @@ namespace TanqueTeste01 {
                 
                 while ((linha = texto.ReadLine()) != null)
                 {
-                    string[] dados = linha.Split('-');
+                    string[] dados = linha.Split(' ');
                     chartNivel.Series[0].Points.AddY(dados[0]);
                     chartBomba.Series[0].Points.AddY(dados[1]);
                 }
@@ -345,5 +334,6 @@ namespace TanqueTeste01 {
             frmConversao conversao = new frmConversao(this);
             conversao.Show();
         }
+
     }
 }

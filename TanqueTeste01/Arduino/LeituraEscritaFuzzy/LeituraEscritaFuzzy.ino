@@ -35,6 +35,7 @@ void loop() {
       }
       else {
         potenciaBomba = 0;
+        motor.setSpeed(potenciaBomba);
       }
    }
    

@@ -65,6 +65,14 @@
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
             this.menuPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajustarParâmetrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButtonPid = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.radioButtonManual = new System.Windows.Forms.RadioButton();
+            this.radioButtonFuzzy = new System.Windows.Forms.RadioButton();
+            this.btnSetPoint = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -75,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuPrincipal.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btConectar
@@ -245,13 +254,13 @@
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(32, 528);
+            this.btnSalvar.Location = new System.Drawing.Point(499, 596);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(112, 23);
             this.btnSalvar.TabIndex = 15;
             this.btnSalvar.Text = "Salvar Dados";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.button1_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvarArquivo);
             // 
             // saveFile
             // 
@@ -265,7 +274,7 @@
             // btnOpenArquivo
             // 
             this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenArquivo.Location = new System.Drawing.Point(185, 528);
+            this.btnOpenArquivo.Location = new System.Drawing.Point(650, 596);
             this.btnOpenArquivo.Name = "btnOpenArquivo";
             this.btnOpenArquivo.Size = new System.Drawing.Size(112, 23);
             this.btnOpenArquivo.TabIndex = 20;
@@ -297,9 +306,9 @@
             // 
             this.pictureBox1.Image = global::TanqueTeste01.Properties.Resources.Capturar11;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 255);
+            this.pictureBox1.Location = new System.Drawing.Point(37, 381);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(266, 202);
+            this.pictureBox1.Size = new System.Drawing.Size(254, 195);
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
             // 
@@ -387,12 +396,90 @@
             this.ajustarParâmetrosToolStripMenuItem.Text = "Ajustar Parâmetros";
             this.ajustarParâmetrosToolStripMenuItem.Click += new System.EventHandler(this.ajustarParâmetrosToolStripMenuItem_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(14, 35);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(107, 20);
+            this.textBox1.TabIndex = 38;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButtonPid);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.radioButtonManual);
+            this.groupBox2.Controls.Add(this.radioButtonFuzzy);
+            this.groupBox2.Controls.Add(this.btnSetPoint);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Location = new System.Drawing.Point(12, 236);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(304, 115);
+            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabStop = false;
+            // 
+            // radioButtonPid
+            // 
+            this.radioButtonPid.AutoSize = true;
+            this.radioButtonPid.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonPid.Location = new System.Drawing.Point(120, 77);
+            this.radioButtonPid.Name = "radioButtonPid";
+            this.radioButtonPid.Size = new System.Drawing.Size(46, 17);
+            this.radioButtonPid.TabIndex = 42;
+            this.radioButtonPid.TabStop = true;
+            this.radioButtonPid.Text = "PID";
+            this.radioButtonPid.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 16);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "Set - Point";
+            // 
+            // radioButtonManual
+            // 
+            this.radioButtonManual.AutoSize = true;
+            this.radioButtonManual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonManual.Location = new System.Drawing.Point(213, 77);
+            this.radioButtonManual.Name = "radioButtonManual";
+            this.radioButtonManual.Size = new System.Drawing.Size(66, 17);
+            this.radioButtonManual.TabIndex = 41;
+            this.radioButtonManual.TabStop = true;
+            this.radioButtonManual.Text = "Manual";
+            this.radioButtonManual.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonFuzzy
+            // 
+            this.radioButtonFuzzy.AutoSize = true;
+            this.radioButtonFuzzy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonFuzzy.Location = new System.Drawing.Point(14, 77);
+            this.radioButtonFuzzy.Name = "radioButtonFuzzy";
+            this.radioButtonFuzzy.Size = new System.Drawing.Size(57, 17);
+            this.radioButtonFuzzy.TabIndex = 40;
+            this.radioButtonFuzzy.TabStop = true;
+            this.radioButtonFuzzy.Text = "Fuzzy";
+            this.radioButtonFuzzy.UseVisualStyleBackColor = true;
+            // 
+            // btnSetPoint
+            // 
+            this.btnSetPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetPoint.Location = new System.Drawing.Point(130, 35);
+            this.btnSetPoint.Name = "btnSetPoint";
+            this.btnSetPoint.Size = new System.Drawing.Size(36, 23);
+            this.btnSetPoint.TabIndex = 39;
+            this.btnSetPoint.Text = "OK";
+            this.btnSetPoint.UseVisualStyleBackColor = true;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1022, 586);
+            this.ClientSize = new System.Drawing.Size(1022, 631);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuPrincipal);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
@@ -421,6 +508,8 @@
             this.groupBox1.PerformLayout();
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -457,7 +546,7 @@
         private string finalizarComunicacao = "200";
         private string aux = "";
 
-        private const double NIVEL_MAX = 15;
+        private const double NIVEL_MAX = 30;
         private const double ACIONAMENTO_SEGURANCA = 30;
 
         private bool requested = false;
@@ -478,6 +567,14 @@
         private System.Windows.Forms.MenuStrip menuPrincipal;
         private System.Windows.Forms.ToolStripMenuItem menuPrincipalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajustarParâmetrosToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton radioButtonManual;
+        private System.Windows.Forms.RadioButton radioButtonFuzzy;
+        private System.Windows.Forms.Button btnSetPoint;
+        private System.Windows.Forms.RadioButton radioButtonPid;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

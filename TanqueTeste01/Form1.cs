@@ -126,11 +126,12 @@ namespace TanqueTeste01 {
                     chartNivel.Series[0].Points.Clear();
                     chartBomba.Series[0].Points.Clear();
                     btEnviar.Text = "Parar";
-                    ajustarParâmetrosToolStripMenuItem.Enabled = false;
+                    ajustarParametrosToolStripMenuItem.Enabled = false;
                     btConectar.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnBomba.Enabled = true;
                     requested = true;
+                    radioButtonManual.Checked = true;
                     sample = 0;
 
                 }else {
@@ -139,9 +140,9 @@ namespace TanqueTeste01 {
                     btEnviar.Text = "Iniciar";
                     btConectar.Enabled = true;
                     btnSalvar.Enabled = true;
-                    ajustarParâmetrosToolStripMenuItem.Enabled = true;
+                    ajustarParametrosToolStripMenuItem.Enabled = true;
                     btnBomba.Enabled = false;
-                    requested = false;   
+                    requested = false;
                 }
             }
         }
@@ -158,8 +159,16 @@ namespace TanqueTeste01 {
             {
                 if (serialPort1.IsOpen)
                 {
-                    serialPort1.Write(ACIONAMENTO_SEGURANCA.ToString());
+                    string acionamentoString = ACIONAMENTO_SEGURANCA.ToString();
+                    serialPort1.Write(acionamentoString);
+                    pnlChaveSeguranca.Visible = true;
+                    hScrollBarBomba.Value = ACIONAMENTO_SEGURANCA;
+                    lblTeste.Text = acionamentoString;
                 }
+            }
+            else
+            {
+                pnlChaveSeguranca.Visible = false;
             }
         }
 
@@ -198,13 +207,13 @@ namespace TanqueTeste01 {
 
                 lblBomba.Text = valorBomba.ToString() + " %";
                 labelSen.Text = relacaoNivel.ToString("F2") + " cm";
+                lblSetPoint.Text = setPoint + " cm";
                 mostrarTanque = relacaoNivel; //dados[0]
                 aux = aux.Remove(firstOpen, firstClose + 1);
 
                 chartNivel.Series[0].Points.AddXY(sample, relacaoNivel);
+                chartNivel.Series[1].Points.AddXY(sample, setPoint);
                 chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba);
-
-                Console.WriteLine(Double.Parse(dados[0]));
 
                 Tanque(); // função que mostra a imagem do tanque
             }
@@ -260,8 +269,8 @@ namespace TanqueTeste01 {
         private void Form1_Load(object sender, EventArgs e){
             AtualizaListaCOMs();
 
-            //chartNivel.Series[0].Points.AddXY(10, 30);
-            //chartBomba.Series[0].Points.AddXY(10,100);
+            chartNivel.Series[0].Points.AddXY(10, 30);
+            chartBomba.Series[0].Points.AddXY(10,100);
 
         }
 
@@ -294,21 +303,30 @@ namespace TanqueTeste01 {
                 for (int i = 0; i < npNivel; i++)
                 {
                     double x = chartNivel.Series[0].Points[i].XValue;
+                    double[] w = chartNivel.Series[1].Points[i].YValues;
                     double[] y = chartNivel.Series[0].Points[i].YValues;
                     double[] z = chartBomba.Series[0].Points[i].YValues;
+                    
 
                     //textBoxReceber.AppendText(x.ToString() + "\t" + y[0].ToString() + "\t" + z[0].ToString() + "\n"); // enviar para arquivo
 
                     //escreve o conteúdo da caixa de texto no stream
-                    writer.Write(y[0].ToString().Replace(',','.') + ' ' + z[0].ToString() + "\n");
+                    writer.Write(w[0].ToString() + ' ' + y[0].ToString().Replace(',','.') + ' ' + z[0].ToString() + "\n");
                 }
                 writer.Close(); //fecha o escrito e o stream 
             }
         }
 
+        private void ClearChartSeries()
+        {
+            this.chartNivel.Series[NIVEL_SERIE].Points.Clear();
+            this.chartNivel.Series[SP_SERIE].Points.Clear();
+            this.chartBomba.Series[BOMBA_SERIE].Points.Clear();
+        }                
 
         private void btnOpenArquivo_Click(object sender, EventArgs e)
         {
+
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             string linha;
 
@@ -317,14 +335,17 @@ namespace TanqueTeste01 {
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                this.ClearChartSeries();
+
                 string arquivo = openFileDialog1.FileName;
                 StreamReader texto = new StreamReader(arquivo);
                 
                 while ((linha = texto.ReadLine()) != null)
                 {
                     string[] dados = linha.Split(' ');
-                    chartNivel.Series[0].Points.AddY(dados[0]);
-                    chartBomba.Series[0].Points.AddY(dados[1]);
+                    chartNivel.Series[1].Points.AddY(dados[0]);
+                    chartNivel.Series[0].Points.AddY(dados[1]);
+                    chartBomba.Series[0].Points.AddY(dados[2]);
                 }
             }
         }
@@ -335,5 +356,26 @@ namespace TanqueTeste01 {
             conversao.Show();
         }
 
+        private void btnSetPoint_Click(object sender, EventArgs e)
+        {
+            setPoint = Convert.ToInt32(textBoxSetPoint.Text);
+        }
+
+        private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
+        {
+            this.chartNivel.Series[1].Enabled = !this.radioButtonManual.Checked;
+        }
+
+        private void radioButtonPid_CheckedChanged(object sender, EventArgs e)
+        {
+            this.btnBomba.Enabled = !this.radioButtonPid.Checked;
+            this.hScrollBarBomba.Enabled = !this.radioButtonPid.Checked;
+        }
+
+        private void radioButtonFuzzy_CheckedChanged(object sender, EventArgs e)
+        {
+            this.btnBomba.Enabled = !this.radioButtonFuzzy.Checked;
+            this.hScrollBarBomba.Enabled = !this.radioButtonFuzzy.Checked;
+        }
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title5 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.btConectar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -68,6 +68,13 @@
             this.ajustarParametrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxSetPoint = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnParametrosPid = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxKd = new System.Windows.Forms.TextBox();
+            this.textBoxKi = new System.Windows.Forms.TextBox();
+            this.textBoxKp = new System.Windows.Forms.TextBox();
             this.lblSetPoint = new System.Windows.Forms.Label();
             this.radioButtonPid = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
@@ -77,6 +84,7 @@
             this.btnSetPoint = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlChaveSeguranca = new System.Windows.Forms.Panel();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -93,9 +101,9 @@
             // btConectar
             // 
             this.btConectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btConectar.Location = new System.Drawing.Point(130, 38);
+            this.btConectar.Location = new System.Drawing.Point(106, 38);
             this.btConectar.Name = "btConectar";
-            this.btConectar.Size = new System.Drawing.Size(82, 23);
+            this.btConectar.Size = new System.Drawing.Size(112, 23);
             this.btConectar.TabIndex = 0;
             this.btConectar.Text = "Conectar";
             this.btConectar.UseVisualStyleBackColor = true;
@@ -106,16 +114,16 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(14, 40);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(107, 21);
+            this.comboBox1.Size = new System.Drawing.Size(85, 21);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
             // 
             // btEnviar
             // 
             this.btEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btEnviar.Location = new System.Drawing.Point(223, 37);
+            this.btEnviar.Location = new System.Drawing.Point(232, 37);
             this.btEnviar.Name = "btEnviar";
-            this.btEnviar.Size = new System.Drawing.Size(75, 25);
+            this.btEnviar.Size = new System.Drawing.Size(66, 25);
             this.btEnviar.TabIndex = 2;
             this.btEnviar.Text = "Iniciar";
             this.btEnviar.UseVisualStyleBackColor = true;
@@ -137,9 +145,9 @@
             // btnBomba
             // 
             this.btnBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBomba.Location = new System.Drawing.Point(223, 92);
+            this.btnBomba.Location = new System.Drawing.Point(232, 92);
             this.btnBomba.Name = "btnBomba";
-            this.btnBomba.Size = new System.Drawing.Size(75, 23);
+            this.btnBomba.Size = new System.Drawing.Size(66, 23);
             this.btnBomba.TabIndex = 6;
             this.btnBomba.Text = "Bomba";
             this.btnBomba.UseVisualStyleBackColor = true;
@@ -157,37 +165,37 @@
             // 
             // chartNivel
             // 
-            chartArea1.AxisX.Minimum = 0D;
-            chartArea1.AxisX.Title = "amostras";
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisY.Interval = 5D;
-            chartArea1.AxisY.Maximum = 35D;
-            chartArea1.AxisY.Title = "nível (cm)";
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea1);
+            chartArea5.AxisX.Minimum = 0D;
+            chartArea5.AxisX.Title = "amostras";
+            chartArea5.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea5.AxisY.Interval = 5D;
+            chartArea5.AxisY.Maximum = 35D;
+            chartArea5.AxisY.Title = "nível (cm)";
+            chartArea5.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea5.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea5);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
             this.chartNivel.Location = new System.Drawing.Point(334, 37);
             this.chartNivel.Name = "chartNivel";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "Nível";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Red;
-            series2.Enabled = false;
-            series2.Name = "Set-Pint";
-            this.chartNivel.Series.Add(series1);
-            this.chartNivel.Series.Add(series2);
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Name = "Nível";
+            series7.BorderWidth = 2;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Color = System.Drawing.Color.Red;
+            series7.Enabled = false;
+            series7.Name = "Set-Pint";
+            this.chartNivel.Series.Add(series5);
+            this.chartNivel.Series.Add(series7);
             this.chartNivel.Size = new System.Drawing.Size(513, 265);
             this.chartNivel.TabIndex = 8;
             this.chartNivel.Text = "Nível do Tanque";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Nível do Tanque";
-            this.chartNivel.Titles.Add(title1);
+            title5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title5.Name = "Title1";
+            title5.Text = "Nível do Tanque";
+            this.chartNivel.Titles.Add(title5);
             // 
             // chartNivelMenu
             // 
@@ -204,33 +212,33 @@
             // 
             // chartBomba
             // 
-            chartArea2.AxisX.Minimum = 0D;
-            chartArea2.AxisX.Title = "amostras";
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisY.Interval = 20D;
-            chartArea2.AxisY.Maximum = 100D;
-            chartArea2.AxisY.Title = "acionamento (%)";
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea2);
+            chartArea4.AxisX.Minimum = 0D;
+            chartArea4.AxisX.Title = "amostras";
+            chartArea4.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.AxisY.Interval = 20D;
+            chartArea4.AxisY.Maximum = 100D;
+            chartArea4.AxisY.Title = "acionamento (%)";
+            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea4.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea4);
             this.chartBomba.Location = new System.Drawing.Point(334, 313);
             this.chartBomba.Name = "chartBomba";
-            series3.BorderColor = System.Drawing.Color.White;
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Color = System.Drawing.Color.Green;
-            series3.LabelBorderWidth = 2;
-            series3.MarkerColor = System.Drawing.Color.Transparent;
-            series3.Name = "Bomba";
-            this.chartBomba.Series.Add(series3);
+            series2.BorderColor = System.Drawing.Color.White;
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Green;
+            series2.LabelBorderWidth = 2;
+            series2.MarkerColor = System.Drawing.Color.Transparent;
+            series2.Name = "Bomba";
+            this.chartBomba.Series.Add(series2);
             this.chartBomba.Size = new System.Drawing.Size(513, 263);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Title1";
-            title2.Text = "Acionamento da Bomba";
-            this.chartBomba.Titles.Add(title2);
+            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title4.Name = "Title1";
+            title4.Text = "Acionamento da Bomba";
+            this.chartBomba.Titles.Add(title4);
             // 
             // lblTeste
             // 
@@ -317,9 +325,9 @@
             // 
             this.pictureBox1.Image = global::TanqueTeste01.Properties.Resources.Capturar11;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(37, 381);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 437);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(254, 195);
+            this.pictureBox1.Size = new System.Drawing.Size(249, 182);
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
             // 
@@ -416,6 +424,13 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnParametrosPid);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.textBoxKd);
+            this.groupBox2.Controls.Add(this.textBoxKi);
+            this.groupBox2.Controls.Add(this.textBoxKp);
             this.groupBox2.Controls.Add(this.lblSetPoint);
             this.groupBox2.Controls.Add(this.radioButtonPid);
             this.groupBox2.Controls.Add(this.label5);
@@ -426,9 +441,74 @@
             this.groupBox2.Controls.Add(this.textBoxSetPoint);
             this.groupBox2.Location = new System.Drawing.Point(12, 236);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(304, 115);
+            this.groupBox2.Size = new System.Drawing.Size(304, 185);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
+            // 
+            // btnParametrosPid
+            // 
+            this.btnParametrosPid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnParametrosPid.Location = new System.Drawing.Point(120, 156);
+            this.btnParametrosPid.Name = "btnParametrosPid";
+            this.btnParametrosPid.Size = new System.Drawing.Size(75, 23);
+            this.btnParametrosPid.TabIndex = 49;
+            this.btnParametrosPid.Text = "OK";
+            this.btnParametrosPid.UseVisualStyleBackColor = true;
+            this.btnParametrosPid.Click += new System.EventHandler(this.btnParametrosPid_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(201, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(26, 16);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "Kd";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(111, 120);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(21, 16);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Ki";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 121);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(26, 16);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Kp";
+            // 
+            // textBoxKd
+            // 
+            this.textBoxKd.Location = new System.Drawing.Point(232, 118);
+            this.textBoxKd.Name = "textBoxKd";
+            this.textBoxKd.Size = new System.Drawing.Size(47, 20);
+            this.textBoxKd.TabIndex = 45;
+            this.textBoxKd.Text = "0";
+            // 
+            // textBoxKi
+            // 
+            this.textBoxKi.Location = new System.Drawing.Point(133, 117);
+            this.textBoxKi.Name = "textBoxKi";
+            this.textBoxKi.Size = new System.Drawing.Size(47, 20);
+            this.textBoxKi.TabIndex = 44;
+            this.textBoxKi.Text = "0";
+            // 
+            // textBoxKp
+            // 
+            this.textBoxKp.Location = new System.Drawing.Point(40, 118);
+            this.textBoxKp.Name = "textBoxKp";
+            this.textBoxKp.Size = new System.Drawing.Size(45, 20);
+            this.textBoxKp.TabIndex = 43;
+            this.textBoxKp.Text = "0";
             // 
             // lblSetPoint
             // 
@@ -581,12 +661,21 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
 
         private int sample = 0;
-        private int valorMaximoNivel = 29;
+      //  private int valorMaximoNivel = 29;
         private int setPoint = 15;
 
         private double mostrarTanque = 0; // Recebe o valor sensor 
-        private double relacaoNivel = 0;
+        private double nivelCm = 0;
         private double valorBomba = 0;
+        private double erro = 0;
+        private double erroAnterior = 0;
+        private double diferencaErro = 0;
+        private double somatoriaPid = 0;
+
+        private double kp = 0;
+        private double ki = 0;
+        private double kd = 0;
+        private double resultadoPid = 0;
 
         private string leituraBombaSersor;
         private string iniciarComunicacao = "300";
@@ -628,6 +717,14 @@
         private System.Windows.Forms.Label lblSetPoint;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlChaveSeguranca;
+        private System.Windows.Forms.Button btnParametrosPid;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxKd;
+        private System.Windows.Forms.TextBox textBoxKi;
+        private System.Windows.Forms.TextBox textBoxKp;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

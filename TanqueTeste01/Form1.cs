@@ -152,7 +152,7 @@ namespace TanqueTeste01 {
                 this.Invoke(new EventHandler(TrataDadoRecebido));           //chama outra thread para escrever 
             }
         }
-
+ 
         private void ChaveNivelAlto (double nivel, double valorBomba)
         {
             if ((nivel >= NIVEL_MAX) && (valorBomba > ACIONAMENTO_SEGURANCA))
@@ -184,7 +184,6 @@ namespace TanqueTeste01 {
             {
                 return 100;
             }
-
             return valorBomba;
         }
 
@@ -199,23 +198,29 @@ namespace TanqueTeste01 {
             {
                 string[] dados = aux.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
-                relacaoNivel = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);          // 0.1205 - 3.2624;                
-
+                nivelCm = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);             
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
 
-                this.ChaveNivelAlto(relacaoNivel, valorBomba);
+                this.ChaveNivelAlto(nivelCm, valorBomba);
 
                 lblBomba.Text = valorBomba.ToString() + " %";
-                labelSen.Text = relacaoNivel.ToString("F2") + " cm";
+                labelSen.Text = nivelCm.ToString("F2") + " cm";
                 lblSetPoint.Text = setPoint + " cm";
-                mostrarTanque = relacaoNivel; //dados[0]
+                mostrarTanque = nivelCm; //dados[0]
                 aux = aux.Remove(firstOpen, firstClose + 1);
 
-                chartNivel.Series[0].Points.AddXY(sample, relacaoNivel);
+                chartNivel.Series[0].Points.AddXY(sample, nivelCm);
                 chartNivel.Series[1].Points.AddXY(sample, setPoint);
                 chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba);
 
                 Tanque(); // função que mostra a imagem do tanque
+
+                if (serialPort1.IsOpen && this.radioButtonPid.Checked)
+                {
+                    int aux2 = ControladorPid();
+                    Console.WriteLine("VALOR PID = " + aux2);
+                    serialPort1.Write(aux2.ToString()); 
+                }
             }
         }
 
@@ -260,6 +265,7 @@ namespace TanqueTeste01 {
                 Double perc = 1 - (mostrarTanque - 20) / 10;
                 pictureBox3.Height = Convert.ToInt32(199 * perc);
             }
+            
             else
             {
                 pictureBox3.Height = 199;
@@ -294,11 +300,8 @@ namespace TanqueTeste01 {
             {
                 int npNivel = chartNivel.Series[0].Points.Count;
 
-                //textBoxReceber.Text = saveFile.FileName.ToUpper() + "\n";
-
                 FileStream fs = new FileStream(saveFile.FileName, FileMode.Create); //Cria um stream usando o nome do arquivo
                 StreamWriter writer = new StreamWriter(fs); //Cria um escrito que irá escrever no stream
-                                                            //  writer.Write("X" + "\t" + "Y" + "\t" + "Z" + "\n"); //escreve o conteúdo da caixa de texto no stream
 
                 for (int i = 0; i < npNivel; i++)
                 {
@@ -306,9 +309,6 @@ namespace TanqueTeste01 {
                     double[] w = chartNivel.Series[1].Points[i].YValues;
                     double[] y = chartNivel.Series[0].Points[i].YValues;
                     double[] z = chartBomba.Series[0].Points[i].YValues;
-                    
-
-                    //textBoxReceber.AppendText(x.ToString() + "\t" + y[0].ToString() + "\t" + z[0].ToString() + "\n"); // enviar para arquivo
 
                     //escreve o conteúdo da caixa de texto no stream
                     writer.Write(w[0].ToString() + ' ' + y[0].ToString().Replace(',','.') + ' ' + z[0].ToString() + "\n");
@@ -376,6 +376,39 @@ namespace TanqueTeste01 {
         {
             this.btnBomba.Enabled = !this.radioButtonFuzzy.Checked;
             this.hScrollBarBomba.Enabled = !this.radioButtonFuzzy.Checked;
+        }
+
+        private int ControladorPid()
+        {
+ 
+               this.erro = this.setPoint - this.nivelCm;
+               this.diferencaErro = this.erro - this.erroAnterior;
+               this.erroAnterior = this.erro;
+               this.somatoriaPid += erro;
+
+                this.resultadoPid = (kp * erro) + (ki * somatoriaPid) + (kd * diferencaErro);
+
+                if(this.resultadoPid > 100)
+                {
+                    resultadoPid = 100;
+                }
+                else if(this.resultadoPid < 0)
+                {
+                    resultadoPid = 0;
+                }
+
+                Console.WriteLine("Erro = " + erro + " somatória erros = " + somatoriaPid + " resultado PID = " + resultadoPid);
+
+            return Convert.ToInt32(resultadoPid);
+            
+        }
+
+        private void btnParametrosPid_Click(object sender, EventArgs e)
+        {
+
+            this.kp = Double.Parse(textBoxKp.Text);
+            this.ki = Double.Parse(textBoxKi.Text);
+            this.kd = Double.Parse(textBoxKd.Text);
         }
     }
 }

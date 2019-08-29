@@ -21,7 +21,7 @@ namespace TanqueTeste01 {
     {
         public frmPrincipal(){     
             InitializeComponent();
-            btEnviar.Enabled = false;
+            btnEnviar.Enabled = false;
             btnBomba.Enabled = false;
             btnSalvar.Enabled = false; 
         }
@@ -56,9 +56,9 @@ namespace TanqueTeste01 {
             bool quantDiferente = false; //flag para sinalizar que a quantidade de portas mudou
 
             //se a quantidade de portas mudou
-            if (comboBox1.Items.Count == SerialPort.GetPortNames().Length) {
+            if (cboPortaSerial.Items.Count == SerialPort.GetPortNames().Length) {
                 foreach (string s in SerialPort.GetPortNames()) {
-                    if (comboBox1.Items[i++].Equals(s) == false) {
+                    if (cboPortaSerial.Items[i++].Equals(s) == false) {
                         quantDiferente = true;
                     }
                 }
@@ -71,39 +71,47 @@ namespace TanqueTeste01 {
                 return;                     //retorna
             }
             //limpa comboBox
-            comboBox1.Items.Clear();
+            cboPortaSerial.Items.Clear();
 
             //adiciona todas as COM diponíveis na lista
             foreach (string s in SerialPort.GetPortNames()) {
-                comboBox1.Items.Add(s);
+                cboPortaSerial.Items.Add(s);
             }
             //seleciona a primeira posição da lista
-            comboBox1.SelectedIndex = 0;
+            cboPortaSerial.SelectedIndex = 0;
         }
 
-        private void btConectar_Click(object sender, EventArgs e){
-            if (serialPort1.IsOpen == false){
-                try {
-                    serialPort1.PortName = comboBox1.Items[comboBox1.SelectedIndex].ToString();
+        private void btnConectar_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen == false)
+            {
+                try
+                {
+                    serialPort1.PortName = cboPortaSerial.Items[cboPortaSerial.SelectedIndex].ToString();
                     serialPort1.Open();
                 }
-                catch{
+                catch
+                {
                     return;
                 }
-                if (serialPort1.IsOpen) {
+                if (serialPort1.IsOpen)
+                {
                     btConectar.Text = "Desconectar";
-                    comboBox1.Enabled = false;
-                    btEnviar.Enabled = true;   
+                    cboPortaSerial.Enabled = false;
+                    btnEnviar.Enabled = true;
                 }
             }
-            else{
-                try {
+            else
+            {
+                try
+                {
                     serialPort1.Close();
-                    comboBox1.Enabled = true;
+                    cboPortaSerial.Enabled = true;
                     btConectar.Text = "Conectar";
-                    btEnviar.Enabled = false;
+                    btnEnviar.Enabled = false;
                 }
-                catch {
+                catch
+                {
                     return;
                 }
             }
@@ -119,13 +127,13 @@ namespace TanqueTeste01 {
 
         private void btEnviar_Click(object sender, EventArgs e) {
             if(serialPort1.IsOpen){
-                if (btEnviar.Text == "Iniciar"){
+                if (btnEnviar.Text == "Iniciar"){
                     serialPort1.DiscardOutBuffer();
                     serialPort1.DiscardInBuffer();
                     serialPort1.Write(iniciarComunicacao);
                     chartNivel.Series[0].Points.Clear();
                     chartBomba.Series[0].Points.Clear();
-                    btEnviar.Text = "Parar";
+                    btnEnviar.Text = "Parar";
                     ajustarParametrosToolStripMenuItem.Enabled = false;
                     btConectar.Enabled = false;
                     btnSalvar.Enabled = false;
@@ -137,7 +145,7 @@ namespace TanqueTeste01 {
                 }else {
                     serialPort1.DiscardOutBuffer();
                     serialPort1.Write(finalizarComunicacao);
-                    btEnviar.Text = "Iniciar";
+                    btnEnviar.Text = "Iniciar";
                     btConectar.Enabled = true;
                     btnSalvar.Enabled = true;
                     ajustarParametrosToolStripMenuItem.Enabled = true;
@@ -148,7 +156,7 @@ namespace TanqueTeste01 {
         }
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e){
             if (requested){
-                leituraBombaSersor = (string)serialPort1.ReadExisting();    //ler o dado disponível na serial   
+                leituraBombaSensor = (string)serialPort1.ReadExisting();    //ler o dado disponível na serial   
                 this.Invoke(new EventHandler(TrataDadoRecebido));           //chama outra thread para escrever 
             }
         }
@@ -189,14 +197,14 @@ namespace TanqueTeste01 {
 
         private void TrataDadoRecebido(object sender, EventArgs e)
         {
-            aux += leituraBombaSersor;
+            tratarLeitura += leituraBombaSensor;
 
-            int firstOpen = aux.IndexOf("[");
-            int firstClose = aux.IndexOf("]");
+            int firstOpen = tratarLeitura.IndexOf("[");
+            int firstClose = tratarLeitura.IndexOf("]");
 
             if (firstClose > firstOpen)
             {
-                string[] dados = aux.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
+                string[] dados = tratarLeitura.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
                 nivelCm = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);             
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
@@ -207,7 +215,7 @@ namespace TanqueTeste01 {
                 labelSen.Text = nivelCm.ToString("F2") + " cm";
                 lblSetPoint.Text = setPoint + " cm";
                 mostrarTanque = nivelCm; //dados[0]
-                aux = aux.Remove(firstOpen, firstClose + 1);
+                tratarLeitura = tratarLeitura.Remove(firstOpen, firstClose + 1);
 
                 chartNivel.Series[0].Points.AddXY(sample, nivelCm);
                 chartNivel.Series[1].Points.AddXY(sample, setPoint);
@@ -217,9 +225,9 @@ namespace TanqueTeste01 {
 
                 if (serialPort1.IsOpen && this.radioButtonPid.Checked)
                 {
-                    int aux2 = ControladorPid();
-                    Console.WriteLine("VALOR PID = " + aux2);
-                    serialPort1.Write(aux2.ToString()); 
+                    int recebePid = ControladorPid();
+                    Console.WriteLine("VALOR PID = " + recebePid);
+                    serialPort1.Write(recebePid.ToString()); 
                 }
             }
         }
@@ -399,8 +407,7 @@ namespace TanqueTeste01 {
 
                 Console.WriteLine("Erro = " + erro + " somatória erros = " + somatoriaPid + " resultado PID = " + resultadoPid);
 
-            return Convert.ToInt32(resultadoPid);
-            
+            return Convert.ToInt32(resultadoPid);   
         }
 
         private void btnParametrosPid_Click(object sender, EventArgs e)
@@ -410,5 +417,6 @@ namespace TanqueTeste01 {
             this.ki = Double.Parse(textBoxKi.Text);
             this.kd = Double.Parse(textBoxKd.Text);
         }
+
     }
 }

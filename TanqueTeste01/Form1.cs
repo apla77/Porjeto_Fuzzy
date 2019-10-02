@@ -21,9 +21,10 @@ namespace TanqueTeste01 {
     {
         public frmPrincipal(){     
             InitializeComponent();
-            btnEnviar.Enabled = false;
+            btnIniciar.Enabled = false;
             btnBomba.Enabled = false;
-            btnSalvar.Enabled = false; 
+            btnSalvar.Enabled = false;
+            this.groupBox2.Enabled = false;
         }
 
         public void SetParametro(TipoParametro tp, double valor)
@@ -96,9 +97,10 @@ namespace TanqueTeste01 {
                 }
                 if (serialPort1.IsOpen)
                 {
-                    btConectar.Text = "Desconectar";
+                    btnConectar.Text = "Desconectar";
                     cboPortaSerial.Enabled = false;
-                    btnEnviar.Enabled = true;
+                    btnIniciar.Enabled = true;
+
                 }
             }
             else
@@ -107,8 +109,8 @@ namespace TanqueTeste01 {
                 {
                     serialPort1.Close();
                     cboPortaSerial.Enabled = true;
-                    btConectar.Text = "Conectar";
-                    btnEnviar.Enabled = false;
+                    btnConectar.Text = "Conectar";
+                    btnIniciar.Enabled = false;
                 }
                 catch
                 {
@@ -125,59 +127,72 @@ namespace TanqueTeste01 {
             }
         }
 
-        private void btEnviar_Click(object sender, EventArgs e) {
-            if(serialPort1.IsOpen){
-                if (btnEnviar.Text == "Iniciar"){
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            if (serialPort1.IsOpen)
+            {
+                if (btnIniciar.Text == "Iniciar")
+                {
                     serialPort1.DiscardOutBuffer();
                     serialPort1.DiscardInBuffer();
                     serialPort1.Write(iniciarComunicacao);
                     chartNivel.Series[0].Points.Clear();
                     chartBomba.Series[0].Points.Clear();
-                    btnEnviar.Text = "Parar";
+                    btnIniciar.Text = "Parar";
                     ajustarParametrosToolStripMenuItem.Enabled = false;
-                    btConectar.Enabled = false;
+                    btnConectar.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnBomba.Enabled = true;
                     requested = true;
-                    radioButtonManual.Checked = true;
+                    radManual.Checked = true;
                     sample = 0;
+                    //*****************************AJEITAR
+                    this.groupBox2.Enabled = true;
 
-                }else {
+                }
+                else
+                {
                     serialPort1.DiscardOutBuffer();
                     serialPort1.Write(finalizarComunicacao);
-                    btnEnviar.Text = "Iniciar";
-                    btConectar.Enabled = true;
+                    btnIniciar.Text = "Iniciar";
+                    btnConectar.Enabled = true;
                     btnSalvar.Enabled = true;
                     ajustarParametrosToolStripMenuItem.Enabled = true;
                     btnBomba.Enabled = false;
                     requested = false;
+                    //*****************************AJEITAR
+                    this.groupBox2.Enabled = false;
                 }
             }
         }
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e){
             if (requested){
                 leituraBombaSensor = (string)serialPort1.ReadExisting();    //ler o dado disponível na serial   
-                this.Invoke(new EventHandler(TrataDadoRecebido));           //chama outra thread para escrever 
+                this.Invoke(new EventHandler(DadoSerialRecebido));           //chama outra thread para escrever 
             }
         }
  
-        private void ChaveNivelAlto (double nivel, double valorBomba)
+        private bool ChaveNivelAlto (double nivel, double valorBomba)
         {
             if ((nivel >= NIVEL_MAX) && (valorBomba > ACIONAMENTO_SEGURANCA))
             {
                 if (serialPort1.IsOpen)
                 {
-                    string acionamentoString = ACIONAMENTO_SEGURANCA.ToString();
-                    serialPort1.Write(acionamentoString);
+                    //string acionamentoString = ACIONAMENTO_SEGURANCA.ToString();  // Apagar ******************************
+                    serialPort1.Write(ACIONAMENTO_SEGURANCA.ToString());
+                    Console.WriteLine("AcionamentoString " + ACIONAMENTO_SEGURANCA.ToString()); // Apagar ******************************
                     pnlChaveSeguranca.Visible = true;
-                    hScrollBarBomba.Value = ACIONAMENTO_SEGURANCA;
-                    lblTeste.Text = acionamentoString;
+                    hsbBomba.Value = ACIONAMENTO_SEGURANCA;
+                    lblTeste.Text = ACIONAMENTO_SEGURANCA.ToString();
+                    return true;
                 }
             }
             else
             {
                 pnlChaveSeguranca.Visible = false;
             }
+
+            return false;
         }
 
         private double ConversaoBomba(double valorBomba)
@@ -195,10 +210,29 @@ namespace TanqueTeste01 {
             return valorBomba;
         }
 
-        private void TrataDadoRecebido(object sender, EventArgs e)
+        private void DadoSerialRecebido(object sender, EventArgs e)
         {
             tratarLeitura += leituraBombaSensor;
 
+           // Console.WriteLine("Teste " + tratarLeitura);
+
+            TratarLeituraSerial(tratarLeitura);
+            PrintTanque(); // função que mostra a imagem do tanque
+
+           if (serialPort1.IsOpen && this.radPid.Checked)
+            {
+               // int recebePid = ControladorPid();
+              //  Console.WriteLine("VALOR PID = " + recebePid);
+              //  serialPort1.Write(recebePid.ToString());
+                /*serialPort1.Write("50");
+                this.radManual.Checked = true;*/
+
+               // Console.WriteLine("KP = " + txtKp.Text + " KI = " + txtKi.Text + " KD = " + txtKd.Text);
+            }
+        }
+
+        private void TratarLeituraSerial(string leituraSerial)
+        {
             int firstOpen = tratarLeitura.IndexOf("[");
             int firstClose = tratarLeitura.IndexOf("]");
 
@@ -206,13 +240,13 @@ namespace TanqueTeste01 {
             {
                 string[] dados = tratarLeitura.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
-                nivelCm = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);             
+                nivelCm = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
 
                 this.ChaveNivelAlto(nivelCm, valorBomba);
 
                 lblBomba.Text = valorBomba.ToString() + " %";
-                labelSen.Text = nivelCm.ToString("F2") + " cm";
+                lblNivelSensor.Text = nivelCm.ToString("F2") + " cm";
                 lblSetPoint.Text = setPoint + " cm";
                 mostrarTanque = nivelCm; //dados[0]
                 tratarLeitura = tratarLeitura.Remove(firstOpen, firstClose + 1);
@@ -220,19 +254,10 @@ namespace TanqueTeste01 {
                 chartNivel.Series[0].Points.AddXY(sample, nivelCm);
                 chartNivel.Series[1].Points.AddXY(sample, setPoint);
                 chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba);
-
-                Tanque(); // função que mostra a imagem do tanque
-
-                if (serialPort1.IsOpen && this.radioButtonPid.Checked)
-                {
-                    int recebePid = ControladorPid();
-                    Console.WriteLine("VALOR PID = " + recebePid);
-                    serialPort1.Write(recebePid.ToString()); 
-                }
             }
         }
 
-        private void Tanque()
+        private void PrintTanque()
         {
             if (mostrarTanque > 0 && mostrarTanque <= 100)
             {
@@ -270,7 +295,7 @@ namespace TanqueTeste01 {
 
             if (mostrarTanque > 20 && mostrarTanque <= 70)
             {
-                Double perc = 1 - (mostrarTanque - 20) / 10;
+                Double perc = 1 - (mostrarTanque - 20) / 12;
                 pictureBox3.Height = Convert.ToInt32(199 * perc);
             }
             
@@ -293,12 +318,12 @@ namespace TanqueTeste01 {
         }
 
         private void hScrollBarBomba_Scroll(object sender, ScrollEventArgs e){
-            lblTeste.Text = hScrollBarBomba.Value.ToString() + " %";
+            lblTeste.Text = hsbBomba.Value.ToString() + " %";
         }
 
         private void btnBomba_Click(object sender, EventArgs e){
             if (serialPort1.IsOpen){
-                serialPort1.Write(hScrollBarBomba.Value.ToString());
+                serialPort1.Write("B"+hsbBomba.Value.ToString());
             }
         }
 
@@ -366,57 +391,79 @@ namespace TanqueTeste01 {
 
         private void btnSetPoint_Click(object sender, EventArgs e)
         {
-            setPoint = Convert.ToInt32(textBoxSetPoint.Text);
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Write("S" + txtSetPoint.Text);
+            }
+            setPoint = Convert.ToInt32(txtSetPoint.Text);
         }
 
         private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
         {
-            this.chartNivel.Series[1].Enabled = !this.radioButtonManual.Checked;
+            this.chartNivel.Series[1].Enabled = !this.radManual.Checked;
+
+            //*****************************AJEITAR
+            desabilitaGroupBox2();
         }
 
         private void radioButtonPid_CheckedChanged(object sender, EventArgs e)
         {
-            this.btnBomba.Enabled = !this.radioButtonPid.Checked;
-            this.hScrollBarBomba.Enabled = !this.radioButtonPid.Checked;
+            this.btnBomba.Enabled = !this.radPid.Checked;
+            this.hsbBomba.Enabled = !this.radPid.Checked;
         }
 
         private void radioButtonFuzzy_CheckedChanged(object sender, EventArgs e)
         {
-            this.btnBomba.Enabled = !this.radioButtonFuzzy.Checked;
-            this.hScrollBarBomba.Enabled = !this.radioButtonFuzzy.Checked;
+            this.btnBomba.Enabled = !this.radFuzzy.Checked;
+            this.hsbBomba.Enabled = !this.radFuzzy.Checked;
+
+            //*****************************AJEITAR
+            desabilitaGroupBox2();
         }
 
-        private int ControladorPid()
+        private void desabilitaGroupBox2()
         {
- 
-               this.erro = this.setPoint - this.nivelCm;
-               this.diferencaErro = this.erro - this.erroAnterior;
-               this.erroAnterior = this.erro;
-               this.somatoriaPid += erro;
+            this.txtKp.Enabled = !this.radManual.Checked;
+            this.txtKi.Enabled = !this.radManual.Checked;
+            this.txtKd.Enabled = !this.radManual.Checked;
+            this.btnParametrosPid.Enabled = !this.radManual.Checked;
 
-                this.resultadoPid = (kp * erro) + (ki * somatoriaPid) + (kd * diferencaErro);
+            this.txtKp.Enabled = !this.radFuzzy.Checked;
+            this.txtKi.Enabled = !this.radFuzzy.Checked;
+            this.txtKd.Enabled = !this.radFuzzy.Checked;
+            this.btnParametrosPid.Enabled = !this.radFuzzy.Checked;
 
-                if(this.resultadoPid > 100)
-                {
-                    resultadoPid = 100;
-                }
-                else if(this.resultadoPid < 0)
-                {
-                    resultadoPid = 0;
-                }
+            this.lblErroControle.Text = "0 cm";            
+        }
+        /*
+        private int ControladorPid()
+        { 
+            this.erro = this.setPoint - this.nivelCm;
+            this.lblErroControle.Text = this.erro + "cm";
+            this.diferencaErro = this.erro - this.erroAnterior;
+            this.erroAnterior = this.erro;
+            this.somatoriaPid += erro;
 
-                Console.WriteLine("Erro = " + erro + " somatória erros = " + somatoriaPid + " resultado PID = " + resultadoPid);
+            this.resultadoPid = (kp * erro) + (ki * somatoriaPid) + (kd * diferencaErro);
+            if(this.resultadoPid > 100)
+            {
+                resultadoPid = 100;
+            }
+            else if(this.resultadoPid < 0)
+            {
+                resultadoPid = 0;
+            }
 
             return Convert.ToInt32(resultadoPid);   
         }
-
+        */
         private void btnParametrosPid_Click(object sender, EventArgs e)
         {
-
-            this.kp = Double.Parse(textBoxKp.Text);
-            this.ki = Double.Parse(textBoxKi.Text);
-            this.kd = Double.Parse(textBoxKd.Text);
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Write("P" + txtKp.Text + ";" + txtKi.Text + ";" + txtKd.Text);
+            }
         }
-
+        
     }
 }

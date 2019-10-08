@@ -134,6 +134,7 @@ namespace TanqueTeste01 {
             {
                 if (btnIniciar.Text == "Iniciar")
                 {
+                    ClearChartSeries();
                     serialPort1.DiscardOutBuffer();
                     serialPort1.DiscardInBuffer();
                     serialPort1.Write(iniciarComunicacao);

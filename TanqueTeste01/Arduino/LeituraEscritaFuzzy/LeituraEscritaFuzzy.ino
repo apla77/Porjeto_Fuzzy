@@ -51,10 +51,13 @@ void loop() {
 
         // Desliga o sistema
         else if(op == 'D'){ 
-          Serial.print("[" + String(sensorValue) + "/" + String(potenciaBomba) + "]");
-          enviarDados = false;
-          execPid = false;
-          potenciaBomba = 0;
+          
+          Serial.print("[" + String(outputValue) + "/" + String(potenciaBomba) + "]"); // Envia os dados para o VS 
+         // Serial.print("[" + String(sensorValue) + "/" + String(potenciaBomba) + "]");
+         potenciaBomba = 0;
+         outputValue = 0;
+         enviarDados = false;
+         execPid = false;
         }
 
         // Seta o valor da potência da bomba

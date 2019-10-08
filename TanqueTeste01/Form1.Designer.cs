@@ -68,8 +68,6 @@
             this.ajustarParametrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSetPoint = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblErroControle = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnParametrosPid = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -271,6 +269,7 @@
             this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "Nível:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // btnSalvar
             // 
@@ -307,7 +306,7 @@
             // 
             this.lblBomba.AutoSize = true;
             this.lblBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBomba.Location = new System.Drawing.Point(246, 146);
+            this.lblBomba.Location = new System.Drawing.Point(224, 146);
             this.lblBomba.Name = "lblBomba";
             this.lblBomba.Size = new System.Drawing.Size(33, 16);
             this.lblBomba.TabIndex = 28;
@@ -317,7 +316,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(188, 146);
+            this.label1.Location = new System.Drawing.Point(166, 146);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 16);
             this.label1.TabIndex = 29;
@@ -426,8 +425,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.lblErroControle);
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.btnParametrosPid);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
@@ -449,30 +446,10 @@
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             // 
-            // lblErroControle
-            // 
-            this.lblErroControle.AutoSize = true;
-            this.lblErroControle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErroControle.Location = new System.Drawing.Point(184, 159);
-            this.lblErroControle.Name = "lblErroControle";
-            this.lblErroControle.Size = new System.Drawing.Size(40, 16);
-            this.lblErroControle.TabIndex = 51;
-            this.lblErroControle.Text = "0 cm";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(137, 159);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 16);
-            this.label8.TabIndex = 50;
-            this.label8.Text = "Erro:";
-            // 
             // btnParametrosPid
             // 
             this.btnParametrosPid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnParametrosPid.Location = new System.Drawing.Point(40, 156);
+            this.btnParametrosPid.Location = new System.Drawing.Point(114, 156);
             this.btnParametrosPid.Name = "btnParametrosPid";
             this.btnParametrosPid.Size = new System.Drawing.Size(75, 23);
             this.btnParametrosPid.TabIndex = 49;
@@ -693,19 +670,11 @@
         private int sample = 0;
         private int setPoint = 15;
 
-        private double parametroA = 0.1283;
-        private double parametroB = 2.9587;
+        private double parametroA = 0.127;
+        private double parametroB = 4.1029;
         private double mostrarTanque = 0; // Recebe o valor sensor 
         private double nivelCm = 0;
         private double valorBomba = 0;
-        private double erro = 0;
-        private double erroAnterior = 0;
-        private double diferencaErro = 0;
-        private double somatoriaPid = 0;
-        private double kp = 0;
-        private double ki = 0;
-        private double kd = 0;
-        private double resultadoPid = 0;
 
         private string leituraBombaSensor;
         private string iniciarComunicacao = "L";
@@ -746,8 +715,6 @@
         private System.Windows.Forms.TextBox txtKi;
         private System.Windows.Forms.TextBox txtKp;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Label lblErroControle;
-        private System.Windows.Forms.Label label8;
     }
 }
 

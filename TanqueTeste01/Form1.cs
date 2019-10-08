@@ -129,6 +129,7 @@ namespace TanqueTeste01 {
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+
             if (serialPort1.IsOpen)
             {
                 if (btnIniciar.Text == "Iniciar")
@@ -144,7 +145,7 @@ namespace TanqueTeste01 {
                     btnSalvar.Enabled = false;
                     btnBomba.Enabled = true;
                     requested = true;
-                    radManual.Checked = true;
+                  //  radManual.Checked = true;
                     sample = 0;
                     //*****************************AJEITAR
                     this.groupBox2.Enabled = true;
@@ -178,9 +179,7 @@ namespace TanqueTeste01 {
             {
                 if (serialPort1.IsOpen)
                 {
-                    //string acionamentoString = ACIONAMENTO_SEGURANCA.ToString();  // Apagar ******************************
                     serialPort1.Write(ACIONAMENTO_SEGURANCA.ToString());
-                    Console.WriteLine("AcionamentoString " + ACIONAMENTO_SEGURANCA.ToString()); // Apagar ******************************
                     pnlChaveSeguranca.Visible = true;
                     hsbBomba.Value = ACIONAMENTO_SEGURANCA;
                     lblTeste.Text = ACIONAMENTO_SEGURANCA.ToString();
@@ -214,21 +213,8 @@ namespace TanqueTeste01 {
         {
             tratarLeitura += leituraBombaSensor;
 
-           // Console.WriteLine("Teste " + tratarLeitura);
-
             TratarLeituraSerial(tratarLeitura);
             PrintTanque(); // função que mostra a imagem do tanque
-
-           if (serialPort1.IsOpen && this.radPid.Checked)
-            {
-               // int recebePid = ControladorPid();
-              //  Console.WriteLine("VALOR PID = " + recebePid);
-              //  serialPort1.Write(recebePid.ToString());
-                /*serialPort1.Write("50");
-                this.radManual.Checked = true;*/
-
-               // Console.WriteLine("KP = " + txtKp.Text + " KI = " + txtKi.Text + " KD = " + txtKd.Text);
-            }
         }
 
         private void TratarLeituraSerial(string leituraSerial)
@@ -240,13 +226,17 @@ namespace TanqueTeste01 {
             {
                 string[] dados = tratarLeitura.Substring(firstOpen + 1, (firstClose - firstOpen - 1)).Split('/');
 
-                nivelCm = Double.Parse(dados[0]) * this.GetParametro(TipoParametro.enPA) - this.GetParametro(TipoParametro.enPB);
+                nivelCm = Double.Parse(dados[0]);
+                nivelCm = nivelCm / 100;
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
+
+                Console.WriteLine("nivelCm = " + nivelCm);
+                Console.WriteLine("valorBomba = " + valorBomba);
 
                 this.ChaveNivelAlto(nivelCm, valorBomba);
 
-                lblBomba.Text = valorBomba.ToString() + " %";
-                lblNivelSensor.Text = nivelCm.ToString("F2") + " cm";
+                lblBomba.Text = valorBomba.ToString("N2") + " %";
+                lblNivelSensor.Text = nivelCm.ToString("N2") + " cm";
                 lblSetPoint.Text = setPoint + " cm";
                 mostrarTanque = nivelCm; //dados[0]
                 tratarLeitura = tratarLeitura.Remove(firstOpen, firstClose + 1);
@@ -432,31 +422,9 @@ namespace TanqueTeste01 {
             this.txtKi.Enabled = !this.radFuzzy.Checked;
             this.txtKd.Enabled = !this.radFuzzy.Checked;
             this.btnParametrosPid.Enabled = !this.radFuzzy.Checked;
-
-            this.lblErroControle.Text = "0 cm";            
+        
         }
-        /*
-        private int ControladorPid()
-        { 
-            this.erro = this.setPoint - this.nivelCm;
-            this.lblErroControle.Text = this.erro + "cm";
-            this.diferencaErro = this.erro - this.erroAnterior;
-            this.erroAnterior = this.erro;
-            this.somatoriaPid += erro;
-
-            this.resultadoPid = (kp * erro) + (ki * somatoriaPid) + (kd * diferencaErro);
-            if(this.resultadoPid > 100)
-            {
-                resultadoPid = 100;
-            }
-            else if(this.resultadoPid < 0)
-            {
-                resultadoPid = 0;
-            }
-
-            return Convert.ToInt32(resultadoPid);   
-        }
-        */
+      
         private void btnParametrosPid_Click(object sender, EventArgs e)
         {
             if (serialPort1.IsOpen)
@@ -464,6 +432,10 @@ namespace TanqueTeste01 {
                 serialPort1.Write("P" + txtKp.Text + ";" + txtKi.Text + ";" + txtKd.Text);
             }
         }
-        
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -8,9 +8,12 @@ double parametro_A = 0.119;
 double parametro_B = 4.1029;
 boolean enviarDados = false, execPid = false;
 
+bool first = true;
+
 Pid pid_control = Pid();
 
-unsigned long sampleTime, initialTime, finalTime;
+unsigned long currentTime, previousTime;
+double sampleTime;
 
 const int PINO_PWM = 3;     // A = 0.127 B = 4.1029  PID = kp.250 ki.0 kd.0    // A0.119;4.1029
 
@@ -20,6 +23,8 @@ void setup() {
     pid_control.SetULimits(255, 0);
 
     pinMode(PINO_PWM, OUTPUT); 
+
+    pid_control.EnableAntiResetWindup();
 }
 
 
@@ -38,7 +43,6 @@ String leituraString(){
 }
 
 void loop() {
-    initialTime = millis();
     analogWrite(PINO_PWM, potenciaBomba);
     if (Serial.available() > 0){ // verifica se a serial recebeu dados      
       String getPortaSerial = leituraString();
@@ -107,15 +111,22 @@ void loop() {
           execPid = true;
         }    
    } // fim primeiro if 
-   
-   initialTime = millis();
-   sensorValue = analogRead(analogInPin);
-
+   sensorValue = analogRead(analogInPin);   
    if(execPid){
     outputValue = parametro_A * sensorValue - parametro_B;   // MESMA COISA DO C# A = 0.127 e B = - 4.1029
-    finalTime = millis();
-    sampleTime = ((finalTime - initialTime) / 1000);
+
+    if (!first)
+      currentTime = millis();
+    else
+    {
+      first = false;
+      currentTime = previousTime = 0;
+    }
+    sampleTime = (double)(currentTime - previousTime) / 1000;
     potenciaBomba = pid_control.CalculatePidControlSignal((outputValue), (setPoint), sampleTime);
+    previousTime = millis();
+    PidActions actions = pid_control.GetPidActions();
+   // Serial.println("PAction = " + String(actions.PAction) + " IAction = " + String(actions.IAction) + " " + String(pid_control.GetError()));
    }
    
    if(enviarDados){ 

@@ -1,8 +1,8 @@
 #include <Pid.h>
 
 const int analogInPin = A0;
-double kp, ki, kd, outputValue = 0;               
-int setPoint = 15, sensorValue = 0;
+double kp, ki, kd, outputValue = 0.0;               
+int setPoint = 15, sensorValue = 0.0;
 float potenciaBomba = 0;
 double parametro_A = 0.119; 
 double parametro_B = 4.1029;
@@ -15,7 +15,7 @@ Pid pid_control = Pid();
 unsigned long currentTime, previousTime;
 double sampleTime;
 
-const int PINO_PWM = 3;     // A = 0.127 B = 4.1029  PID = kp.250 ki.0 kd.0    // A0.119;4.1029
+const int PINO_PWM = 3;     // A = 0.127 B = 4.1029  PID = kp.125 ki.0.05 kd.0    // A0.119;4.1029
 
 void setup() { 
     Serial.begin(9600);
@@ -120,13 +120,16 @@ void loop() {
     else
     {
       first = false;
-      currentTime = previousTime = 0;
+      currentTime += 0;
     }
     sampleTime = (double)(currentTime - previousTime) / 1000;
     potenciaBomba = pid_control.CalculatePidControlSignal((outputValue), (setPoint), sampleTime);
+    if(outputValue > 30.01){
+      setPoint = 30;
+    }
     previousTime = millis();
-    PidActions actions = pid_control.GetPidActions();
-   // Serial.println("PAction = " + String(actions.PAction) + " IAction = " + String(actions.IAction) + " " + String(pid_control.GetError()));
+   // PidActions actions = pid_control.GetPidActions();
+  //  Serial.println("PAction = " + String(actions.PAction) + " IAction = " + String(actions.IAction) + " " + String(pid_control.GetError()));
    }
    
    if(enviarDados){ 

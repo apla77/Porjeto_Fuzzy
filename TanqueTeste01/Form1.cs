@@ -25,6 +25,10 @@ namespace TanqueTeste01 {
             btnBomba.Enabled = false;
             btnSalvar.Enabled = false;
             this.groupBox2.Enabled = false;
+            btnParametrosPid.Enabled = false;
+            txtKp.Enabled = true;
+            txtKi.Enabled = true;
+            txtKd.Enabled = true;
         }
 
         public void SetParametro(TipoParametro tp, double valor)
@@ -100,7 +104,6 @@ namespace TanqueTeste01 {
                     btnConectar.Text = "Desconectar";
                     cboPortaSerial.Enabled = false;
                     btnIniciar.Enabled = true;
-
                 }
             }
             else
@@ -129,7 +132,6 @@ namespace TanqueTeste01 {
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-
             if (serialPort1.IsOpen)
             {
                 if (btnIniciar.Text == "Iniciar")
@@ -154,19 +156,27 @@ namespace TanqueTeste01 {
                 }
                 else
                 {
-                    serialPort1.DiscardOutBuffer();
-                    serialPort1.Write(finalizarComunicacao);
-                    btnIniciar.Text = "Iniciar";
-                    btnConectar.Enabled = true;
-                    btnSalvar.Enabled = true;
-                    ajustarParametrosToolStripMenuItem.Enabled = true;
-                    btnBomba.Enabled = false;
-                    requested = false;
-                    //*****************************AJEITAR
-                    this.groupBox2.Enabled = false;
+                    this.desligarSistema();
                 }
             }
         }
+
+        private void desligarSistema()
+        {
+            serialPort1.DiscardOutBuffer();
+            serialPort1.Write(finalizarComunicacao);
+            btnIniciar.Text = "Iniciar";
+            btnConectar.Enabled = true;
+            btnSalvar.Enabled = true;
+            ajustarParametrosToolStripMenuItem.Enabled = true;
+            btnBomba.Enabled = false;
+            requested = false;
+            pidAutomatico = false;
+            //*****************************AJEITAR
+            this.groupBox2.Enabled = false;
+        }
+
+
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e){
             if (requested){
                 leituraBombaSensor = (string)serialPort1.ReadExisting();    //ler o dado disponível na serial   
@@ -217,9 +227,10 @@ namespace TanqueTeste01 {
             TratarLeituraSerial(tratarLeitura);
             PrintTanque(); // função que mostra a imagem do tanque
         }
-
+        int j = 0;
         private void TratarLeituraSerial(string leituraSerial)
         {
+           
             int firstOpen = tratarLeitura.IndexOf("[");
             int firstClose = tratarLeitura.IndexOf("]");
 
@@ -231,9 +242,6 @@ namespace TanqueTeste01 {
                 nivelCm = nivelCm / 100;
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
 
-                Console.WriteLine("nivelCm = " + nivelCm);
-                Console.WriteLine("valorBomba = " + valorBomba);
-
                 this.ChaveNivelAlto(nivelCm, valorBomba);
 
                 lblBomba.Text = valorBomba.ToString("N2") + " %";
@@ -244,7 +252,36 @@ namespace TanqueTeste01 {
 
                 chartNivel.Series[0].Points.AddXY(sample, nivelCm);
                 chartNivel.Series[1].Points.AddXY(sample, setPoint);
-                chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba);
+                chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba); 
+                  
+                if (this.pidAutomatico) 
+                {
+                    this.contadorPid = 0; 
+                    if (j < experimento.Count)
+                    {
+                        string[] dado = experimento[j].Split(' ');
+                        valSetpoint = Int32.Parse(dado[1]);
+                        this.pidAutomatico = false;
+                        j++;
+                        SetSetPoint(dado[0]);  
+                        this.setPoint = Convert.ToInt32(dado[0]);
+                        this.chartNivel.Series[1].Enabled = this.radManual.Checked;
+                    }
+                    else
+                    {
+                        this.pidAutomatico = false;
+                      //  this.desligarSistema();
+                    }
+                }
+                if(this.valSetpoint == contadorPid)
+                {
+                    this.pidAutomatico = true;
+                    this.contadorPid = 0;
+                }
+               
+               
+                this.contadorPid++;
+                lblAmostras.Text = "Amostra " + contadorPid + "   j = " + j + "  experimento.Count = " + experimento.Count;
             }
         }
 
@@ -382,19 +419,24 @@ namespace TanqueTeste01 {
 
         private void btnSetPoint_Click(object sender, EventArgs e)
         {
-            if (serialPort1.IsOpen)
+            this.SetSetPoint(txtSetPoint.Text);
+        }
+
+        private void SetSetPoint(string sp)
+        {
+            if (serialPort1.IsOpen) 
             {
-                serialPort1.Write("S" + txtSetPoint.Text);
+                serialPort1.Write("S" + sp);
             }
-            setPoint = Convert.ToInt32(txtSetPoint.Text);
+            this.setPoint = Convert.ToInt32(sp);
         }
 
         private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
         {
             this.chartNivel.Series[1].Enabled = !this.radManual.Checked;
-
             //*****************************AJEITAR
             desabilitaGroupBox2();
+            btnParametrosPid.Enabled = !this.radManual.Checked;
         }
 
         private void radioButtonPid_CheckedChanged(object sender, EventArgs e)
@@ -422,21 +464,56 @@ namespace TanqueTeste01 {
             this.txtKp.Enabled = !this.radFuzzy.Checked;
             this.txtKi.Enabled = !this.radFuzzy.Checked;
             this.txtKd.Enabled = !this.radFuzzy.Checked;
-            this.btnParametrosPid.Enabled = !this.radFuzzy.Checked;
-        
+            this.btnParametrosPid.Enabled = !this.radFuzzy.Checked;        
         }
       
         private void btnParametrosPid_Click(object sender, EventArgs e)
         {
+            this.SetPidParameters(txtKp.Text, txtKi.Text, txtKd.Text);
+        }
+
+        private void SetPidParameters(string Kp, string Ki, string Kd)
+        {
             if (serialPort1.IsOpen)
             {
-                serialPort1.Write("P" + txtKp.Text + ";" + txtKi.Text + ";" + txtKd.Text);
+                serialPort1.Write("P" + Kp + ";" + Ki + ";" + Kd);
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
+        private void TesteAutomatico(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            string linha;
+
+            openFileDialog1.InitialDirectory = "c:\\";
+            openFileDialog1.Filter = "TXT files (*.txt)|*.txt";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.ClearChartSeries();
+                string arquivo = openFileDialog1.FileName;
+                StreamReader texto = new StreamReader(arquivo);
+                
+                experimento.Clear();
+                while ((linha = texto.ReadLine()) != null)
+                {
+                    this.experimento.Add(linha);
+                }
+                this.ClearChartSeries();
+                pidAutomatico = true;
+                this.SetPidParameters(txtKp.Text, txtKi.Text, txtKd.Text);
+            }
+        }
+
+        private void LimparChartNivel_Click(object sender, EventArgs e)
+        {
+            if(!this.requested)
+            { 
+                this.ClearChartSeries();
+                this.chartNivel.Series[0].Points.AddXY(10, 30);
+                this.chartBomba.Series[0].Points.AddXY(10, 100);
+            }
         }
     }
 }

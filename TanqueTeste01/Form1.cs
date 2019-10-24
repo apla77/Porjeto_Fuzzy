@@ -219,15 +219,14 @@ namespace TanqueTeste01 {
             }
             return valorBomba;
         }
-
+        
         private void DadoSerialRecebido(object sender, EventArgs e)
-        {
+        { 
             tratarLeitura += leituraBombaSensor;
 
             TratarLeituraSerial(tratarLeitura);
             PrintTanque(); // função que mostra a imagem do tanque
         }
-        int j = 0;
         private void TratarLeituraSerial(string leituraSerial)
         {
            
@@ -250,39 +249,44 @@ namespace TanqueTeste01 {
                 mostrarTanque = nivelCm; //dados[0]
                 tratarLeitura = tratarLeitura.Remove(firstOpen, firstClose + 1);
 
-                chartNivel.Series[0].Points.AddXY(sample, nivelCm);
-                chartNivel.Series[1].Points.AddXY(sample, setPoint);
-                chartBomba.Series[0].Points.AddXY(1 + sample++, valorBomba); 
+                chartNivel.Series[0].Points.AddXY(this.sample, nivelCm);
+                chartNivel.Series[1].Points.AddXY(this.sample, setPoint);
+                chartBomba.Series[0].Points.AddXY(this.sample++, valorBomba);  
                   
-                if (this.pidAutomatico) 
+                if (this.pidAutomatico)    
                 {
-                    this.contadorPid = 0; 
-                    if (j < experimento.Count)
+                    this.contadorPid = 0;  
+                    if (this.contI < this.tamLista) 
                     {
-                        string[] dado = experimento[j].Split(' ');
+                        string[] dado = experimento[this.contI].Split(' ');
                         valSetpoint = Int32.Parse(dado[1]);
                         this.pidAutomatico = false;
-                        j++;
+                        this.contI++;
                         SetSetPoint(dado[0]);  
                         this.setPoint = Convert.ToInt32(dado[0]);
                         this.chartNivel.Series[1].Enabled = this.radManual.Checked;
+                        Console.WriteLine(" No IF this.contI " + this.contI + "  this.tamLista " + this.tamLista);
                     }
                     else
                     {
+                        this.contI = 0;
                         this.pidAutomatico = false;
-                      //  this.desligarSistema();
+                        this.desligarSistema();
+                        contadorPid = 0; 
                     }
                 }
-                if(this.valSetpoint == contadorPid)
+                
+                if(this.valSetpoint == this.contadorPid && this.contadorPid > 0)
                 {
                     this.pidAutomatico = true;
                     this.contadorPid = 0;
+                    
                 }
-               
-               
+  
                 this.contadorPid++;
-                lblAmostras.Text = "Amostra " + contadorPid + "   j = " + j + "  experimento.Count = " + experimento.Count;
+               
             }
+            lblAmostras.Text = "Amostra " + contadorPid + "   contI = " + this.contI + "  this.tamLista = " + this.tamLista;
         }
 
         private void PrintTanque()
@@ -491,7 +495,7 @@ namespace TanqueTeste01 {
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                this.ClearChartSeries();
+                //this.ClearChartSeries();
                 string arquivo = openFileDialog1.FileName;
                 StreamReader texto = new StreamReader(arquivo);
                 
@@ -499,8 +503,10 @@ namespace TanqueTeste01 {
                 while ((linha = texto.ReadLine()) != null)
                 {
                     this.experimento.Add(linha);
+                    this.tamLista++;
                 }
                 this.ClearChartSeries();
+                this.sample = 0;
                 pidAutomatico = true;
                 this.SetPidParameters(txtKp.Text, txtKi.Text, txtKd.Text);
             }

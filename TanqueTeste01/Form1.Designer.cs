@@ -699,7 +699,6 @@
 
         private int sample = 0;
         private int setPoint = 15;
-        private int contSetPoint = 0;
 
         private double parametroA = 0.127;
         private double parametroB = 4.1029;
@@ -717,21 +716,9 @@
         private int valSetpoint = 0;
         private int contadorPid = 0;
         private bool pidAutomatico = false;
-        /*
-        struct ExperimentData
-        {
-            public string Sp;
-            public int NSamples;
+        private int contI = 0;
+        private int tamLista = 0;
 
-            public ExperimentData(string sp, int nSamples)
-            {
-                Sp = sp;
-                NSamples = nSamples;
-            }
-        }
-        
-        private List<ExperimentData> experiment = new List<ExperimentData>();
-       */
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.Button btnOpenArquivo;
         private System.Windows.Forms.Label lblBomba;

@@ -31,13 +31,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title7 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title6 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.btnConectar = new System.Windows.Forms.Button();
             this.cboPortaSerial = new System.Windows.Forms.ComboBox();
@@ -48,6 +48,7 @@
             this.lblNivelSensor = new System.Windows.Forms.Label();
             this.chartNivel = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartNivelMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.LimparChartNivel = new System.Windows.Forms.ToolStripMenuItem();
             this.chartBomba = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblTeste = new System.Windows.Forms.Label();
             this.lblSelecionaPorta = new System.Windows.Forms.Label();
@@ -89,7 +90,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lblAmostras = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.LimparChartNivel = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLimpar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
@@ -170,37 +171,37 @@
             // 
             // chartNivel
             // 
-            chartArea7.AxisX.Minimum = 0D;
-            chartArea7.AxisX.Title = "amostras";
-            chartArea7.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea7.AxisY.Interval = 5D;
-            chartArea7.AxisY.Maximum = 35D;
-            chartArea7.AxisY.Title = "nível (cm)";
-            chartArea7.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea7.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea7);
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.Title = "amostras";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Interval = 5D;
+            chartArea1.AxisY.Maximum = 35D;
+            chartArea1.AxisY.Title = "nível (cm)";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.Name = "ChartArea1";
+            this.chartNivel.ChartAreas.Add(chartArea1);
             this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
             this.chartNivel.Location = new System.Drawing.Point(334, 37);
             this.chartNivel.Name = "chartNivel";
-            series7.BorderWidth = 2;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Name = "Nível";
-            series9.BorderWidth = 2;
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Color = System.Drawing.Color.Red;
-            series9.Enabled = false;
-            series9.Name = "Set-Pint";
-            this.chartNivel.Series.Add(series7);
-            this.chartNivel.Series.Add(series9);
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "Nível";
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Red;
+            series2.Enabled = false;
+            series2.Name = "Set-Pint";
+            this.chartNivel.Series.Add(series1);
+            this.chartNivel.Series.Add(series2);
             this.chartNivel.Size = new System.Drawing.Size(513, 265);
             this.chartNivel.TabIndex = 8;
             this.chartNivel.Text = "Nível do Tanque";
-            title7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title7.Name = "Title1";
-            title7.Text = "Nível do Tanque";
-            this.chartNivel.Titles.Add(title7);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Nível do Tanque";
+            this.chartNivel.Titles.Add(title1);
             // 
             // chartNivelMenu
             // 
@@ -209,35 +210,42 @@
             this.chartNivelMenu.Name = "chartNivelMenu";
             this.chartNivelMenu.Size = new System.Drawing.Size(112, 26);
             // 
+            // LimparChartNivel
+            // 
+            this.LimparChartNivel.Name = "LimparChartNivel";
+            this.LimparChartNivel.Size = new System.Drawing.Size(111, 22);
+            this.LimparChartNivel.Text = "Limpar";
+            this.LimparChartNivel.Click += new System.EventHandler(this.LimparChartNivel_Click);
+            // 
             // chartBomba
             // 
-            chartArea6.AxisX.Minimum = 0D;
-            chartArea6.AxisX.Title = "amostras";
-            chartArea6.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea6.AxisY.Interval = 20D;
-            chartArea6.AxisY.Maximum = 100D;
-            chartArea6.AxisY.Title = "acionamento (%)";
-            chartArea6.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea6.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea6);
+            chartArea2.AxisX.Minimum = 0D;
+            chartArea2.AxisX.Title = "amostras";
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.AxisY.Interval = 20D;
+            chartArea2.AxisY.Maximum = 100D;
+            chartArea2.AxisY.Title = "acionamento (%)";
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.Name = "ChartArea1";
+            this.chartBomba.ChartAreas.Add(chartArea2);
             this.chartBomba.Location = new System.Drawing.Point(334, 313);
             this.chartBomba.Name = "chartBomba";
-            series6.BorderColor = System.Drawing.Color.White;
-            series6.BorderWidth = 2;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Color = System.Drawing.Color.Green;
-            series6.LabelBorderWidth = 2;
-            series6.MarkerColor = System.Drawing.Color.Transparent;
-            series6.Name = "Bomba";
-            this.chartBomba.Series.Add(series6);
+            series3.BorderColor = System.Drawing.Color.White;
+            series3.BorderWidth = 2;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Color = System.Drawing.Color.Green;
+            series3.LabelBorderWidth = 2;
+            series3.MarkerColor = System.Drawing.Color.Transparent;
+            series3.Name = "Bomba";
+            this.chartBomba.Series.Add(series3);
             this.chartBomba.Size = new System.Drawing.Size(513, 263);
             this.chartBomba.TabIndex = 10;
             this.chartBomba.Text = "chart1";
-            title6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title6.Name = "Title1";
-            title6.Text = "Acionamento da Bomba";
-            this.chartBomba.Titles.Add(title6);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Text = "Acionamento da Bomba";
+            this.chartBomba.Titles.Add(title2);
             // 
             // lblTeste
             // 
@@ -272,7 +280,7 @@
             // btnSalvar
             // 
             this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(478, 596);
+            this.btnSalvar.Location = new System.Drawing.Point(473, 617);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(112, 23);
             this.btnSalvar.TabIndex = 15;
@@ -292,9 +300,9 @@
             // btnOpenArquivo
             // 
             this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenArquivo.Location = new System.Drawing.Point(629, 596);
+            this.btnOpenArquivo.Location = new System.Drawing.Point(747, 617);
             this.btnOpenArquivo.Name = "btnOpenArquivo";
-            this.btnOpenArquivo.Size = new System.Drawing.Size(112, 23);
+            this.btnOpenArquivo.Size = new System.Drawing.Size(100, 23);
             this.btnOpenArquivo.TabIndex = 20;
             this.btnOpenArquivo.Text = "Abrir Dados";
             this.btnOpenArquivo.UseVisualStyleBackColor = true;
@@ -394,7 +402,7 @@
             this.menuPrincipalToolStripMenuItem});
             this.menuPrincipal.Location = new System.Drawing.Point(0, 0);
             this.menuPrincipal.Name = "menuPrincipal";
-            this.menuPrincipal.Size = new System.Drawing.Size(1022, 24);
+            this.menuPrincipal.Size = new System.Drawing.Size(1023, 24);
             this.menuPrincipal.TabIndex = 37;
             this.menuPrincipal.Text = "menuStrip1";
             // 
@@ -600,11 +608,11 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(347, 596);
+            this.button1.Location = new System.Drawing.Point(334, 617);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
+            this.button1.Size = new System.Drawing.Size(95, 23);
             this.button1.TabIndex = 41;
-            this.button1.Text = "TesteAutomatico";
+            this.button1.Text = "Automatico";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.TesteAutomatico);
             // 
@@ -621,19 +629,24 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // LimparChartNivel
+            // btnLimpar
             // 
-            this.LimparChartNivel.Name = "LimparChartNivel";
-            this.LimparChartNivel.Size = new System.Drawing.Size(111, 22);
-            this.LimparChartNivel.Text = "Limpar";
-            this.LimparChartNivel.Click += new System.EventHandler(this.LimparChartNivel_Click);
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Location = new System.Drawing.Point(619, 617);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(95, 23);
+            this.btnLimpar.TabIndex = 43;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1022, 631);
+            this.ClientSize = new System.Drawing.Size(1023, 652);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.lblAmostras);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlChaveSeguranca);
@@ -755,6 +768,7 @@
         private System.Windows.Forms.Label lblAmostras;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem LimparChartNivel;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }
 

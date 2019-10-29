@@ -139,7 +139,7 @@ namespace TanqueTeste01 {
                     ClearChartSeries();
                     serialPort1.DiscardOutBuffer();
                     serialPort1.DiscardInBuffer();
-                    serialPort1.Write(iniciarComunicacao);
+                    serialPort1.Write(iniciarComunicacao); 
                     chartNivel.Series[0].Points.Clear();
                     chartBomba.Series[0].Points.Clear();
                     btnIniciar.Text = "Parar";
@@ -147,8 +147,9 @@ namespace TanqueTeste01 {
                     btnConectar.Enabled = false;
                     btnSalvar.Enabled = false;
                     btnBomba.Enabled = true;
+                    btnOpenArquivo.Enabled = false;
                     requested = true;
-                  //  radManual.Checked = true;
+                    btnLimpar.Enabled = false;
                     sample = 0;
                     //*****************************AJEITAR
                     this.groupBox2.Enabled = true;
@@ -157,6 +158,7 @@ namespace TanqueTeste01 {
                 else
                 {
                     this.desligarSistema();
+                    btnLimpar.Enabled = true;
                 }
             }
         }
@@ -168,10 +170,12 @@ namespace TanqueTeste01 {
             btnIniciar.Text = "Iniciar";
             btnConectar.Enabled = true;
             btnSalvar.Enabled = true;
+            btnLimpar.Enabled = true;
             ajustarParametrosToolStripMenuItem.Enabled = true;
             btnBomba.Enabled = false;
             requested = false;
             pidAutomatico = false;
+            btnOpenArquivo.Enabled = true;
             //*****************************AJEITAR
             this.groupBox2.Enabled = false;
         }
@@ -196,7 +200,7 @@ namespace TanqueTeste01 {
                     lblTeste.Text = ACIONAMENTO_SEGURANCA.ToString();
                     return true;
                 }
-            }
+            } 
             else
             {
                 pnlChaveSeguranca.Visible = false;
@@ -519,6 +523,17 @@ namespace TanqueTeste01 {
                 this.ClearChartSeries();
                 this.chartNivel.Series[0].Points.AddXY(10, 30);
                 this.chartBomba.Series[0].Points.AddXY(10, 100);
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja limpar os gráficos e descartar os dados?", "Confirma", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.ClearChartSeries();
+                this.chartNivel.Series[0].Points.AddXY(10, 30);
+                this.chartBomba.Series[0].Points.AddXY(10, 100);
+                this.desligarSistema();
             }
         }
     }

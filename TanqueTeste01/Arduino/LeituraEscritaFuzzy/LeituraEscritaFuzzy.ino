@@ -2,9 +2,9 @@
 #include <Pid.h>
 
 const int analogInPin = A0;
-double kp, ki, kd, outputValue = 0.0;               
+double outputValue = 0.0;               
 int setPoint = 15, sensorValue = 0.0;
-float potenciaBomba = 0;
+int potenciaBomba = 0;
 double parametro_A = 0.119; 
 double parametro_B = 4.1029;
 double sampleTime;
@@ -37,7 +37,7 @@ void loop() {
         
         // Desliga o sistema
         else if(op == 'D'){ 
-          leitura.desligarSistema(potenciaBomba, outputValue, sampleTime, enviarDados, execPid, first);
+          leitura.desligarSistema(potenciaBomba, outputValue, enviarDados, execPid, first);
         }
 
         // Seta o valor da potência da bomba
@@ -57,16 +57,20 @@ void loop() {
 
         // Seta os valores do PID
         else if(op == 'P'){
-          leitura.controladorPID(getPortaSerial, pid_control, execPid);
+          leitura.setParametrosPID(getPortaSerial, pid_control, execPid);
       }    
    } // fim primeiro if 
    
    sensorValue = analogRead(analogInPin);   
    outputValue = parametro_A * sensorValue - parametro_B;   // MESMA COISA DO C# A = 0.127 e B = - 4.1029
-   if(outputValue > 25.00){
-      potenciaBomba = (80 + 35 * 1.75); //******* Calculo da potência da bomba  ******
+   if(outputValue > 30){
+      potenciaBomba = (80 + 40 * 1.75); //******* Calculo da potência da bomba  ******
     }
+    
    if(execPid){ 
+     // leitura.controladorPID(first, outputValue, potenciaBomba, pid_control, setPoint);
+   //}
+   
     if (!first){
       currentTime = millis();
     }

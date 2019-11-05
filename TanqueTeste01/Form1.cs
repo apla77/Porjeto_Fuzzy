@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports; // necessário para ter acesso as portas 
 using System.IO;
+using System.Threading;
 
 namespace TanqueTeste01 {
     public enum TipoParametro
@@ -25,7 +26,7 @@ namespace TanqueTeste01 {
             btnBomba.Enabled = false;
             btnSalvar.Enabled = false;
             this.groupBox2.Enabled = false;
-            btnParametrosPid.Enabled = false;
+            btnParametrosPid.Enabled = true;
             txtKp.Enabled = true;
             txtKi.Enabled = true;
             txtKd.Enabled = true;
@@ -104,6 +105,7 @@ namespace TanqueTeste01 {
                     btnConectar.Text = "Desconectar";
                     cboPortaSerial.Enabled = false;
                     btnIniciar.Enabled = true;
+                    this.groupBox2.Enabled = true;
                 }
             }
             else
@@ -136,24 +138,7 @@ namespace TanqueTeste01 {
             {
                 if (btnIniciar.Text == "Iniciar")
                 {
-                    ClearChartSeries();
-                    serialPort1.DiscardOutBuffer();
-                    serialPort1.DiscardInBuffer();
-                    serialPort1.Write(iniciarComunicacao); 
-                    chartNivel.Series[0].Points.Clear();
-                    chartBomba.Series[0].Points.Clear();
-                    btnIniciar.Text = "Parar";
-                    ajustarParametrosToolStripMenuItem.Enabled = false;
-                    btnConectar.Enabled = false;
-                    btnSalvar.Enabled = false;
-                    btnBomba.Enabled = true;
-                    btnOpenArquivo.Enabled = false;
-                    requested = true;
-                    btnLimpar.Enabled = false;
-                    sample = 0;
-                    //*****************************AJEITAR
-                    this.groupBox2.Enabled = true;
-
+                    this.ligarSistema();
                 }
                 else
                 {
@@ -161,6 +146,25 @@ namespace TanqueTeste01 {
                     btnLimpar.Enabled = true;
                 }
             }
+        }
+
+        private void ligarSistema()
+        {
+            ClearChartSeries();
+            serialPort1.DiscardOutBuffer();
+            serialPort1.DiscardInBuffer();
+            serialPort1.Write(iniciarComunicacao);
+            chartNivel.Series[0].Points.Clear();
+            chartBomba.Series[0].Points.Clear();
+            btnIniciar.Text = "Parar";
+            ajustarParametrosToolStripMenuItem.Enabled = false;
+            btnConectar.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnBomba.Enabled = true;
+            btnOpenArquivo.Enabled = false;
+            requested = true;
+            btnLimpar.Enabled = false;
+            sample = 0;
         }
 
         private void desligarSistema()
@@ -177,7 +181,7 @@ namespace TanqueTeste01 {
             pidAutomatico = false;
             btnOpenArquivo.Enabled = true;
             //*****************************AJEITAR
-            this.groupBox2.Enabled = false;
+            //this.groupBox2.Enabled = false;
         }
 
 
@@ -232,8 +236,7 @@ namespace TanqueTeste01 {
             PrintTanque(); // função que mostra a imagem do tanque
         }
         private void TratarLeituraSerial(string leituraSerial)
-        {
-           
+        {  
             int firstOpen = tratarLeitura.IndexOf("[");
             int firstClose = tratarLeitura.IndexOf("]");
 
@@ -243,8 +246,9 @@ namespace TanqueTeste01 {
 
                 nivelCm = Double.Parse(dados[0]);
                 nivelCm = nivelCm / 100;
-                valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
+                valorBomba = this.ConversaoBomba(Double.Parse(dados[1]));
 
+                //  valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
                 this.ChaveNivelAlto(nivelCm, valorBomba);
 
                 lblBomba.Text = valorBomba.ToString("N2") + " %";
@@ -291,6 +295,7 @@ namespace TanqueTeste01 {
                
             }
             lblAmostras.Text = "Amostra " + contadorPid + "   contI = " + this.contI + "  this.tamLista = " + this.tamLista;
+            this.erro.Text = "Erro: " + (setPoint - nivelCm);
         }
 
         private void PrintTanque()
@@ -380,7 +385,7 @@ namespace TanqueTeste01 {
                     double[] z = chartBomba.Series[0].Points[i].YValues;
 
                     //escreve o conteúdo da caixa de texto no stream
-                    writer.Write(w[0].ToString() + ' ' + y[0].ToString().Replace(',','.') + ' ' + z[0].ToString() + "\n");
+                    writer.Write(w[0].ToString() + ' ' + y[0].ToString().Replace(',','.') + ' ' + z[0].ToString().Replace(',', '.') + "\n");
                 }
                 writer.Close(); //fecha o escrito e o stream 
             }
@@ -477,7 +482,7 @@ namespace TanqueTeste01 {
       
         private void btnParametrosPid_Click(object sender, EventArgs e)
         {
-            this.SetPidParameters(txtKp.Text, txtKi.Text, txtKd.Text);
+            this.SetPidParameters(this.txtKp.Text, this.txtKi.Text, this.txtKd.Text);
         }
 
         private void SetPidParameters(string Kp, string Ki, string Kd)
@@ -487,19 +492,15 @@ namespace TanqueTeste01 {
                 serialPort1.Write("P" + Kp + ";" + Ki + ";" + Kd);
             }
         }
-
-
         private void TesteAutomatico(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             string linha;
-
             openFileDialog1.InitialDirectory = "c:\\";
             openFileDialog1.Filter = "TXT files (*.txt)|*.txt";
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                //this.ClearChartSeries();
                 string arquivo = openFileDialog1.FileName;
                 StreamReader texto = new StreamReader(arquivo);
                 
@@ -511,8 +512,13 @@ namespace TanqueTeste01 {
                 }
                 this.ClearChartSeries();
                 this.sample = 0;
-                pidAutomatico = true;
-                this.SetPidParameters(txtKp.Text, txtKi.Text, txtKd.Text);
+                       
+                this.btnIniciar.PerformClick();
+                Thread.Sleep(1000);
+                this.pidAutomatico = true;
+
+                this.btnParametrosPid.PerformClick();
+               
             }
         }
 

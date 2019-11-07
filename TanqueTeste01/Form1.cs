@@ -14,19 +14,19 @@ using System.Threading;
 namespace TanqueTeste01 {
     public enum TipoParametro
     {
-        enPA,
-        enPB
+        PA,
+        PB
     };
 
     public partial class frmPrincipal : Form
     {
         public frmPrincipal(){     
             InitializeComponent();
-            btnIniciar.Enabled = false;
-            btnBomba.Enabled = false;
-            btnSalvar.Enabled = false;
+            btnStart.Enabled = false;
+            btnPump.Enabled = false;
+            btnSaveData.Enabled = false;
             this.groupBox2.Enabled = false;
-            btnParametrosPid.Enabled = true;
+            btnSetPidParameters.Enabled = true;
             txtKp.Enabled = true;
             txtKi.Enabled = true;
             txtKd.Enabled = true;
@@ -34,7 +34,7 @@ namespace TanqueTeste01 {
 
         public void SetParametro(TipoParametro tp, double valor)
         {
-            if (tp == TipoParametro.enPA)
+            if (tp == TipoParametro.PA)
             {
                 this.parametroA = valor;
             }
@@ -46,7 +46,7 @@ namespace TanqueTeste01 {
 
         public double GetParametro(TipoParametro tp)
         {
-            if (tp == TipoParametro.enPA)
+            if (tp == TipoParametro.PA)
             {
                 return this.parametroA;       
             }
@@ -88,7 +88,7 @@ namespace TanqueTeste01 {
         }
 
         private void btnConectar_Click(object sender, EventArgs e)
-        {
+        { 
             if (serialPort1.IsOpen == false)
             {
                 try
@@ -102,10 +102,11 @@ namespace TanqueTeste01 {
                 }
                 if (serialPort1.IsOpen)
                 {
-                    btnConectar.Text = "Desconectar";
+                    btnConnect.Text = "Desconectar";
                     cboPortaSerial.Enabled = false;
-                    btnIniciar.Enabled = true;
+                    btnStart.Enabled = true;
                     this.groupBox2.Enabled = true;
+                    //this.btnSetPidParameters.Enabled = false;
                 }
             }
             else
@@ -114,8 +115,8 @@ namespace TanqueTeste01 {
                 {
                     serialPort1.Close();
                     cboPortaSerial.Enabled = true;
-                    btnConectar.Text = "Conectar";
-                    btnIniciar.Enabled = false;
+                    btnConnect.Text = "Conectar";
+                    btnStart.Enabled = false;
                 }
                 catch
                 {
@@ -128,7 +129,7 @@ namespace TanqueTeste01 {
             if (serialPort1.IsOpen)  // se porta aberta
             {
                 serialPort1.Write(finalizarComunicacao);
-                serialPort1.Close();         //fecha a porta
+                serialPort1.Close();                        //fecha a porta
             }
         }
 
@@ -136,14 +137,14 @@ namespace TanqueTeste01 {
         {
             if (serialPort1.IsOpen)
             {
-                if (btnIniciar.Text == "Iniciar")
+                if (btnStart.Text == "Iniciar")
                 {
                     this.ligarSistema();
                 }
                 else
                 {
                     this.desligarSistema();
-                    btnLimpar.Enabled = true;
+                    btnClearGraph.Enabled = true;
                 }
             }
         }
@@ -154,16 +155,16 @@ namespace TanqueTeste01 {
             serialPort1.DiscardOutBuffer();
             serialPort1.DiscardInBuffer();
             serialPort1.Write(iniciarComunicacao);
-            chartNivel.Series[0].Points.Clear();
-            chartBomba.Series[0].Points.Clear();
-            btnIniciar.Text = "Parar";
+            chtLevel.Series[0].Points.Clear();
+            chtPump.Series[0].Points.Clear();
+            btnStart.Text = "Parar";
             ajustarParametrosToolStripMenuItem.Enabled = false;
-            btnConectar.Enabled = false;
-            btnSalvar.Enabled = false;
-            btnBomba.Enabled = true;
-            btnOpenArquivo.Enabled = false;
+            btnConnect.Enabled = false;
+            btnSaveData.Enabled = false;
+            btnPump.Enabled = true;
+            btnOpenData.Enabled = false;
             requested = true;
-            btnLimpar.Enabled = false;
+            btnClearGraph.Enabled = false;
             sample = 0;
         }
 
@@ -171,19 +172,18 @@ namespace TanqueTeste01 {
         {
             serialPort1.DiscardOutBuffer();
             serialPort1.Write(finalizarComunicacao);
-            btnIniciar.Text = "Iniciar";
-            btnConectar.Enabled = true;
-            btnSalvar.Enabled = true;
-            btnLimpar.Enabled = true;
+            btnStart.Text = "Iniciar";
+            btnConnect.Enabled = true;
+            btnSaveData.Enabled = true;
+            btnClearGraph.Enabled = true;
             ajustarParametrosToolStripMenuItem.Enabled = true;
-            btnBomba.Enabled = false;
+            btnPump.Enabled = false;
             requested = false;
             pidAutomatico = false;
-            btnOpenArquivo.Enabled = true;
+            btnOpenData.Enabled = true;
             //*****************************AJEITAR
             //this.groupBox2.Enabled = false;
         }
-
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e){
             if (requested){
@@ -192,27 +192,6 @@ namespace TanqueTeste01 {
             }
         }
  
-        private bool ChaveNivelAlto (double nivel, double valorBomba)
-        {
-            if ((nivel >= NIVEL_MAX) && (valorBomba > ACIONAMENTO_SEGURANCA))
-            {
-                if (serialPort1.IsOpen)
-                {
-                    serialPort1.Write(ACIONAMENTO_SEGURANCA.ToString());
-                    pnlChaveSeguranca.Visible = true;
-                    hsbBomba.Value = ACIONAMENTO_SEGURANCA;
-                    lblTeste.Text = ACIONAMENTO_SEGURANCA.ToString();
-                    return true;
-                }
-            } 
-            else
-            {
-                pnlChaveSeguranca.Visible = false;
-            }
-
-            return false;
-        }
-
         private double ConversaoBomba(double valorBomba)
         {
             valorBomba = (valorBomba - 80) / 1.75;
@@ -235,6 +214,7 @@ namespace TanqueTeste01 {
             TratarLeituraSerial(tratarLeitura);
             PrintTanque(); // função que mostra a imagem do tanque
         }
+
         private void TratarLeituraSerial(string leituraSerial)
         {  
             int firstOpen = tratarLeitura.IndexOf("[");
@@ -248,18 +228,15 @@ namespace TanqueTeste01 {
                 nivelCm = nivelCm / 100;
                 valorBomba = this.ConversaoBomba(Double.Parse(dados[1]));
 
-                //  valorBomba = this.ConversaoBomba(Double.Parse(dados[1].Replace(".", ",")));
-                this.ChaveNivelAlto(nivelCm, valorBomba);
-
                 lblBomba.Text = valorBomba.ToString("N2") + " %";
                 lblNivelSensor.Text = nivelCm.ToString("N2") + " cm";
                 lblSetPoint.Text = setPoint + " cm";
                 mostrarTanque = nivelCm; //dados[0]
                 tratarLeitura = tratarLeitura.Remove(firstOpen, firstClose + 1);
 
-                chartNivel.Series[0].Points.AddXY(this.sample, nivelCm);
-                chartNivel.Series[1].Points.AddXY(this.sample, setPoint);
-                chartBomba.Series[0].Points.AddXY(this.sample++, valorBomba);  
+                chtLevel.Series[0].Points.AddXY(this.sample, nivelCm);
+                chtLevel.Series[1].Points.AddXY(this.sample, setPoint);
+                chtPump.Series[0].Points.AddXY(this.sample++, valorBomba);  
                   
                 if (this.pidAutomatico)    
                 {
@@ -272,8 +249,7 @@ namespace TanqueTeste01 {
                         this.contI++;
                         SetSetPoint(dado[0]);  
                         this.setPoint = Convert.ToInt32(dado[0]);
-                        this.chartNivel.Series[1].Enabled = this.radManual.Checked;
-                        Console.WriteLine(" No IF this.contI " + this.contI + "  this.tamLista " + this.tamLista);
+                        this.chtLevel.Series[1].Enabled = this.radManual.Checked;
                     }
                     else
                     {
@@ -283,19 +259,15 @@ namespace TanqueTeste01 {
                         contadorPid = 0; 
                     }
                 }
-                
                 if(this.valSetpoint == this.contadorPid && this.contadorPid > 0)
                 {
                     this.pidAutomatico = true;
-                    this.contadorPid = 0;
-                    
+                    this.contadorPid = 0;  
                 }
-  
-                this.contadorPid++;
-               
+                this.contadorPid++; 
             }
-            lblAmostras.Text = "Amostra " + contadorPid + "   contI = " + this.contI + "  this.tamLista = " + this.tamLista;
-            this.erro.Text = "Erro: " + (setPoint - nivelCm);
+            lblAmostras.Text = "Total de amostras " + contadorPid;
+            this.erro.Text = "Erro: " + (setPoint - nivelCm).ToString("N2");
         }
 
         private void PrintTanque()
@@ -349,8 +321,8 @@ namespace TanqueTeste01 {
         private void Form1_Load(object sender, EventArgs e){
             AtualizaListaCOMs();
 
-            chartNivel.Series[0].Points.AddXY(10, 30);
-            chartBomba.Series[0].Points.AddXY(10,100);
+            chtLevel.Series[0].Points.AddXY(10, 30);
+            chtPump.Series[0].Points.AddXY(10,100);
 
         }
 
@@ -359,12 +331,12 @@ namespace TanqueTeste01 {
         }
 
         private void hScrollBarBomba_Scroll(object sender, ScrollEventArgs e){
-            lblTeste.Text = hsbBomba.Value.ToString() + " %";
+            lblTeste.Text = hsbPump.Value.ToString() + " %";
         }
 
         private void btnBomba_Click(object sender, EventArgs e){
             if (serialPort1.IsOpen){
-                serialPort1.Write("B"+hsbBomba.Value.ToString());
+                serialPort1.Write("B"+hsbPump.Value.ToString());
             }
         }
 
@@ -372,17 +344,17 @@ namespace TanqueTeste01 {
         {
             if (saveFile.ShowDialog() == DialogResult.OK)
             {
-                int npNivel = chartNivel.Series[0].Points.Count;
+                int npNivel = chtLevel.Series[0].Points.Count;
 
                 FileStream fs = new FileStream(saveFile.FileName, FileMode.Create); //Cria um stream usando o nome do arquivo
                 StreamWriter writer = new StreamWriter(fs); //Cria um escrito que irá escrever no stream
 
                 for (int i = 0; i < npNivel; i++)
                 {
-                    double x = chartNivel.Series[0].Points[i].XValue;
-                    double[] w = chartNivel.Series[1].Points[i].YValues;
-                    double[] y = chartNivel.Series[0].Points[i].YValues;
-                    double[] z = chartBomba.Series[0].Points[i].YValues;
+                    double x = chtLevel.Series[0].Points[i].XValue;
+                    double[] w = chtLevel.Series[1].Points[i].YValues;
+                    double[] y = chtLevel.Series[0].Points[i].YValues;
+                    double[] z = chtPump.Series[0].Points[i].YValues;
 
                     //escreve o conteúdo da caixa de texto no stream
                     writer.Write(w[0].ToString() + ' ' + y[0].ToString().Replace(',','.') + ' ' + z[0].ToString().Replace(',', '.') + "\n");
@@ -393,9 +365,9 @@ namespace TanqueTeste01 {
 
         private void ClearChartSeries()
         {
-            this.chartNivel.Series[NIVEL_SERIE].Points.Clear();
-            this.chartNivel.Series[SP_SERIE].Points.Clear();
-            this.chartBomba.Series[BOMBA_SERIE].Points.Clear();
+            this.chtLevel.Series[NIVEL_SERIE].Points.Clear();
+            this.chtLevel.Series[SP_SERIE].Points.Clear();
+            this.chtPump.Series[BOMBA_SERIE].Points.Clear();
         }                
 
         private void btnOpenArquivo_Click(object sender, EventArgs e)
@@ -417,9 +389,9 @@ namespace TanqueTeste01 {
                 while ((linha = texto.ReadLine()) != null)
                 {
                     string[] dados = linha.Split(' ');
-                    chartNivel.Series[1].Points.AddY(dados[0]);
-                    chartNivel.Series[0].Points.AddY(dados[1]);
-                    chartBomba.Series[0].Points.AddY(dados[2]);
+                    chtLevel.Series[1].Points.AddY(dados[0]);
+                    chtLevel.Series[0].Points.AddY(dados[1]);
+                    chtPump.Series[0].Points.AddY(dados[2]);
                 }
             }
         }
@@ -446,22 +418,22 @@ namespace TanqueTeste01 {
 
         private void radioButtonManual_CheckedChanged(object sender, EventArgs e)
         {
-            this.chartNivel.Series[1].Enabled = !this.radManual.Checked;
+            this.chtLevel.Series[1].Enabled = !this.radManual.Checked;
             //*****************************AJEITAR
             desabilitaGroupBox2();
-            btnParametrosPid.Enabled = !this.radManual.Checked;
+            btnSetPidParameters.Enabled = !this.radManual.Checked;
         }
 
         private void radioButtonPid_CheckedChanged(object sender, EventArgs e)
         {
-            this.btnBomba.Enabled = !this.radPid.Checked;
-            this.hsbBomba.Enabled = !this.radPid.Checked;
+            this.btnPump.Enabled = !this.radPid.Checked;
+            this.hsbPump.Enabled = !this.radPid.Checked;
         }
 
         private void radioButtonFuzzy_CheckedChanged(object sender, EventArgs e)
         {
-            this.btnBomba.Enabled = !this.radFuzzy.Checked;
-            this.hsbBomba.Enabled = !this.radFuzzy.Checked;
+            this.btnPump.Enabled = !this.radFuzzy.Checked;
+            this.hsbPump.Enabled = !this.radFuzzy.Checked;
 
             //*****************************AJEITAR
             desabilitaGroupBox2();
@@ -472,12 +444,12 @@ namespace TanqueTeste01 {
             this.txtKp.Enabled = !this.radManual.Checked;
             this.txtKi.Enabled = !this.radManual.Checked;
             this.txtKd.Enabled = !this.radManual.Checked;
-            this.btnParametrosPid.Enabled = !this.radManual.Checked;
+            this.btnSetPidParameters.Enabled = !this.radManual.Checked;
 
             this.txtKp.Enabled = !this.radFuzzy.Checked;
             this.txtKi.Enabled = !this.radFuzzy.Checked;
             this.txtKd.Enabled = !this.radFuzzy.Checked;
-            this.btnParametrosPid.Enabled = !this.radFuzzy.Checked;        
+            this.btnSetPidParameters.Enabled = !this.radFuzzy.Checked;        
         }
       
         private void btnParametrosPid_Click(object sender, EventArgs e)
@@ -492,7 +464,7 @@ namespace TanqueTeste01 {
                 serialPort1.Write("P" + Kp + ";" + Ki + ";" + Kd);
             }
         }
-        private void TesteAutomatico(object sender, EventArgs e)
+        private void AutomaticTest(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             string linha;
@@ -512,12 +484,13 @@ namespace TanqueTeste01 {
                 }
                 this.ClearChartSeries();
                 this.sample = 0;
-                       
-                this.btnIniciar.PerformClick();
-                Thread.Sleep(1000);
-                this.pidAutomatico = true;
 
-                this.btnParametrosPid.PerformClick();
+                this.pidAutomatico = true;
+                this.btnSetPidParameters.PerformClick();
+                Thread.Sleep(500);
+                
+                this.btnStart.PerformClick();
+                
                
             }
         }
@@ -527,8 +500,8 @@ namespace TanqueTeste01 {
             if(!this.requested)
             { 
                 this.ClearChartSeries();
-                this.chartNivel.Series[0].Points.AddXY(10, 30);
-                this.chartBomba.Series[0].Points.AddXY(10, 100);
+                this.chtLevel.Series[0].Points.AddXY(10, 30);
+                this.chtPump.Series[0].Points.AddXY(10, 100);
             }
         }
 
@@ -537,8 +510,8 @@ namespace TanqueTeste01 {
             if (MessageBox.Show("Deseja limpar os gráficos e descartar os dados?", "Confirma", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.ClearChartSeries();
-                this.chartNivel.Series[0].Points.AddXY(10, 30);
-                this.chartBomba.Series[0].Points.AddXY(10, 100);
+                this.chtLevel.Series[0].Points.AddXY(10, 30);
+                this.chtPump.Series[0].Points.AddXY(10, 100);
                 this.desligarSistema();
             }
         }

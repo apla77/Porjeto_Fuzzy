@@ -50,7 +50,7 @@ void loop()
         // Disable data sending to the supervisory system
         else if(commandCode == 'D')
       {
-          reading.desligarSistema(dutyCylePump, levelCm, sendData, execPid, first);     // Turn off the didatic system       
+          reading.desligarSistema(dutyCylePump, levelCm, sampleTime, sendData, execPid, first);     // Turn off the didatic system       
       }
 
         // Set a manually given PWM-Pump duty cycle

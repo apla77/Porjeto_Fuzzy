@@ -27,15 +27,15 @@ namespace TanqueTeste01
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            this.principal.SetParametro(TipoParametro.enPA, Double.Parse(this.textBoxA.Text));
-            this.principal.SetParametro(TipoParametro.enPB, Double.Parse(this.textBoxB.Text));
+            this.principal.SetParametro(TipoParametro.PA, Double.Parse(this.textBoxA.Text));
+            this.principal.SetParametro(TipoParametro.PB, Double.Parse(this.textBoxB.Text));
             Close();
         }
 
         private void frmConversao_Shown(object sender, EventArgs e)
         {
-            this.textBoxA.Text = this.principal.GetParametro(TipoParametro.enPA).ToString();
-            this.textBoxB.Text = this.principal.GetParametro(TipoParametro.enPB).ToString();
+            this.textBoxA.Text = this.principal.GetParametro(TipoParametro.PA).ToString();
+            this.textBoxB.Text = this.principal.GetParametro(TipoParametro.PB).ToString();
         }
     }
 }

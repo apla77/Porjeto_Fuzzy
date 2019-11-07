@@ -31,32 +31,32 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            this.btnConectar = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.cboPortaSerial = new System.Windows.Forms.ComboBox();
-            this.btnIniciar = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
-            this.hsbBomba = new System.Windows.Forms.HScrollBar();
-            this.btnBomba = new System.Windows.Forms.Button();
+            this.hsbPump = new System.Windows.Forms.HScrollBar();
+            this.btnPump = new System.Windows.Forms.Button();
             this.lblNivelSensor = new System.Windows.Forms.Label();
-            this.chartNivel = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtLevel = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartNivelMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.LimparChartNivel = new System.Windows.Forms.ToolStripMenuItem();
-            this.chartBomba = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chtPump = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblTeste = new System.Windows.Forms.Label();
             this.lblSelecionaPorta = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnSaveData = new System.Windows.Forms.Button();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.openFile = new System.Windows.Forms.OpenFileDialog();
-            this.btnOpenArquivo = new System.Windows.Forms.Button();
+            this.btnOpenData = new System.Windows.Forms.Button();
             this.lblBomba = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -70,7 +70,7 @@
             this.ajustarParametrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSetPoint = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnParametrosPid = new System.Windows.Forms.Button();
+            this.btnSetPidParameters = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -87,14 +87,14 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.pnlChaveSeguranca = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAutomatic = new System.Windows.Forms.Button();
             this.lblAmostras = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnLimpar = new System.Windows.Forms.Button();
+            this.btnClearGraph = new System.Windows.Forms.Button();
             this.erro = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtLevel)).BeginInit();
             this.chartNivelMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtPump)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -105,16 +105,16 @@
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnConectar
+            // btnConnect
             // 
-            this.btnConectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConectar.Location = new System.Drawing.Point(106, 38);
-            this.btnConectar.Name = "btnConectar";
-            this.btnConectar.Size = new System.Drawing.Size(112, 23);
-            this.btnConectar.TabIndex = 0;
-            this.btnConectar.Text = "Conectar";
-            this.btnConectar.UseVisualStyleBackColor = true;
-            this.btnConectar.Click += new System.EventHandler(this.btnConectar_Click);
+            this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnect.Location = new System.Drawing.Point(106, 38);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(112, 23);
+            this.btnConnect.TabIndex = 0;
+            this.btnConnect.Text = "Conectar";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConectar_Click);
             // 
             // cboPortaSerial
             // 
@@ -125,40 +125,40 @@
             this.cboPortaSerial.TabIndex = 1;
             this.cboPortaSerial.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboBox1_MouseClick);
             // 
-            // btnIniciar
+            // btnStart
             // 
-            this.btnIniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.Location = new System.Drawing.Point(232, 37);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(66, 25);
-            this.btnIniciar.TabIndex = 2;
-            this.btnIniciar.Text = "Iniciar";
-            this.btnIniciar.UseVisualStyleBackColor = true;
-            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStart.Location = new System.Drawing.Point(232, 37);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(66, 25);
+            this.btnStart.TabIndex = 2;
+            this.btnStart.Text = "Iniciar";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // serialPort1
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
-            // hsbBomba
+            // hsbPump
             // 
-            this.hsbBomba.Location = new System.Drawing.Point(9, 92);
-            this.hsbBomba.Maximum = 109;
-            this.hsbBomba.Name = "hsbBomba";
-            this.hsbBomba.Size = new System.Drawing.Size(203, 23);
-            this.hsbBomba.TabIndex = 5;
-            this.hsbBomba.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarBomba_Scroll);
+            this.hsbPump.Location = new System.Drawing.Point(9, 92);
+            this.hsbPump.Maximum = 109;
+            this.hsbPump.Name = "hsbPump";
+            this.hsbPump.Size = new System.Drawing.Size(203, 23);
+            this.hsbPump.TabIndex = 5;
+            this.hsbPump.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hScrollBarBomba_Scroll);
             // 
-            // btnBomba
+            // btnPump
             // 
-            this.btnBomba.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBomba.Location = new System.Drawing.Point(232, 92);
-            this.btnBomba.Name = "btnBomba";
-            this.btnBomba.Size = new System.Drawing.Size(66, 23);
-            this.btnBomba.TabIndex = 6;
-            this.btnBomba.Text = "Bomba";
-            this.btnBomba.UseVisualStyleBackColor = true;
-            this.btnBomba.Click += new System.EventHandler(this.btnBomba_Click);
+            this.btnPump.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPump.Location = new System.Drawing.Point(232, 92);
+            this.btnPump.Name = "btnPump";
+            this.btnPump.Size = new System.Drawing.Size(66, 23);
+            this.btnPump.TabIndex = 6;
+            this.btnPump.Text = "Bomba";
+            this.btnPump.UseVisualStyleBackColor = true;
+            this.btnPump.Click += new System.EventHandler(this.btnBomba_Click);
             // 
             // lblNivelSensor
             // 
@@ -170,39 +170,39 @@
             this.lblNivelSensor.TabIndex = 7;
             this.lblNivelSensor.Text = "0 cm";
             // 
-            // chartNivel
+            // chtLevel
             // 
-            chartArea4.AxisX.Minimum = 0D;
-            chartArea4.AxisX.Title = "amostras";
-            chartArea4.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea4.AxisY.Interval = 5D;
-            chartArea4.AxisY.Maximum = 35D;
-            chartArea4.AxisY.Title = "nível (cm)";
-            chartArea4.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea4.Name = "ChartArea1";
-            this.chartNivel.ChartAreas.Add(chartArea4);
-            this.chartNivel.ContextMenuStrip = this.chartNivelMenu;
-            this.chartNivel.Location = new System.Drawing.Point(334, 37);
-            this.chartNivel.Name = "chartNivel";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Name = "Nível";
-            series6.BorderWidth = 2;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Color = System.Drawing.Color.Red;
-            series6.Enabled = false;
-            series6.Name = "Set-Pint";
-            this.chartNivel.Series.Add(series2);
-            this.chartNivel.Series.Add(series6);
-            this.chartNivel.Size = new System.Drawing.Size(513, 265);
-            this.chartNivel.TabIndex = 8;
-            this.chartNivel.Text = "Nível do Tanque";
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.Name = "Title1";
-            title4.Text = "Nível do Tanque";
-            this.chartNivel.Titles.Add(title4);
+            chartArea3.AxisX.Minimum = 0D;
+            chartArea3.AxisX.Title = "amostras";
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.AxisY.Interval = 5D;
+            chartArea3.AxisY.Maximum = 35D;
+            chartArea3.AxisY.Title = "nível (cm)";
+            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.Name = "ChartArea1";
+            this.chtLevel.ChartAreas.Add(chartArea3);
+            this.chtLevel.ContextMenuStrip = this.chartNivelMenu;
+            this.chtLevel.Location = new System.Drawing.Point(334, 37);
+            this.chtLevel.Name = "chtLevel";
+            series4.BorderWidth = 2;
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Name = "Nível";
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.Red;
+            series5.Enabled = false;
+            series5.Name = "Set-Pint";
+            this.chtLevel.Series.Add(series4);
+            this.chtLevel.Series.Add(series5);
+            this.chtLevel.Size = new System.Drawing.Size(513, 265);
+            this.chtLevel.TabIndex = 8;
+            this.chtLevel.Text = "Nível do Tanque";
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Nível do Tanque";
+            this.chtLevel.Titles.Add(title3);
             // 
             // chartNivelMenu
             // 
@@ -218,35 +218,35 @@
             this.LimparChartNivel.Text = "Limpar";
             this.LimparChartNivel.Click += new System.EventHandler(this.LimparChartNivel_Click);
             // 
-            // chartBomba
+            // chtPump
             // 
-            chartArea3.AxisX.Minimum = 0D;
-            chartArea3.AxisX.Title = "amostras";
-            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.AxisY.Interval = 20D;
-            chartArea3.AxisY.Maximum = 100D;
-            chartArea3.AxisY.Title = "acionamento (%)";
-            chartArea3.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.Name = "ChartArea1";
-            this.chartBomba.ChartAreas.Add(chartArea3);
-            this.chartBomba.Location = new System.Drawing.Point(334, 313);
-            this.chartBomba.Name = "chartBomba";
-            series4.BorderColor = System.Drawing.Color.White;
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Color = System.Drawing.Color.Green;
-            series4.LabelBorderWidth = 2;
-            series4.MarkerColor = System.Drawing.Color.Transparent;
-            series4.Name = "Bomba";
-            this.chartBomba.Series.Add(series4);
-            this.chartBomba.Size = new System.Drawing.Size(513, 263);
-            this.chartBomba.TabIndex = 10;
-            this.chartBomba.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Title1";
-            title3.Text = "Acionamento da Bomba";
-            this.chartBomba.Titles.Add(title3);
+            chartArea1.AxisX.Minimum = 0D;
+            chartArea1.AxisX.Title = "amostras";
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisY.Interval = 20D;
+            chartArea1.AxisY.Maximum = 100D;
+            chartArea1.AxisY.Title = "acionamento (%)";
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.Name = "ChartArea1";
+            this.chtPump.ChartAreas.Add(chartArea1);
+            this.chtPump.Location = new System.Drawing.Point(334, 313);
+            this.chtPump.Name = "chtPump";
+            series1.BorderColor = System.Drawing.Color.White;
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Green;
+            series1.LabelBorderWidth = 2;
+            series1.MarkerColor = System.Drawing.Color.Transparent;
+            series1.Name = "Bomba";
+            this.chtPump.Series.Add(series1);
+            this.chtPump.Size = new System.Drawing.Size(513, 263);
+            this.chtPump.TabIndex = 10;
+            this.chtPump.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Acionamento da Bomba";
+            this.chtPump.Titles.Add(title1);
             // 
             // lblTeste
             // 
@@ -278,16 +278,16 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "Nível:";
             // 
-            // btnSalvar
+            // btnSaveData
             // 
-            this.btnSalvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalvar.Location = new System.Drawing.Point(473, 617);
-            this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(112, 23);
-            this.btnSalvar.TabIndex = 15;
-            this.btnSalvar.Text = "Salvar Dados";
-            this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvarArquivo);
+            this.btnSaveData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveData.Location = new System.Drawing.Point(473, 617);
+            this.btnSaveData.Name = "btnSaveData";
+            this.btnSaveData.Size = new System.Drawing.Size(112, 23);
+            this.btnSaveData.TabIndex = 15;
+            this.btnSaveData.Text = "Salvar Dados";
+            this.btnSaveData.UseVisualStyleBackColor = true;
+            this.btnSaveData.Click += new System.EventHandler(this.btnSalvarArquivo);
             // 
             // saveFile
             // 
@@ -298,16 +298,16 @@
             // 
             this.openFile.FileName = "openFileDialog1";
             // 
-            // btnOpenArquivo
+            // btnOpenData
             // 
-            this.btnOpenArquivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenArquivo.Location = new System.Drawing.Point(747, 617);
-            this.btnOpenArquivo.Name = "btnOpenArquivo";
-            this.btnOpenArquivo.Size = new System.Drawing.Size(100, 23);
-            this.btnOpenArquivo.TabIndex = 20;
-            this.btnOpenArquivo.Text = "Abrir Dados";
-            this.btnOpenArquivo.UseVisualStyleBackColor = true;
-            this.btnOpenArquivo.Click += new System.EventHandler(this.btnOpenArquivo_Click);
+            this.btnOpenData.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenData.Location = new System.Drawing.Point(747, 617);
+            this.btnOpenData.Name = "btnOpenData";
+            this.btnOpenData.Size = new System.Drawing.Size(100, 23);
+            this.btnOpenData.TabIndex = 20;
+            this.btnOpenData.Text = "Abrir Dados";
+            this.btnOpenData.UseVisualStyleBackColor = true;
+            this.btnOpenData.Click += new System.EventHandler(this.btnOpenArquivo_Click);
             // 
             // lblBomba
             // 
@@ -381,12 +381,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblTeste);
-            this.groupBox1.Controls.Add(this.btnIniciar);
-            this.groupBox1.Controls.Add(this.btnConectar);
+            this.groupBox1.Controls.Add(this.btnStart);
+            this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.cboPortaSerial);
             this.groupBox1.Controls.Add(this.lblSelecionaPorta);
-            this.groupBox1.Controls.Add(this.btnBomba);
-            this.groupBox1.Controls.Add(this.hsbBomba);
+            this.groupBox1.Controls.Add(this.btnPump);
+            this.groupBox1.Controls.Add(this.hsbPump);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lblBomba);
             this.groupBox1.Controls.Add(this.lblNivelSensor);
@@ -432,7 +432,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnParametrosPid);
+            this.groupBox2.Controls.Add(this.btnSetPidParameters);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label4);
@@ -453,16 +453,16 @@
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             // 
-            // btnParametrosPid
+            // btnSetPidParameters
             // 
-            this.btnParametrosPid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnParametrosPid.Location = new System.Drawing.Point(114, 156);
-            this.btnParametrosPid.Name = "btnParametrosPid";
-            this.btnParametrosPid.Size = new System.Drawing.Size(75, 23);
-            this.btnParametrosPid.TabIndex = 49;
-            this.btnParametrosPid.Text = "OK";
-            this.btnParametrosPid.UseVisualStyleBackColor = true;
-            this.btnParametrosPid.Click += new System.EventHandler(this.btnParametrosPid_Click);
+            this.btnSetPidParameters.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetPidParameters.Location = new System.Drawing.Point(114, 156);
+            this.btnSetPidParameters.Name = "btnSetPidParameters";
+            this.btnSetPidParameters.Size = new System.Drawing.Size(75, 23);
+            this.btnSetPidParameters.TabIndex = 49;
+            this.btnSetPidParameters.Text = "OK";
+            this.btnSetPidParameters.UseVisualStyleBackColor = true;
+            this.btnSetPidParameters.Click += new System.EventHandler(this.btnParametrosPid_Click);
             // 
             // label7
             // 
@@ -606,23 +606,24 @@
             this.pnlChaveSeguranca.TabIndex = 40;
             this.pnlChaveSeguranca.Visible = false;
             // 
-            // button1
+            // btnAutomatic
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(334, 617);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Automatico";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.TesteAutomatico);
+            this.btnAutomatic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutomatic.Location = new System.Drawing.Point(334, 617);
+            this.btnAutomatic.Name = "btnAutomatic";
+            this.btnAutomatic.Size = new System.Drawing.Size(95, 23);
+            this.btnAutomatic.TabIndex = 41;
+            this.btnAutomatic.Text = "Automatico";
+            this.btnAutomatic.UseVisualStyleBackColor = true;
+            this.btnAutomatic.Click += new System.EventHandler(this.AutomaticTest);
             // 
             // lblAmostras
             // 
             this.lblAmostras.AutoSize = true;
-            this.lblAmostras.Location = new System.Drawing.Point(803, 601);
+            this.lblAmostras.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmostras.Location = new System.Drawing.Point(847, 603);
             this.lblAmostras.Name = "lblAmostras";
-            this.lblAmostras.Size = new System.Drawing.Size(0, 13);
+            this.lblAmostras.Size = new System.Drawing.Size(0, 16);
             this.lblAmostras.TabIndex = 42;
             // 
             // contextMenuStrip1
@@ -630,16 +631,16 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // btnLimpar
+            // btnClearGraph
             // 
-            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpar.Location = new System.Drawing.Point(619, 617);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(95, 23);
-            this.btnLimpar.TabIndex = 43;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            this.btnClearGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearGraph.Location = new System.Drawing.Point(619, 617);
+            this.btnClearGraph.Name = "btnClearGraph";
+            this.btnClearGraph.Size = new System.Drawing.Size(95, 23);
+            this.btnClearGraph.TabIndex = 43;
+            this.btnClearGraph.Text = "Limpar";
+            this.btnClearGraph.UseVisualStyleBackColor = true;
+            this.btnClearGraph.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // erro
             // 
@@ -658,9 +659,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1023, 652);
             this.Controls.Add(this.erro);
-            this.Controls.Add(this.btnLimpar);
+            this.Controls.Add(this.btnClearGraph);
             this.Controls.Add(this.lblAmostras);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAutomatic);
             this.Controls.Add(this.pnlChaveSeguranca);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuPrincipal);
@@ -670,18 +671,18 @@
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.btnOpenArquivo);
-            this.Controls.Add(this.btnSalvar);
-            this.Controls.Add(this.chartBomba);
-            this.Controls.Add(this.chartNivel);
+            this.Controls.Add(this.btnOpenData);
+            this.Controls.Add(this.btnSaveData);
+            this.Controls.Add(this.chtPump);
+            this.Controls.Add(this.chtLevel);
             this.MainMenuStrip = this.menuPrincipal;
             this.Name = "frmPrincipal";
             this.Text = "Sistema Supervisório - Sistema de Nível";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chartNivel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtLevel)).EndInit();
             this.chartNivelMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartBomba)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chtPump)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -700,19 +701,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnConectar;
+        private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.ComboBox cboPortaSerial;
-        private System.Windows.Forms.Button btnIniciar;
+        private System.Windows.Forms.Button btnStart;
         private System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.HScrollBar hsbBomba;
-        private System.Windows.Forms.Button btnBomba;
+        private System.Windows.Forms.HScrollBar hsbPump;
+        private System.Windows.Forms.Button btnPump;
         private System.Windows.Forms.Label lblNivelSensor;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartNivel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartBomba;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtLevel;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtPump;
         private System.Windows.Forms.Label lblTeste;
         private System.Windows.Forms.Label lblSelecionaPorta;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnSaveData;
         private System.Windows.Forms.SaveFileDialog saveFile;
         private System.Windows.Forms.ContextMenuStrip chartNivelMenu;
         
@@ -745,7 +746,7 @@
         private int tamLista = 0;
 
         private System.Windows.Forms.OpenFileDialog openFile;
-        private System.Windows.Forms.Button btnOpenArquivo;
+        private System.Windows.Forms.Button btnOpenData;
         private System.Windows.Forms.Label lblBomba;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -768,7 +769,7 @@
         private System.Windows.Forms.Label lblSetPoint;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel pnlChaveSeguranca;
-        private System.Windows.Forms.Button btnParametrosPid;
+        private System.Windows.Forms.Button btnSetPidParameters;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -776,11 +777,11 @@
         private System.Windows.Forms.TextBox txtKi;
         private System.Windows.Forms.TextBox txtKp;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAutomatic;
         private System.Windows.Forms.Label lblAmostras;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem LimparChartNivel;
-        private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Button btnClearGraph;
         private System.Windows.Forms.Label erro;
     }
 }

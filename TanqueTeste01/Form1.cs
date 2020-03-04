@@ -194,7 +194,8 @@ namespace TanqueTeste01 {
  
         private double ConversaoBomba(double valorBomba)
         {
-            valorBomba = (valorBomba - 80) / 1.75;
+            //valorBomba = (valorBomba - 80) / 1.75;
+            valorBomba = (valorBomba * 100) / 255;
 
             if (valorBomba < 0)
             {
@@ -238,7 +239,7 @@ namespace TanqueTeste01 {
                 chtLevel.Series[1].Points.AddXY(this.sample, setPoint);
                 chtPump.Series[0].Points.AddXY(this.sample++, valorBomba);  
                   
-                if (this.pidAutomatico)    
+                if (this.pidAutomatico)
                 {
                     this.contadorPid = 0;  
                     if (this.contI < this.tamLista) 
@@ -266,8 +267,8 @@ namespace TanqueTeste01 {
                 }
                 this.contadorPid++; 
             }
-            lblAmostras.Text = "Total de amostras " + contadorPid;
-            this.erro.Text = "Erro: " + (setPoint - nivelCm).ToString("N2");
+            //lblAmostras.Text = "Total de amostras " + contadorPid;
+            //this.erro.Text = "Erro: " + (setPoint - nivelCm).ToString("N2");
         }
 
         private void PrintTanque()
@@ -469,7 +470,7 @@ namespace TanqueTeste01 {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             string linha;
             openFileDialog1.InitialDirectory = "c:\\";
-            openFileDialog1.Filter = "TXT files (*.txt)|*.txt";
+            openFileDialog1.Filter = "TXT files (*.txt)|*.txt"; 
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -489,9 +490,7 @@ namespace TanqueTeste01 {
                 this.btnSetPidParameters.PerformClick();
                 Thread.Sleep(500);
                 
-                this.btnStart.PerformClick();
-                
-               
+                this.btnStart.PerformClick();       
             }
         }
 

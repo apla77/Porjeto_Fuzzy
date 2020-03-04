@@ -5,8 +5,8 @@
 const int SENSOR_PIN = A0;        // Pino da entrada analógica (entrada do sensor)
 const int PWM_PIN = 3; 
 
-double parameter_A = 0.119;     // Parâmetro A de conversão para nível y = Ax + B 
-double parameter_B = 4.1029;      // Parâmetro A de conversão para nível y = Ax + B
+double parameter_A = 0.1284;//0.119;     // Parâmetro A de conversão para nível y = Ax + B 
+double parameter_B = 5.133;//4.1029;      // Parâmetro A de conversão para nível y = Ax + B
 
 int sensorValue = 0;        // Pressure sensor measurement  
 double levelCm = 0.0;         // Tank level in centimeter
@@ -30,15 +30,15 @@ double sampleTime;                // Sample time value
 Pid pidControl = Pid();         // PID controller object
 Util reading = Util();        // Util object (auxiliar commands)  
 
-Fuzzy *fuzzy = new Fuzzy();
+//Fuzzy *fuzzy = new Fuzzy();
 
 void setup() 
 { 
-    Serial.begin(9600);            // Initialize the serial interface setting the baud rate
-    pidControl.SetULimits(255, 0);       // Set the control signal limits
+    Serial.begin(9600);              // Initialize the serial interface setting the baud rate
+    pidControl.SetULimits(255, 0);  // Set the control signal limits
     pinMode(PWM_PIN, OUTPUT);        // Set the PWM pin
     pidControl.EnableAntiResetWindup();    // Enable the PID Anti Reset Windup method (CHC)
-
+/*
   FuzzyInput *error = new FuzzyInput(1);
   
   FuzzySet * eLN = new FuzzySet(-30,-30,-7,-5);
@@ -278,6 +278,8 @@ void setup()
    fuzzy->addFuzzyRule(fuzzyRule23);
    fuzzy->addFuzzyRule(fuzzyRule24);
    fuzzy->addFuzzyRule(fuzzyRule25);
+
+   */
 }
 
 void loop() 
@@ -293,7 +295,7 @@ void loop()
       if(commandCode == 'L')  
       {
           sendData = true;
-    }             
+      }             
               
         // Disable data sending to the supervisory system
         else if(commandCode == 'D')
@@ -302,7 +304,7 @@ void loop()
       }
 
         // Set a manually given PWM-Pump duty cycle
-        else if(commandCode == 'B')
+       else if(commandCode == 'B')
       {
           reading.ligarBomba(execPid, getPortaSerial, dutyCylePump);
       }
@@ -334,12 +336,14 @@ void loop()
   } 
    
   sensorValue = analogRead(SENSOR_PIN);            // Read the pressure sensor
+
   levelCm = parameter_A * sensorValue - parameter_B;   // Convert the measurement to level in cm
   error_ant = error;
   error = setPoint - levelCm;
   Derror = error - error_ant;
 
   // Fuzzy para teste **********************************************************
+  /*
   if(execFazzy){ 
     fuzzy->setInput(1, error);
     fuzzy->setInput(2, Derror);
@@ -361,6 +365,7 @@ void loop()
         Serial.println("[ Erro " + String(error) + " /DErro " + String(Derror) + " /SaidaF " + String(saidaFuzzy) + " ]");
 
   } 
+  */
   // ****************************************************************************
    
   // Level switch (HIGH)
@@ -382,13 +387,15 @@ void loop()
           first = false;
           currentTime += 0;
         }     
-    
+     
       sampleTime = (double)(currentTime - previousTime) / 1000; // Calculate the sample time
-        if(levelCm < 30.00)
+      if(levelCm < 30.00)
       {
-      // Calculate the PID control signal (PWM-Pump duty cycle)
+      // Calculate the PID control signal (PWM-Pump duty cycle)          
           dutyCylePump = pidControl.CalculatePidControlSignal(levelCm, setPoint, sampleTime); 
-          //Serial.print("[DERROR: " + String(pidControl.GetDError()) + "]");
+          //dutyCylePump = pidControl.CalculatePidControlSignal(0, 5, sampleTime);
+          //Serial.println(" * SampleTime: " + String(sampleTime) + " / " + String(dutyCylePump) + " / " + String(levelCm) + " / " + String(setPoint) + " / "+ String(setPoint - levelCm));
+         // Serial.print("[DERROR: " + String(pidControl.GetDError()) + "]");
       }
         
     previousTime = millis();  // Obtain the previousTime stamp
@@ -397,7 +404,8 @@ void loop()
     // Send data to supervisory
     if(sendData) 
     {
-      //Serial.print("[" + String(levelCm) + "/" + String(dutyCylePump) + "]");
+      Serial.print("[" + String(levelCm) + "/" + String(dutyCylePump) + "]");
+     // Serial.println(" Sensor: " + String(sensorValue));
     }
       
   delay(200);  // Delay execution

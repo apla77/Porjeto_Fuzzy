@@ -104,5 +104,8 @@
   <ItemGroup>
     <None Include="Resources\Capturar11.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pidLogo.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
